@@ -46,6 +46,6 @@
 ### Warlock
   *  DPS -      ⁉️
 
-### Warrio
+### Warrior
   *  DPS -      ⁉️
   *  Tanking - ⁉️
