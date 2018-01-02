@@ -32,7 +32,7 @@ if IsRightControlKeyDown()  and GetTime() - rightkeydown &amp;gt; 1 then
 		print(&amp;quot;Dispell disabled!&amp;quot;)
 
   	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
 or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
@@ -40,7 +40,7 @@ or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Target Low HP</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;) 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Target Low HP</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;) 
   and UnitIsDead(&amp;quot;target&amp;quot;) == nil
   and UnitIsFriend(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) 
   and UnitCanCooperate(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;)
@@ -112,8 +112,6 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
   	end
 end
 
---Pause/the/rotation!
-
 if not rightkeydown then rightkeydown = 0 end
 
 if IsLeftShiftKeyDown()  and GetTime() - rightkeydown &amp;gt; 1 then
@@ -130,8 +128,8 @@ if IsLeftShiftKeyDown()  and GetTime() - rightkeydown &amp;gt; 1 then
 		print(&amp;quot;Chain Lightning enabled!&amp;quot;)
 
   	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Berserking</Name><Default>false</Default><SpellID>26297</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Lightning Shield</Name><Default>false</Default><SpellID>49281</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,49281) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Earth Shock</Name><Default>false</Default><SpellID>49231</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Earth Shock&amp;quot;, &amp;quot;target&amp;quot;) == 1
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Berserking</Name><Default>false</Default><SpellID>26297</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Lightning Shield</Name><Default>false</Default><SpellID>49281</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,49281) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Earth Shock</Name><Default>false</Default><SpellID>49231</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Earth Shock&amp;quot;, &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Fire Nova</Name><Default>false</Default><SpellID>61657</SpellID><Actions></Actions><Lua>haveTotem, totemName, startTime, duration = GetTotemInfo(1)
 if IsSpellInRange(&amp;quot;Flame Shock&amp;quot;, &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Flame Shock</Name><Default>false</Default><SpellID>49233</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Flame Shock&amp;quot;, &amp;quot;target&amp;quot;) == 1
@@ -143,7 +141,7 @@ and IsSpellInRange(&amp;quot;Flame Shock&amp;quot;, &amp;quot;target&amp;quot;) 
 then return true else end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Lightning Bolt</Name><Default>false</Default><SpellID>49238</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Lightning Bolt&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(49238) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Elemental Mastery</Name><Default>false</Default><SpellID>16166</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Chain Lightning</Name><Default>false</Default><SpellID>49271</SpellID><Actions></Actions><Lua>if Cleave == true
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Chain Lightning</Name><Default>false</Default><SpellID>49271</SpellID><Actions></Actions><Lua>if Cleave == true
 and IsSpellInRange(&amp;quot;Chain Lightning&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(49271) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Lava Burst</Name><Default>false</Default><SpellID>60043</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Lava Burst&amp;quot;, &amp;quot;target&amp;quot;) == 1
@@ -191,7 +189,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><Ca
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Earthliving Weapon</Name><Default>false</Default><SpellID>51994</SpellID><Actions></Actions><Lua>local _,enchant,_,_,_,_,_,_ = GetWeaponEnchantInfo()
 
 if enchant == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Water Shield</Name><Default>false</Default><SpellID>57960</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,57960) ~= nil or UnitBuffID(&amp;quot;player&amp;quot;,49284) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Wave</Name><Default>false</Default><SpellID>49273</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 75 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Water Shield</Name><Default>false</Default><SpellID>57960</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,57960) ~= nil or UnitBuffID(&amp;quot;player&amp;quot;,49284) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Wave</Name><Default>false</Default><SpellID>49273</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 75 
 and 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;gt; 30
 and PQR_IsCastingSpell(49273) == false
 and UnitBuffID(&amp;quot;player&amp;quot;, 53390)
@@ -213,7 +211,7 @@ end
 if OH == nil
 then
     CastSpellByID(58790)
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Blood Fury</Name><Default>false</Default><SpellID>33697</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Blood Fury</Name><Default>false</Default><SpellID>33697</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Earth Shield</Name><Default>false</Default><SpellID>49284</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,49284) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Windfury + Frostbrand</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,MH,_,_,OH,_,_,_ = GetWeaponEnchantInfo()
 
 if MH == nil
@@ -224,7 +222,7 @@ end
 if OH == nil
 then
     CastSpellByID(58796)
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Call of the Elements</Name><Default>false</Default><SpellID>66842</SpellID><Actions></Actions><Lua>local _, FireTotem = GetTotemInfo(1)
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Call of the Elements</Name><Default>false</Default><SpellID>66842</SpellID><Actions></Actions><Lua>local _, FireTotem = GetTotemInfo(1)
 local _, EarthTotem = GetTotemInfo(2)
 local _, WaterTotem = GetTotemInfo(3)
 local _, AirTotem = GetTotemInfo(4)
@@ -258,27 +256,15 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 
 if MH == nil
 then
-    CastSpellByID(58796)
-end
-
-if OH == nil
-then
-    CastSpellByID(58796)
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Frostbrand + Frostbrand</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,MH,_,_,OH,_,_,_ = GetWeaponEnchantInfo()
-
-if MH == nil
-then
     CastSpellByID(58804)
 end
 
 if OH == nil
 then
     CastSpellByID(58796)
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Chain Heal (Spam 2)</Name><Default>false</Default><SpellID>55459</SpellID><Actions></Actions><Lua>if Heal == true
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Chain Heal (Spam 2)</Name><Default>false</Default><SpellID>55459</SpellID><Actions></Actions><Lua>if Heal == true
 and PQR_IsCastingSpell(55459) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>--Pause/the/rotation!
-
-if not leftkeydown then leftkeydown = 0 end
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
 if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
@@ -296,8 +282,6 @@ if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
   	end
 end
 
---Pause/the/rotation!
-
 if not rightkeydown then rightkeydown = 0 end
 
 if IsLeftShiftKeyDown()  and GetTime() - rightkeydown &amp;gt; 1 then
@@ -314,4 +298,5 @@ if IsLeftShiftKeyDown()  and GetTime() - rightkeydown &amp;gt; 1 then
 		print(&amp;quot;Spaming Chain Heal enabled!&amp;quot;)
 
   	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Frost Shock</Name><Default>false</Default><SpellID>49236</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Frost Shock&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>
