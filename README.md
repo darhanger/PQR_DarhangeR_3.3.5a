@@ -8,35 +8,37 @@
 
 
 ### Death Knight
-  *  DPS                           - ⁉️
-  *  Tanking                       - ⁉️
-
+* DarhangeR_Blood_DPS - ✔️
+* DarhangeR_Blood_Tank - ✅
+* DarhangeR_Frost2W_DPS - ✔️
+* DarhangeR_Unholy_DPS - ✔️
+*** 
 ### Druid
-  *  DarhangeR_Resto_PvE          - ✅
-  *  DarhangeR_Resto25_PvE        - ✅
-  *  DarhangeR_Moonkin_PvE        - ✅
-  *  DarhangeR_Cat_PvE            - ✅
-  *  DarhangeR_Bear_PvE           - ✅
-
+* DarhangeR_Resto_PvE          - ✅
+* DarhangeR_Resto25_PvE        - ✅
+* DarhangeR_Moonkin_PvE        - ✅
+* DarhangeR_Cat_PvE            - ✅
+* DarhangeR_Bear_PvE           - ✅
+*** 
 ### Hunter
-  *  DPS                          - ⁉️
-
+* DPS                          - ⁉️
+*** 
 ### Mage
-  *  DPS -      ⁉️
-
+* DPS -      ⁉️
+*** 
 ### Paladin
   *  DarhangeR_Retri_PvE(AOE)  - ✅
   *  DarhangeR_Retri_PvE            - ✅
   *  DarhangeR_Holly_PvE           - ✅
   *  DarhangeR_Prot_PvE             - ✅
-
+*** 
 ### Priest
   *  DarhangeR_Holly_PvE          - ✅
   *  DarhangeR_Shadow_PvE     - ✅
-
+*** 
 ### Rogue
   *  DPS -      ⁉️
-
+*** 
 ### Shaman
   *  DarhangeR_Ench_PvE-AoE     - ✅
   *  DarhangeR_Ench_PvE             - ✅
@@ -45,7 +47,7 @@
 
 ### Warlock
   *  DPS -      ⁉️
-
+*** 
 ### Warrior
   *  DPS -      ⁉️
   *  Tanking - ⁉️
