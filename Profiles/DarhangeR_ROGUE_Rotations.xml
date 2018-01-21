@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?><ROGUE><Rotation><RotationName>DarhangeR_Combat_PvE</RotationName><RotationDefault>false</RotationDefault><RotationList>-- Hotkeys --|-- Start Fight --|USE:Mouseover Skill|All:Poison|-- Offensive Spells --|C:Fan of Knives|All:Tricks of the Trade|C:Adrenaline Rush|C:Blade Flurry|C:Killing Spree|Racial:Berserking|Racial:Blood Fury|M:Slice and Dice|M:Rupture|C:Sinister Strike|C:Eviscerate</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Specific commands:
+- Hold Left Shift for use Fan of Knives;
+- Focus Tank for use Tricks of The Trade;</RotationNotes></Rotation><Rotation><RotationName>DarhangeR_Ass_PvE</RotationName><RotationDefault>false</RotationDefault><RotationList>M:-- Hotkeys --|-- Start Fight --|USE:Mouseover Skill|All:Poison|All:Stealth|M:Ambush(S)|M:Garrote|-- Offensive Spells --|C:Fan of Knives|All:Tricks of the Trade|Racial:Berserking|Racial:Blood Fury|M:Hunger For Blood|All:Vanish|M:Slice and Dice|M:Mutilate|M:Envenom</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Specific commands:
+- Hold Left Shift for use Fan of Knives;
+- Focus Tank for use Tricks of The Trade;
+- Click Left Alt for change opener Ambush/Garrote;</RotationNotes></Rotation></ROGUE>

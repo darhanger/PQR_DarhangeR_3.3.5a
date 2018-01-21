@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?><WARRIOR><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
+
+if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
+	leftkeydown = GetTime()
+
+  	if StopRota  then 
+
+    		StopRota  = false 
+		print(&amp;quot;Rotation reenabled!&amp;quot;)
+
+  	else 
+    	
+		StopRota  = true 
+		print(&amp;quot;Rotation stopped!&amp;quot;)
+
+  	end
+end
+
+if not rightkeydown then rightkeydown = 0 end
+
+if IsAltKeyDown() and IsControlKeyDown()  and GetTime() - rightkeydown &amp;gt; 1 then
+	leftkeydown = GetTime()
+
+  	if Cleave then 
+
+    		Cleave  = false 
+		print(&amp;quot;Cleave disabled!&amp;quot;)
+
+  	else 
+    	
+		Cleave  = true 
+		print(&amp;quot;Cleave enabled!&amp;quot;)
+
+  	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
+or ( not UnitAffectingCombat(&amp;quot;target&amp;quot;) and not UnitIsPlayer(&amp;quot;target&amp;quot;) )
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
+or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
+or IsMounted()
+or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
+or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
+or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Essen&amp;quot;)
+or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Trinken&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Berserker Rage</Name><Default>false</Default><SpellID>18499</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+and UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Execute</Name><Default>false</Default><SpellID>47471</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;) &amp;lt;= 20
+and IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Slam</Name><Default>false</Default><SpellID>47475</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 46916)  or UnitBuffID(&amp;quot;player&amp;quot;, 46915) or UnitBuffID(&amp;quot;player&amp;quot;,  46913)
+and IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Heroic Strike</Name><Default>false</Default><SpellID>47450</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Heroic Throw</Name><Default>false</Default><SpellID>57755</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Throw&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Recklessness</Name><Default>false</Default><SpellID>1719</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+and UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Bloodrage</Name><Default>false</Default><SpellID>2687</SpellID><Actions></Actions><Lua>if UnitPower(&amp;quot;player&amp;quot;) &amp;lt;= 65
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Cleave</Name><Default>false</Default><SpellID>47520</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Bloodthirst</Name><Default>false</Default><SpellID>23881</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>USE:Trinket 1</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+if cd == 0 and havecd == 1  
+and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
+and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
+and UnitAffectingCombat(&amp;quot;player&amp;quot;)
+and UnitLevel(&amp;quot;target&amp;quot;) == -1
+then 
+  UseInventoryItem(13) 
+  return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>USE:Trinket 2</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
+if cd == 0 and havecd == 1  
+and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
+and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
+and UnitAffectingCombat(&amp;quot;player&amp;quot;)
+and UnitLevel(&amp;quot;target&amp;quot;) == -1
+then 
+  UseInventoryItem(14) 
+  return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Battle Stance</Name><Default>false</Default><SpellID>2457</SpellID><Actions></Actions><Lua>local DS = GetShapeshiftForm()
+
+if DS ~= 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Execute</Name><Default>false</Default><SpellID>47471</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;) &amp;lt;= 20
+and UnitPower(&amp;quot;player&amp;quot;) &amp;gt;= 30
+and IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+or UnitBuffID(&amp;quot;player&amp;quot;, 52437)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Charge</Name><Default>false</Default><SpellID>11578</SpellID><Actions></Actions><Lua>if IsShiftKeyDown()  and GetCurrentKeyBoardFocus() == nil then
+    RunMacroText(&amp;quot;/target [@mouseover]&amp;quot;)
+return true end</Lua><RecastDelay>0</RecastDelay><Target>Mouseover</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Slam</Name><Default>false</Default><SpellID>47475</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Rend</Name><Default>false</Default><SpellID>47465</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,47465,&amp;quot;player&amp;quot;) == nil
+and IsSpellInRange(&amp;quot;Rend&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Overpower</Name><Default>false</Default><SpellID>7384</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Overpower&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Berserker Stance</Name><Default>false</Default><SpellID>2458</SpellID><Actions></Actions><Lua>local DS = GetShapeshiftForm()
+
+if DS ~= 3
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Heroic Strike</Name><Default>false</Default><SpellID>47450</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Bloodrage</Name><Default>false</Default><SpellID>2687</SpellID><Actions></Actions><Lua>if UnitPower(&amp;quot;player&amp;quot;) &amp;lt;= 65
+and UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>USE:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
+    then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Whirlwind</Name><Default>false</Default><SpellID>1680</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Cleave</Name><Default>false</Default><SpellID>47520</SpellID><Actions></Actions><Lua>if Cleave == true
+and IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mortal Strike</Name><Default>false</Default><SpellID>47486</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mortal Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Bladestorm</Name><Default>false</Default><SpellID>46924</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mortal Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+and UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Death Wish</Name><Default>false</Default><SpellID>12292</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+and UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Shockwave</Name><Default>false</Default><SpellID>46968</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Concussion Blow</Name><Default>false</Default><SpellID>12809</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Sweeping Strikes</Name><Default>false</Default><SpellID>12328</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Battle Shout</Name><Default>false</Default><SpellID>47436</SpellID><Actions></Actions><Lua>local Shout, _, _, _, _, _, hwexpire = UnitBuffID(&amp;quot;player&amp;quot;, 47436)
+
+if Shout ~= nill then
+	hwexpire =(hwexpire - GetTime())
+	if hwexpire &amp;lt; 5 then
+		return true
+	end
+else
+	return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Defensive Stance</Name><Default>false</Default><SpellID>71</SpellID><Actions></Actions><Lua>local DS = GetShapeshiftForm()
+
+if DS ~= 2
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Commanding Shout</Name><Default>false</Default><SpellID>47440</SpellID><Actions></Actions><Lua>local Shout, _, _, _, _, _, hwexpire = UnitBuffID(&amp;quot;player&amp;quot;, 47440)
+
+if Shout ~= nill then
+	hwexpire =(hwexpire - GetTime())
+	if hwexpire &amp;lt; 5 then
+		return true
+	end
+else
+	return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Last Stand</Name><Default>false</Default><SpellID>12975</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 35
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Shield Wall</Name><Default>false</Default><SpellID>871</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 50
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Demoralizing Shout</Name><Default>false</Default><SpellID>47437</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,47437,&amp;quot;player&amp;quot;) == nil
+and IsSpellInRange(&amp;quot;Rend&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Bladestorm(Sh)</Name><Default>false</Default><SpellID>46924</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Thunder Clap</Name><Default>false</Default><SpellID>47502</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Shield Block</Name><Default>false</Default><SpellID>2565</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 90
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Enraged Regeneration</Name><Default>false</Default><SpellID>55694</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 35
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Devastate</Name><Default>false</Default><SpellID>47498</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Devastate&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>5000</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Shield Slam</Name><Default>false</Default><SpellID>47488</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Devastate&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Revenge</Name><Default>false</Default><SpellID>57823</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Devastate&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Bloodthirst</Name><Default>false</Default><SpellID>23881</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 85
+and IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Shockwave(Tank)</Name><Default>false</Default><SpellID>46968</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 20
+and IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
+-- VK: https://vk.com/darhanger
+-- FB: https://fb.com/darhanger
+-- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Berserking</Name><Default>false</Default><SpellID>26297</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Blood Fury</Name><Default>false</Default><SpellID>33697</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Hamstring</Name><Default>false</Default><SpellID>1715</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,1715,&amp;quot;player&amp;quot;) == nil
+and IsSpellInRange(&amp;quot;Rend&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARRIOR>
