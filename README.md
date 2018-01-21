@@ -37,7 +37,8 @@
   *  DarhangeR_Shadow_PvE     - ✅
 *** 
 ### Rogue
-  *  DPS -      ⁉️
+  *  DarhangeR_Combat_PvE - ✅
+  *  DarhangeR_Ass_PvE - ✅
 *** 
 ### Shaman
   *  DarhangeR_Ench_PvE-AoE     - ✅
@@ -49,5 +50,6 @@
   *  DPS -      ⁉️
 *** 
 ### Warrior
-  *  DPS -      ⁉️
-  *  Tanking - ⁉️
+  *  DarhangeR_Fury_Solo - ✅
+  *  DarhangeR_Fury_AOE - ✅
+  *  DarhangeR_Prot_PvE - ✅
