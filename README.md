@@ -2,54 +2,55 @@
 
 ## Support Status Meanings 
 
+
 * ✅ - BEST - use multispec rotattion for max DPS
 * ✔️ - works well, but not as I would like)
 * ⁉️ - currently unknown or in development;
 
-
 ### Death Knight
-* DarhangeR_Blood_DPS - ✔️
-* DarhangeR_Blood_Tank - ✅
-* DarhangeR_Frost2W_DPS - ✔️
-* DarhangeR_Unholy_DPS - ✔️
+* Blood_DPS_DarhangeR          - ✅
+* Frost2W_DPS_DarhangeR          - ✅
+* Unholy_DPS_DarhangeR          - ✅
+* Blood_Tank_DarhangeR          - ✅
 *** 
 ### Druid
-* DarhangeR_Resto_PvE          - ✅
-* DarhangeR_Resto25_PvE        - ✅
-* DarhangeR_Moonkin_PvE        - ✅
-* DarhangeR_Cat_PvE            - ✅
-* DarhangeR_Bear_PvE           - ✅
+* Resto_DarhangeR          - ✅
+* Resto25_DarhangeR          - ✅
+* Balance_DPS_DarhangeR          - ✅
+* FeralCat_DPS_DarhangeR          - ✅
+* FeralCat_DPS_DarhangeR          - ✅
 *** 
 ### Hunter
-* DPS                          - ⁉️
+* Marksmanship_DPS_DarhangeR            - ✅
 *** 
 ### Mage
 * DPS -      ⁉️
 *** 
 ### Paladin
-  *  DarhangeR_Retri_PvE(AOE)  - ✅
-  *  DarhangeR_Retri_PvE            - ✅
-  *  DarhangeR_Holly_PvE           - ✅
-  *  DarhangeR_Prot_PvE             - ✅
+* Retri_DPS_DarhangeR            - ✅
+* Retri_DPS(AOE)_DarhangeR            - ✅
+* Heal_Holy_DarhangeR           - ✅
+* Proto_Tank_DarhangeR             - ✅
 *** 
 ### Priest
-  *  DarhangeR_Holly_PvE          - ✅
-  *  DarhangeR_Shadow_PvE     - ✅
+* Shadow_DPS_DarhangeR         - ✅
+* Heal_Holy25_DarhangeR     - ✅
 *** 
 ### Rogue
-  *  DarhangeR_Combat_PvE - ✅
-  *  DarhangeR_Ass_PvE - ✅
+* Combat_DPS_DarhangeR - ✅
+* Assassination_DPS_DarhangeR - ✅
 *** 
 ### Shaman
-  *  DarhangeR_Ench_PvE-AoE     - ✅
-  *  DarhangeR_Ench_PvE             - ✅
-  *  DarhangeR_Resto                    - ✅
-  *  DarhangeR_Elem                     - ✅
-
+* Ench_DPS_DarhangeR   - ✅
+* Ench_DPS(AOE)_DarhangeR   - ✅
+* Elem_DPS_DarhangeR   - ✅
+* Heal_Resto_Darhanger - ✅
+*** 
 ### Warlock
-  *  DPS -      ⁉️
+* Destruction -     ✅
 *** 
 ### Warrior
-  *  DarhangeR_Fury_Solo - ✅
-  *  DarhangeR_Fury_AOE - ✅
-  *  DarhangeR_Prot_PvE - ✅
+* Fury_DPS_DarhangeR -     ✅
+* Fury_DPS(AOE)_DarhangeR -     ✅
+* Proto_Tank_DarhangeR - ✅
+* Arms_DPS_DarhangeR -  ✔️
