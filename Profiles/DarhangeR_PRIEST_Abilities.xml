@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="utf-8" ?><PRIEST><Ability><Name>H:Power Word: Shield (Low HP)</Name><Default>false</Default><SpellID>48066</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt;= 65
+<?xml version="1.0" encoding="utf-8" ?><PRIEST><Ability><Name>Holy:Power Word: Shield (Low HP)</Name><Default>false</Default><SpellID>48066</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt;= 65
 and UnitDebuffID(PQR_CustomTarget,6788) == nil 
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Vampiric Touch</Name><Default>false</Default><SpellID>48160</SpellID><Actions></Actions><Lua>local VT, _, _, _, _, _, timer = UnitDebuffID(&amp;quot;target&amp;quot;, 48160, &amp;quot;PLAYER&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Vampiric Touch</Name><Default>false</Default><SpellID>48160</SpellID><Actions></Actions><Lua>local VT, _, _, _, _, _, timer = UnitDebuffID(&amp;quot;target&amp;quot;, 48160, &amp;quot;PLAYER&amp;quot;)
 
 if IsSpellInRange(&amp;quot;Vampiric Touch&amp;quot;, &amp;quot;target&amp;quot;) ~= 1 or PQR_IsCastingSpell(48160) ~= false then return false else
 	if VT ~= nil then
 		if timer - GetTime() &amp;lt;= 2.1 then return true end
 	else return true end
-end</Lua><RecastDelay>500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Inner Fire</Name><Default>false</Default><SpellID>48168</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48168) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Mind Blast</Name><Default>false</Default><SpellID>48127</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mind Blast&amp;quot;, &amp;quot;target&amp;quot;) == 1
+end</Lua><RecastDelay>500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Inner Fire</Name><Default>false</Default><SpellID>48168</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48168) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Mind Blast</Name><Default>false</Default><SpellID>48127</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mind Blast&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(48127) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Prayer of Spirit</Name><Default>false</Default><SpellID>48074</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48074) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Prayer of Spirit</Name><Default>false</Default><SpellID>48074</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48074) == nil
 and GetItemCount(&amp;quot;Devout Candle&amp;quot;) &amp;gt;= 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Vampiric Embrace</Name><Default>false</Default><SpellID>15286</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,15286) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Shadowfiend</Name><Default>false</Default><SpellID>34433</SpellID><Actions>/petattack|/petaggressive|/cast Shadowcrawl</Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>1</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Shadowform</Name><Default>false</Default><SpellID>15473</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,15473) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Shadow Word: Pain</Name><Default>false</Default><SpellID>48125</SpellID><Actions></Actions><Lua>local sw={UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Shadow Weaving&amp;quot;)}
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Vampiric Embrace</Name><Default>false</Default><SpellID>15286</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,15286) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Shadowfiend</Name><Default>false</Default><SpellID>34433</SpellID><Actions>/petattack|/petaggressive|/cast Shadowcrawl</Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>1</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Shadowform</Name><Default>false</Default><SpellID>15473</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,15473) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Shadow Word: Pain</Name><Default>false</Default><SpellID>48125</SpellID><Actions></Actions><Lua>local sw={UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Shadow Weaving&amp;quot;)}
 local SWP, _, _, _, _, _, timer = UnitDebuffID(&amp;quot;target&amp;quot;, 48125, &amp;quot;PLAYER&amp;quot;)
 
 if IsSpellInRange(&amp;quot;Shadow Word: Pain&amp;quot;, &amp;quot;target&amp;quot;) ~= 1 then return false else
 	if SWP ~= nil then
 		if timer - GetTime() &amp;lt;= 4.3 then return true end
 	else return true end
-end</Lua><RecastDelay>1</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Mind Flay</Name><Default>false</Default><SpellID>48156</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mind Flay&amp;quot;, &amp;quot;target&amp;quot;) == 1
+end</Lua><RecastDelay>1</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Mind Flay</Name><Default>false</Default><SpellID>48156</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mind Flay&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(48156) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Mind Sear</Name><Default>false</Default><SpellID>53023</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mind Sear&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Mind Sear</Name><Default>false</Default><SpellID>53023</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mind Sear&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(53023) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Shadow Word: Death</Name><Default>false</Default><SpellID>48158</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;) &amp;lt;= 35
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Shadow Word: Death</Name><Default>false</Default><SpellID>48158</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;) &amp;lt;= 35
 and IsSpellInRange(&amp;quot;Mind Blast&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>1</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Target Low HP</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;) 
+then return true end</Lua><RecastDelay>1</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Target Low HP</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;) 
   and UnitIsDead(&amp;quot;target&amp;quot;) == nil
   and UnitIsFriend(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) 
   and UnitCanCooperate(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;)
@@ -77,9 +77,9 @@ or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
 or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Essen&amp;quot;)
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Trinken&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
+or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
+or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
 if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
@@ -113,7 +113,7 @@ if IsRightControlKeyDown()  and GetTime() - rightkeydown &amp;gt; 1 then
 		print(&amp;quot;Dispell disabled!&amp;quot;)
 
   	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Target Low HP</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;) 
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Target Low HP</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;) 
   and UnitIsDead(&amp;quot;target&amp;quot;) == nil
   and UnitIsFriend(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) 
   and UnitCanCooperate(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;)
@@ -156,14 +156,14 @@ for i = 1, members, 1 do
   end
 end
 
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Mass Dispel</Name><Default>false</Default><SpellID>32375</SpellID><Actions></Actions><Lua>if IsShiftKeyDown() 
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Mass Dispel</Name><Default>false</Default><SpellID>32375</SpellID><Actions></Actions><Lua>if IsShiftKeyDown() 
 and GetCurrentKeyBoardFocus() == nil 
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil 
 then
   CastSpellByName(&amp;quot;Massenbannung&amp;quot;)
   if SpellIsTargeting() then CameraOrSelectOrMoveStart() CameraOrSelectOrMoveStop() end  
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>USE:Trinket 1</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket 1</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 if cd == 0 and havecd == 1  
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
@@ -172,7 +172,7 @@ and UnitLevel(&amp;quot;target&amp;quot;) == -1
 then 
   UseInventoryItem(13) 
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>USE:Trinket 2</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket 2</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
 if cd == 0 and havecd == 1  
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
@@ -181,7 +181,7 @@ and UnitLevel(&amp;quot;target&amp;quot;) == -1
 then 
   UseInventoryItem(14) 
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>USE:Trinket (SP)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (SP)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 if cd == 0 and havecd == 1  
 and UnitBuffID(&amp;quot;player&amp;quot;, 75473) or UnitBuffID(&amp;quot;player&amp;quot;, 2825) or UnitBuffID(&amp;quot;player&amp;quot;, 32182)
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
@@ -190,17 +190,17 @@ then
   UseInventoryItem(13) 
   return true
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>USE:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
-	then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Flash Heal</Name><Default>false</Default><SpellID>48071</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 85
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
+	then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Flash Heal</Name><Default>false</Default><SpellID>48071</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 85
 and 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;gt; 30
 and PQR_IsCastingSpell(48071) == false
-then return true else return false end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Renew</Name><Default>false</Default><SpellID>48068</SpellID><Actions></Actions><Lua>if UnitBuffID(PQR_CustomTarget, 48068,&amp;quot;PLAYER&amp;quot;) == nil 
+then return true else return false end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Renew</Name><Default>false</Default><SpellID>48068</SpellID><Actions></Actions><Lua>if UnitBuffID(PQR_CustomTarget, 48068,&amp;quot;PLAYER&amp;quot;) == nil 
 and (PQR_CustomTargetHP &amp;lt; 95 or UnitThreatSituation(PQR_CustomTarget) == 3) 
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Prayer of Mending</Name><Default>false</Default><SpellID>48113</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 2 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Prayer of Mending</Name><Default>false</Default><SpellID>48113</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 2 
 and UnitBuffID(PQR_CustomTarget, 48113,&amp;quot;PLAYER&amp;quot;) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Prayer of Healing</Name><Default>false</Default><SpellID>48072</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 3
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Prayer of Healing</Name><Default>false</Default><SpellID>48072</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 3
 and PQR_IsCastingSpell(48072) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Cure Disease</Name><Default>false</Default><SpellID>528</SpellID><Actions></Actions><Lua>local buff = { }
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Cure Disease</Name><Default>false</Default><SpellID>528</SpellID><Actions></Actions><Lua>local buff = { }
 local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
 if GetNumRaidMembers() &amp;gt; 0 then
@@ -226,8 +226,8 @@ for i = 0, members, 1 do
     debuff,_,_,count,bufftype,duration = UnitDebuff(mem, j)
     end
   end
-end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Power Word: Shield</Name><Default>false</Default><SpellID>48066</SpellID><Actions></Actions><Lua>if UnitDebuffID(PQR_CustomTarget,6788) == nil 
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Power Word: Shield (Alle)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local group = &amp;quot;party&amp;quot;
+end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Power Word: Shield</Name><Default>false</Default><SpellID>48066</SpellID><Actions></Actions><Lua>if UnitDebuffID(PQR_CustomTarget,6788) == nil 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Power Word: Shield (Ally)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
 
 if UnitDebuffID(&amp;quot;player&amp;quot;, 6788) == nil
@@ -248,7 +248,7 @@ for i = 1, members, 1 do
     then
         CastSpellByID(48066, member)
    end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Dispel Magic</Name><Default>false</Default><SpellID>988</SpellID><Actions></Actions><Lua>if DoNotDispell then return false end
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Dispel Magic</Name><Default>false</Default><SpellID>988</SpellID><Actions></Actions><Lua>if DoNotDispell then return false end
 if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt; 25 then return false end
 local i = 1
 local baddispel = nil
@@ -268,14 +268,14 @@ while buff do
   then return true end
   i = i + 1;
   buff,_,_,count,bufftype,duration = UnitDebuff(PQR_CustomTarget, i)
-end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Mass Dispel</Name><Default>false</Default><SpellID>32375</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() 
+end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Mass Dispel</Name><Default>false</Default><SpellID>32375</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() 
 and GetCurrentKeyBoardFocus() == nil 
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil 
 then
   CastSpellByName(&amp;quot;Mass Dispel&amp;quot;)
   if SpellIsTargeting() then CameraOrSelectOrMoveStart() CameraOrSelectOrMoveStop() end  
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Shadowfiend</Name><Default>false</Default><SpellID>0</SpellID><Actions>/petattack|/petaggressive|/cast Shadowcrawl</Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt; 70 
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Shadowfiend</Name><Default>false</Default><SpellID>0</SpellID><Actions>/petattack|/petaggressive|/cast Shadowcrawl</Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt; 70 
 and GetSpellCooldown(34433) == 0
 and UnitIsEnemy(&amp;quot;player&amp;quot;,PQR_CustomTarget..&amp;quot;target&amp;quot;)
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
@@ -284,21 +284,21 @@ and UnitLevel(PQR_CustomTarget..&amp;quot;target&amp;quot;) == -1
 then 
   CastSpellByID(34433,PQR_CustomTarget..&amp;quot;target&amp;quot;) 
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Pain Suppression</Name><Default>false</Default><SpellID>33206</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 20
-then return true else return false end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Power Infusion</Name><Default>false</Default><SpellID>10060</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;focus&amp;quot;)
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Pain Suppression</Name><Default>false</Default><SpellID>33206</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 20
+then return true else return false end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Power Infusion</Name><Default>false</Default><SpellID>10060</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;focus&amp;quot;)
 and not UnitIsDeadOrGhost(&amp;quot;focus&amp;quot;)
 and 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;gt; 30
 and UnitLevel(PQR_CustomTarget..&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Penance</Name><Default>false</Default><SpellID>53007</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 85
-then return true else return false end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Flash Heal</Name><Default>false</Default><SpellID>48071</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,33151) 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Penance</Name><Default>false</Default><SpellID>53007</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 85
+then return true else return false end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Flash Heal</Name><Default>false</Default><SpellID>48071</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,33151) 
 then return true end
 
 if PQR_CustomTargetHP &amp;lt; 80 
 and 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;gt; 30
 and PQR_IsCastingSpell(48071) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Renew</Name><Default>false</Default><SpellID>48068</SpellID><Actions></Actions><Lua>if UnitBuffID(PQR_CustomTarget, 48068,&amp;quot;PLAYER&amp;quot;) == nil 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Renew</Name><Default>false</Default><SpellID>48068</SpellID><Actions></Actions><Lua>if UnitBuffID(PQR_CustomTarget, 48068,&amp;quot;PLAYER&amp;quot;) == nil 
 and (PQR_CustomTargetHP &amp;lt; 95 or UnitThreatSituation(PQR_CustomTarget) == 3) 
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Renew (Alle)</Name><Default>false</Default><SpellID>48068</SpellID><Actions></Actions><Lua>local group = &amp;quot;party&amp;quot;
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Renew (Alle)</Name><Default>false</Default><SpellID>48068</SpellID><Actions></Actions><Lua>local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
 
 if UnitBuffID(&amp;quot;player&amp;quot;, 48068) == nil
@@ -319,9 +319,9 @@ for i = 1, members, 1 do
     then
         CastSpellByID(48068, member)
    end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Prayer of Mending</Name><Default>false</Default><SpellID>48113</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 2 
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Prayer of Mending</Name><Default>false</Default><SpellID>48113</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 2 
 and UnitBuffID(PQR_CustomTarget, 48113,&amp;quot;PLAYER&amp;quot;) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Prayer of Healing</Name><Default>false</Default><SpellID>48072</SpellID><Actions></Actions><Lua>local sd={UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Serendipity&amp;quot;)}
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Prayer of Healing</Name><Default>false</Default><SpellID>48072</SpellID><Actions></Actions><Lua>local sd={UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Serendipity&amp;quot;)}
 
 if sd[4] == nil
 or 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;gt; 30
@@ -329,14 +329,14 @@ then return false end
 if lowhpmembers &amp;gt;= 4
 and sd[4] &amp;gt;= 2
 and PQR_IsCastingSpell(48072) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Greater Heal</Name><Default>false</Default><SpellID>48063</SpellID><Actions></Actions><Lua>local sd={UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Serendipity&amp;quot;)}
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Greater Heal</Name><Default>false</Default><SpellID>48063</SpellID><Actions></Actions><Lua>local sd={UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Serendipity&amp;quot;)}
 
 if sd[4] == nil then return false end
 if PQR_CustomTargetHP &amp;lt; 65 
 and 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;gt; 50
 and sd[4] &amp;gt;= 2
 and PQR_IsCastingSpell(48063) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Cure Disease</Name><Default>false</Default><SpellID>528</SpellID><Actions></Actions><Lua>if DoNotDispell then return false end
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Cure Disease</Name><Default>false</Default><SpellID>528</SpellID><Actions></Actions><Lua>if DoNotDispell then return false end
 if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt; 50 then return false end
 local i = 1
 local baddispel = nil
@@ -356,11 +356,11 @@ while buff do
   then return true end
   i = i + 1;
   buff,_,_,count,bufftype,duration = UnitDebuff(PQR_CustomTarget, i)
-end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Circle of Healing</Name><Default>false</Default><SpellID>48089</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 95
+end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Circle of Healing</Name><Default>false</Default><SpellID>48089</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 95
 and lowhpmembers &amp;gt;= 3 
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Power Word: Shield</Name><Default>false</Default><SpellID>48066</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 60 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Power Word: Shield</Name><Default>false</Default><SpellID>48066</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 60 
 and UnitDebuffID(PQR_CustomTarget,6788) == nil 
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Dispel Magic</Name><Default>false</Default><SpellID>988</SpellID><Actions></Actions><Lua>if DoNotDispell then return false end
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Dispel Magic</Name><Default>false</Default><SpellID>988</SpellID><Actions></Actions><Lua>if DoNotDispell then return false end
 if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt; 50 then return false end
 local i = 1
 local baddispel = nil
@@ -381,7 +381,7 @@ while buff do
   i = i + 1;
   buff,_,_,count,bufftype,duration = UnitDebuff(PQR_CustomTarget, i)
 end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Berserking</Name><Default>false</Default><SpellID>26297</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Shadowfiend</Name><Default>false</Default><SpellID>0</SpellID><Actions>/petattack|/petaggressive|/cast Shadowcrawl</Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt; 70 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Shadowfiend</Name><Default>false</Default><SpellID>0</SpellID><Actions>/petattack|/petaggressive|/cast Shadowcrawl</Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt; 70 
 and GetSpellCooldown(34433) == 0
 and UnitIsEnemy(&amp;quot;player&amp;quot;,PQR_CustomTarget..&amp;quot;target&amp;quot;) 
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
@@ -390,35 +390,42 @@ and UnitLevel(PQR_CustomTarget..&amp;quot;target&amp;quot;) == -1
 then 
   CastSpellByID(34433,PQR_CustomTarget..&amp;quot;target&amp;quot;) 
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Guardian Spirit</Name><Default>false</Default><SpellID>47788</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 10 
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Binding Heal</Name><Default>false</Default><SpellID>48120</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 85 
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Guardian Spirit</Name><Default>false</Default><SpellID>47788</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 10 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Binding Heal</Name><Default>false</Default><SpellID>48120</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 85 
 and 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 90 
 and UnitIsUnit(&amp;quot;player&amp;quot;, PQR_CustomTarget) == nil
 and 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;gt; 30
 and PQR_IsCastingSpell(32546) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Desperate Prayer</Name><Default>false</Default><SpellID>48173</SpellID><Actions></Actions><Lua>local unithealth = 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Desperate Prayer</Name><Default>false</Default><SpellID>48173</SpellID><Actions></Actions><Lua>local unithealth = 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;)
 
-if unithealth &amp;lt; 15 then return true else return false end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Devouring Plague</Name><Default>false</Default><SpellID>48300</SpellID><Actions></Actions><Lua>local DP, _, _, _, _, _, timer = UnitDebuffID(&amp;quot;target&amp;quot;, 48300, &amp;quot;PLAYER&amp;quot;)
+if unithealth &amp;lt; 15 then return true else return false end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Devouring Plague</Name><Default>false</Default><SpellID>48300</SpellID><Actions></Actions><Lua>local DP, _, _, _, _, _, timer = UnitDebuffID(&amp;quot;target&amp;quot;, 48300, &amp;quot;PLAYER&amp;quot;)
 
 if IsSpellInRange(&amp;quot;Devouring Plague&amp;quot;, &amp;quot;target&amp;quot;) ~= 1 then return false else
 	if DP ~= nil then
 		if timer - GetTime() &amp;lt;= 1 then return true end
 	else return true end
-end</Lua><RecastDelay>500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Dispersion</Name><Default>false</Default><SpellID>47585</SpellID><Actions></Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt;= 5 
+end</Lua><RecastDelay>500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Dispersion</Name><Default>false</Default><SpellID>47585</SpellID><Actions></Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt;= 5 
 or 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-then return true end</Lua><RecastDelay>1</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Fade</Name><Default>false</Default><SpellID>586</SpellID><Actions></Actions><Lua>if UnitThreatSituation(&amp;quot;player&amp;quot;) == 3 then
+then return true end</Lua><RecastDelay>1</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Fade</Name><Default>false</Default><SpellID>586</SpellID><Actions></Actions><Lua>if UnitThreatSituation(&amp;quot;player&amp;quot;) == 3 then
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Fear Ward</Name><Default>false</Default><SpellID>6346</SpellID><Actions></Actions><Lua>return true</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Prayer of Fortitude</Name><Default>false</Default><SpellID>48162</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48162) == nil
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Fear Ward</Name><Default>false</Default><SpellID>6346</SpellID><Actions></Actions><Lua>return true</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Prayer of Fortitude</Name><Default>false</Default><SpellID>48162</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48162) == nil
 and GetItemCount(&amp;quot;Devout Candle&amp;quot;) &amp;gt;= 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Prayer of Shadow Protection</Name><Default>false</Default><SpellID>48170</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48170) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Prayer of Shadow Protection</Name><Default>false</Default><SpellID>48170</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48170) == nil
 and GetItemCount(&amp;quot;Devout Candle&amp;quot;) &amp;gt;= 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Power Infusion</Name><Default>false</Default><SpellID>10060</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Power Infusion</Name><Default>false</Default><SpellID>10060</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
--- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Blood Fury</Name><Default>false</Default><SpellID>33697</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Pain Suppression(Self)</Name><Default>false</Default><SpellID>33206</SpellID><Actions></Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt;= 40
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
+-- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Blood Fury</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then
+    CastSpellByID(33697)
+end
+
+if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then
+    CastSpellByID(20572)
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dis:Pain Suppression(Self)</Name><Default>false</Default><SpellID>33206</SpellID><Actions></Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt;= 40
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
 if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
@@ -452,10 +459,10 @@ if IsLeftShiftKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 		print(&amp;quot;Mind Sear enabled!&amp;quot;)
 
   	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Mind Sear (AoE)</Name><Default>false</Default><SpellID>53023</SpellID><Actions></Actions><Lua>if Cleave == true
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Shadow:Mind Sear (AoE)</Name><Default>false</Default><SpellID>53023</SpellID><Actions></Actions><Lua>if Cleave == true
 and IsSpellInRange(&amp;quot;Mind Sear&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(53023) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
 if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
@@ -489,6 +496,8 @@ if IsRightControlKeyDown()  and GetTime() - rightkeydown &amp;gt; 1 then
 		print(&amp;quot;Dispell disabled!&amp;quot;)
 
   	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Prayer of Healing(Spam)</Name><Default>false</Default><SpellID>48113</SpellID><Actions></Actions><Lua>if Prayer == true
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Holy:Prayer of Healing(Spam)</Name><Default>false</Default><SpellID>48113</SpellID><Actions></Actions><Lua>if Prayer == true
 and PQR_IsCastingSpell(48113) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></PRIEST>
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
+and UnitExists(&amp;quot;target&amp;quot;) == nil 
+then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></PRIEST>

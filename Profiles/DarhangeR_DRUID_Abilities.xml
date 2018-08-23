@@ -16,7 +16,7 @@ or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Target Low HP</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;) 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Target Low HP</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;) 
   and UnitIsDead(&amp;quot;target&amp;quot;) == nil
   and UnitIsFriend(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) 
   and UnitCanCooperate(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;)
@@ -53,8 +53,8 @@ for i = 1, members, 1 do
   end
 end
 
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>USE:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
-    then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Eclipse</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not eclipse then eclipse = &amp;quot;solar&amp;quot; end
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
+    then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Eclipse</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not eclipse then eclipse = &amp;quot;solar&amp;quot; end
 
 if UnitBuffID(&amp;quot;player&amp;quot;, 48517)
 then eclipse = &amp;quot;solar&amp;quot;
@@ -107,22 +107,22 @@ end
 
 
 
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Moonkin Form</Name><Default>false</Default><SpellID>24858</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 24858) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Moonfire</Name><Default>false</Default><SpellID>48463</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,48463,&amp;quot;player&amp;quot;) == nil
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Moonkin Form</Name><Default>false</Default><SpellID>24858</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 24858) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Moonfire</Name><Default>false</Default><SpellID>48463</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,48463,&amp;quot;player&amp;quot;) == nil
 and IsSpellInRange(&amp;quot;Wrath&amp;quot;, &amp;quot;target&amp;quot;)  == 1
 and eclipse == &amp;quot;lunar&amp;quot;
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Insect Swarm</Name><Default>false</Default><SpellID>48468</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,48468,&amp;quot;player&amp;quot;) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Insect Swarm</Name><Default>false</Default><SpellID>48468</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,48468,&amp;quot;player&amp;quot;) == nil
 and IsSpellInRange(&amp;quot;Wrath&amp;quot;, &amp;quot;target&amp;quot;)  == 1
 and eclipse == &amp;quot;solar&amp;quot;
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Wrath</Name><Default>false</Default><SpellID>48461</SpellID><Actions></Actions><Lua>if eclipse == &amp;quot;solar&amp;quot;
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Wrath</Name><Default>false</Default><SpellID>48461</SpellID><Actions></Actions><Lua>if eclipse == &amp;quot;solar&amp;quot;
 and IsSpellInRange(&amp;quot;Wrath&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Starfire</Name><Default>false</Default><SpellID>48465</SpellID><Actions></Actions><Lua>if eclipse == &amp;quot;lunar&amp;quot;
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Starfire</Name><Default>false</Default><SpellID>48465</SpellID><Actions></Actions><Lua>if eclipse == &amp;quot;lunar&amp;quot;
 and IsSpellInRange(&amp;quot;Starfire&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Tree of Life</Name><Default>false</Default><SpellID>33891</SpellID><Actions></Actions><Lua>if IsShiftKeyDown()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Tree of Life</Name><Default>false</Default><SpellID>33891</SpellID><Actions></Actions><Lua>if IsShiftKeyDown()
 and UnitBuffID(&amp;quot;player&amp;quot;, 33891) == nil
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Lifebloom</Name><Default>false</Default><SpellID>48451</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 16870)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Remove Curse</Name><Default>false</Default><SpellID>2782</SpellID><Actions></Actions><Lua>local buff = { 30108, 34914, 74562, 74792 }
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Lifebloom</Name><Default>false</Default><SpellID>48451</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 16870)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Remove Curse</Name><Default>false</Default><SpellID>2782</SpellID><Actions></Actions><Lua>local buff = { 30108, 34914, 74562, 74792 }
 local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
 if GetNumRaidMembers() &amp;gt; 0 then
@@ -148,15 +148,15 @@ for i = 0, members, 1 do
     debuff,_,_,count,bufftype,duration = UnitDebuff(mem, j)
     end
   end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Regrowth</Name><Default>false</Default><SpellID>48443</SpellID><Actions></Actions><Lua>nw,_,_,_,_,_,expire = UnitBuffID(PQR_CustomTarget, 48443)
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Regrowth</Name><Default>false</Default><SpellID>48443</SpellID><Actions></Actions><Lua>nw,_,_,_,_,_,expire = UnitBuffID(PQR_CustomTarget, 48443)
 
 if nw == nil
 and PQR_IsCastingSpell(48443) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Nourish</Name><Default>false</Default><SpellID>50464</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 60
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Swiftmend</Name><Default>false</Default><SpellID>18562</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 70
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Nourish</Name><Default>false</Default><SpellID>50464</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 75
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Swiftmend</Name><Default>false</Default><SpellID>18562</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 70
 and UnitDebuffID(&amp;quot;player&amp;quot;, 69762) == nil
 and (UnitBuffID(PQR_CustomTarget, 48441) or UnitBuffID(PQR_CustomTarget, 48443))
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Abolish Poison</Name><Default>false</Default><SpellID>2893</SpellID><Actions></Actions><Lua>local buff = { 30108, 34914, 74562, 74792 }
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Abolish Poison</Name><Default>false</Default><SpellID>2893</SpellID><Actions></Actions><Lua>local buff = { 30108, 34914, 74562, 74792 }
 local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
 if GetNumRaidMembers() &amp;gt; 0 then
@@ -182,8 +182,8 @@ for i = 0, members, 1 do
     debuff,_,_,count,bufftype,duration = UnitDebuff(mem, j)
     end
   end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Rejuvenation</Name><Default>false</Default><SpellID>48441</SpellID><Actions></Actions><Lua>if UnitBuffID(PQR_CustomTarget, 48441, &amp;quot;player&amp;quot;) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Rejuvenation (All)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local group = &amp;quot;party&amp;quot;
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Rejuvenation</Name><Default>false</Default><SpellID>48441</SpellID><Actions></Actions><Lua>if UnitBuffID(PQR_CustomTarget, 48441, &amp;quot;player&amp;quot;) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Rejuvenation (All)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
 
 if UnitBuffID(&amp;quot;player&amp;quot;, 48441, &amp;quot;player&amp;quot;) == nil
@@ -207,74 +207,87 @@ for i = 1, members, 1 do
     then
         CastSpellByID(48441, member)
    end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Wild Growth</Name><Default>false</Default><SpellID>53251</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 95
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Berserk</Name><Default>false</Default><SpellID>50334</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 50213) == nil
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Wild Growth</Name><Default>false</Default><SpellID>53251</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 95
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Berserk</Name><Default>false</Default><SpellID>50334</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 50213) == nil
 and checkSpell(48574, &amp;quot;target&amp;quot;)
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Cat Form</Name><Default>false</Default><SpellID>768</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 768) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Rake</Name><Default>false</Default><SpellID>48574</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;, 48574, &amp;quot;player&amp;quot;) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Cat Form</Name><Default>false</Default><SpellID>768</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 768) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Rake</Name><Default>false</Default><SpellID>48574</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;, 48574, &amp;quot;player&amp;quot;) == nil
 and checkSpell(48574, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Shred</Name><Default>false</Default><SpellID>48572</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;lt; 5 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Shred</Name><Default>false</Default><SpellID>48572</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;lt; 5 
 and not PQR_NotBehindTarget()  
 and cdRemains(48572) == 0 then
 	CastSpellByID(48572)
 	return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Shred (CC)</Name><Default>false</Default><SpellID>48572</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 16870)
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Shred (CC)</Name><Default>false</Default><SpellID>48572</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 16870)
 and checkSpell(48572, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Tiger&amp;apos;s Fury</Name><Default>false</Default><SpellID>50213</SpellID><Actions></Actions><Lua>--if UnitBuffID(&amp;quot;player&amp;quot;, 50334) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Tiger&amp;apos;s Fury</Name><Default>false</Default><SpellID>50213</SpellID><Actions></Actions><Lua>--if UnitBuffID(&amp;quot;player&amp;quot;, 50334) == nil
 if checkSpell(48572, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Ferocious Bite</Name><Default>false</Default><SpellID>48577</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 5
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Ferocious Bite</Name><Default>false</Default><SpellID>48577</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 5
 and IsSpellInRange(&amp;quot;Rake&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Savage Roar</Name><Default>false</Default><SpellID>52610</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 5
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Savage Roar</Name><Default>false</Default><SpellID>52610</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 5
 and UnitBuffID(&amp;quot;player&amp;quot;, 52610) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Rip</Name><Default>false</Default><SpellID>49800</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 5
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Rip</Name><Default>false</Default><SpellID>49800</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 5
 and UnitDebuffID(&amp;quot;target&amp;quot;, 49800, &amp;quot;player&amp;quot;) == nil
 and checkSpell(49800, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Mangle (Cat)</Name><Default>false</Default><SpellID>48566</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;lt; 5 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Mangle (Cat)</Name><Default>false</Default><SpellID>48566</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;lt; 5 
 and PQR_NotBehindTarget() 
 and cdRemains(48566) == 0  then
 	CastSpellByID(48566)
 	return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Tranquility</Name><Default>false</Default><SpellID>48447</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Force of Nature</Name><Default>false</Default><SpellID>0</SpellID><Actions>/petattack</Actions><Lua>if IsLeftShiftKeyDown() 
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Tranquility</Name><Default>false</Default><SpellID>48447</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() 
+and GetCurrentKeyBoardFocus() == nil
+and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
+and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Force of Nature</Name><Default>false</Default><SpellID>0</SpellID><Actions>/petattack</Actions><Lua>if IsLeftShiftKeyDown() 
 and not GetCurrentKeyBoardFocus() 
 and not UnitChannelInfo(&amp;quot;player&amp;quot;) 
 then
   CastSpellByID(33831)
   if SpellIsTargeting() then CameraOrSelectOrMoveStart() CameraOrSelectOrMoveStop() end  
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Faerie Fire</Name><Default>false</Default><SpellID>770</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,770,&amp;quot;player&amp;quot;) == nil
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Faerie Fire</Name><Default>false</Default><SpellID>770</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,770,&amp;quot;player&amp;quot;) == nil
 and IsSpellInRange(&amp;quot;Wrath&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Barkskin</Name><Default>false</Default><SpellID>22812</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 60
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Nature&amp;apos;s Grasp</Name><Default>false</Default><SpellID>53312</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 70
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Barkskin</Name><Default>false</Default><SpellID>22812</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 60
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Nature&amp;apos;s Grasp</Name><Default>false</Default><SpellID>53312</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 70
 and IsSpellInRange(&amp;quot;Rake&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Typhoon</Name><Default>false</Default><SpellID>61384</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Hurricane</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsRightAltKeyDown() 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Typhoon</Name><Default>false</Default><SpellID>61384</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Hurricane</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsRightAltKeyDown() 
 and not GetCurrentKeyBoardFocus() 
 and not UnitChannelInfo(&amp;quot;player&amp;quot;) 
 then
   CastSpellByID(48467)
   if SpellIsTargeting() then CameraOrSelectOrMoveStart() CameraOrSelectOrMoveStop() end  
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Faerie Fire</Name><Default>false</Default><SpellID>16857</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,16857,&amp;quot;player&amp;quot;) == nil
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Faerie Fire</Name><Default>false</Default><SpellID>16857</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,16857,&amp;quot;player&amp;quot;) == nil
 and IsSpellInRange(&amp;quot;Rake&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Swipe (Cat)</Name><Default>false</Default><SpellID>62078</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Rejuvenation (Cat)</Name><Default>false</Default><SpellID>48441</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Bear Form</Name><Default>false</Default><SpellID>9634</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 9634) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Enrage</Name><Default>false</Default><SpellID>5229</SpellID><Actions></Actions><Lua>if UnitPower(&amp;quot;player&amp;quot;) &amp;lt;= 65
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Swipe (Cat)</Name><Default>false</Default><SpellID>62078</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Rejuvenation (Cat)</Name><Default>false</Default><SpellID>48441</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Bear Form</Name><Default>false</Default><SpellID>9634</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 9634) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Enrage</Name><Default>false</Default><SpellID>5229</SpellID><Actions></Actions><Lua>if UnitPower(&amp;quot;player&amp;quot;) &amp;lt;= 65
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Mangle (Bear)</Name><Default>false</Default><SpellID>48564</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mangle (Bear)&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Maul</Name><Default>false</Default><SpellID>48480</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Maul&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Survival Instincts</Name><Default>false</Default><SpellID>61336</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 40
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Frenzied Regeneration</Name><Default>false</Default><SpellID>22842</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 55
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Swipe (Bear)</Name><Default>false</Default><SpellID>48562</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Berserk (Bear)</Name><Default>false</Default><SpellID>50334</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 50
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Bash</Name><Default>false</Default><SpellID>8983</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Lacerate</Name><Default>false</Default><SpellID>48568</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Lacerate&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>5550</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Gift of the Wild</Name><Default>false</Default><SpellID>48470</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48470) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Mangle (Bear)</Name><Default>false</Default><SpellID>48564</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mangle (Bear)&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Maul</Name><Default>false</Default><SpellID>48480</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Maul&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Survival Instincts</Name><Default>false</Default><SpellID>61336</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 40
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Frenzied Regeneration</Name><Default>false</Default><SpellID>22842</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 55
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Swipe (Bear)</Name><Default>false</Default><SpellID>48562</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Berserk (Bear)</Name><Default>false</Default><SpellID>50334</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 50
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Bash</Name><Default>false</Default><SpellID>8983</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral:Lacerate</Name><Default>false</Default><SpellID>48568</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Lacerate&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>5550</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Gift of the Wild</Name><Default>false</Default><SpellID>48470</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48470) == nil
 and GetItemCount(&amp;quot;Wild Spineleaf&amp;quot;) &amp;gt;= 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>GG:Thorns</Name><Default>false</Default><SpellID>53307</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,53307) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Moon:Thorns</Name><Default>false</Default><SpellID>53307</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,53307) == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
 -- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Berserking</Name><Default>false</Default><SpellID>26297</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Blood Fury</Name><Default>false</Default><SpellID>33697</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DRUID>
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Blood Fury</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then
+    CastSpellByID(33697)
+end
+
+if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then
+    CastSpellByID(20572)
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Resto:Healing Touch</Name><Default>false</Default><SpellID>48378</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 65
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
+and UnitExists(&amp;quot;target&amp;quot;) == nil 
+then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DRUID>

@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8" ?><WARLOCK><Rotation><RotationName>Destro_DPS_DarhangeR</RotationName><RotationDefault>false</RotationDefault><RotationList>-- Hotkeys --|-- Start Fight --|-- Autotarget --|Use: Mouseover Skill|All:Create Firestone|All:Firestone|All:Fel Armor|Dest:Imp|Dem:Soul Link|-- Offensive Spells --|Dest:Rain of Fire|Racial:Blood Fury|Af:Shadow Bolt (Non Cast)|Af:Curse of the Elements|Af:Curse of Doom|All:Soulshatter|All:Death Coil|All:Life Tap|Dest:Immolate|Dest:Chaos Bolt|Dest:Conflagrate|Af:Corruption|Dest:Incinerate</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Specific commands:
+- Hold Left Shift for use Rain of Fire;
+- Right Alt for enabled/disabled Sead of Corruption (AOE);</RotationNotes></Rotation></WARLOCK>

@@ -19,11 +19,11 @@ or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
 or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Essen&amp;quot;)
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Trinken&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
+or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
+or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
 or ( not UnitAffectingCombat(&amp;quot;target&amp;quot;) and not UnitIsPlayer(&amp;quot;target&amp;quot;) )
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>USE:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
     then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Poison</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if applypoison and GetTime() - applypoison &amp;gt; 4 then applypoison = nil end
 if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil and applypoison == nil then
 
@@ -44,66 +44,50 @@ and (not UnitIsDeadOrGhost(&amp;quot;focus&amp;quot;))
 and UnitExists(&amp;quot;focus&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Stealth</Name><Default>false</Default><SpellID>1784</SpellID><Actions></Actions><Lua>if IsStealthed() == nil
 and IsMounted() == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Adrenaline Rush</Name><Default>false</Default><SpellID>13750</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mutilate&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Combat:Adrenaline Rush</Name><Default>false</Default><SpellID>13750</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mutilate&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Eviscerate</Name><Default>false</Default><SpellID>48668</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;gt;= 4
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Combat:Eviscerate</Name><Default>false</Default><SpellID>48668</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;gt;= 4
 and IsSpellInRange(&amp;quot;Sinister Strike&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Sinister Strike</Name><Default>false</Default><SpellID>48638</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Sinister Strike&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Blade Flurry</Name><Default>false</Default><SpellID>13877</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mutilate&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Combat:Sinister Strike</Name><Default>false</Default><SpellID>48638</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Sinister Strike&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Combat:Blade Flurry</Name><Default>false</Default><SpellID>13877</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mutilate&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Killing Spree</Name><Default>false</Default><SpellID>51690</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mutilate&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Combat:Killing Spree</Name><Default>false</Default><SpellID>51690</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mutilate&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and UnitBuffID(&amp;quot;player&amp;quot;, 13750) == nil
-and UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Hunger For Blood</Name><Default>false</Default><SpellID>51662</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 51662) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Garrote</Name><Default>false</Default><SpellID>48676</SpellID><Actions></Actions><Lua>local Stealthed = UnitBuffID(&amp;quot;player&amp;quot;, 1784)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Assas:Hunger For Blood</Name><Default>false</Default><SpellID>51662</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 51662) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Assas:Garrote</Name><Default>false</Default><SpellID>48676</SpellID><Actions></Actions><Lua>local Stealthed = UnitBuffID(&amp;quot;player&amp;quot;, 1784)
 
 if Opener == true
 and IsStealthed()
 and IsSpellInRange(&amp;quot;Garrote&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Cold Blood</Name><Default>false</Default><SpellID>14177</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;gt;= 5
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Envenom</Name><Default>false</Default><SpellID>57993</SpellID><Actions>/use Cold Blood</Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;gt;= 4
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Assas:Cold Blood</Name><Default>false</Default><SpellID>14177</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;gt;= 5
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Assas:Envenom</Name><Default>false</Default><SpellID>57993</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;gt;= 4
 and UnitBuffID(&amp;quot;player&amp;quot;, 57993) == nil
 and IsSpellInRange(&amp;quot;Mutilate&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Mutilate</Name><Default>false</Default><SpellID>48666</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mutilate&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Slice and Dice</Name><Default>false</Default><SpellID>6774</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 6774) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Rupture</Name><Default>false</Default><SpellID>48672</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;, 48672, &amp;quot;player&amp;quot;) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Assas:Mutilate</Name><Default>false</Default><SpellID>48666</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mutilate&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Assas:Slice and Dice</Name><Default>false</Default><SpellID>6774</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 6774) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Assas:Rupture</Name><Default>false</Default><SpellID>48672</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;, 48672, &amp;quot;player&amp;quot;) == nil
+and GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;gt;= 4
+and IsSpellInRange(&amp;quot;Sinister Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Assas:Expose Armor</Name><Default>false</Default><SpellID>8647</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;, 8647, &amp;quot;player&amp;quot;) == nil
 and GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;gt;= 4
 and IsSpellInRange(&amp;quot;Mutilate&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Expose Armor</Name><Default>false</Default><SpellID>8647</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;, 8647, &amp;quot;player&amp;quot;) == nil
-and GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;gt;= 4
-and IsSpellInRange(&amp;quot;Mutilate&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Fan of Knives</Name><Default>false</Default><SpellID>51723</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Combat:Fan of Knives</Name><Default>false</Default><SpellID>51723</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
 -- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Berserking</Name><Default>false</Default><SpellID>26297</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Blood Fury</Name><Default>false</Default><SpellID>33697</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Stealth Opener</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local Stealthed = UnitBuffID(&amp;quot;player&amp;quot;, 1784)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Blood Fury</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then
+    CastSpellByID(33697)
+end
 
-if Stealthed
-and UnitExists(&amp;quot;target&amp;quot;)
-and not UnitDebuffID(&amp;quot;target&amp;quot;, 48676) then
-	if StealthOpener == &amp;quot;Ambush&amp;quot; then
-		if cdRemains(48691) == 0 then
-			DebugPrint(&amp;quot;Casting Garrote Stealth Opener&amp;quot;)
-			_castSpell(48691)
-			return true
-		end
-	end
-	if StealthOpener == &amp;quot;Ambush&amp;quot; then
-		if cdRemains(Ambush) == 0 then
-			DebugPrint(&amp;quot;Casting Ambush Stealth Opener&amp;quot;)
-			_castSpell(48691)
-			return true
-		end
-	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Ambush(S)</Name><Default>false</Default><SpellID>48691</SpellID><Actions></Actions><Lua>local Stealthed = UnitBuffID(&amp;quot;player&amp;quot;, 1784)
-
-if Opener == false
-and IsStealthed()
-and IsSpellInRange(&amp;quot;Ambush&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Vanish</Name><Default>false</Default><SpellID>26889</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 58426) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
+if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then
+    CastSpellByID(20572)
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
+and UnitExists(&amp;quot;target&amp;quot;) == nil 
+then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Vanish</Name><Default>false</Default><SpellID>26889</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 58426) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Asas:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
 
   	if StopRota  then 
@@ -135,4 +119,9 @@ if IsLeftAltKeyDown()  and GetTime() - rightkeydown &amp;gt; 1 then
 		print(&amp;quot;Garrote opener enabled!&amp;quot;)
 
   	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Assas:Ambush(S)</Name><Default>false</Default><SpellID>48691</SpellID><Actions></Actions><Lua>local Stealthed = UnitBuffID(&amp;quot;player&amp;quot;, 1784)
+
+if Opener == false
+and IsStealthed()
+and IsSpellInRange(&amp;quot;Ambush&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>

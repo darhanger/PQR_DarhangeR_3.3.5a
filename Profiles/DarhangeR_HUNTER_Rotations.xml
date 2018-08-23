@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?><HUNTER><Rotation><RotationName>Marksmanship_DPS_DarhangeR</RotationName><RotationDefault>false</RotationDefault><RotationList>-- Hotkeys --|-- Start Fight --|-- Autotarget --|Use:Mouseover Skill|Mark:Trueshot Aura|All:Aspect of the Dragonhawk|All:Aspect of the Viper|All:Hunter&amp;apos;s Mark|BM:Call Pet|BM:Mend Pet|BM:Revive Pet|-- Offensive Spells --|Surv:Wing Clip|Mark:Volley|Mark:Multi-Shot|All:Rapid Fire|Racial:Berserking|Racial:Blood Fury|Mark:Readiness|All:Misdirection|Surv:Mongoose Bite|Surv:Raptor Strike|All:Kill Shot|All:Serpent Sting|Mark:Chimera Shot|All:Aimed Shot|All:Arcane Shot|All:Kill Command|All:Steady Shot|Mark:Silencing Shot</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Specific commands:
+- Hold Left Shift for use Volley;
+- Hold Left Alt for use Multi-Shot;
+- Focus Tank for use Misdirection;</RotationNotes></Rotation></HUNTER>
