@@ -1040,4 +1040,13 @@ then
 		CastSpellByID(28880)
 		return true
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARRIOR>
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>P:Sunder Armor</Name><Default>false</Default><SpellID>7386</SpellID><Actions></Actions><Lua>if not UnitDebuffID(&amp;quot;target&amp;quot;, 7386, &amp;quot;player&amp;quot;)
+ or (UnitDebuffID(&amp;quot;target&amp;quot;, 7386, &amp;quot;player&amp;quot;) and ( select(4, UnitDebuffID(&amp;quot;target&amp;quot;, 7386, &amp;quot;player&amp;quot;)) &amp;lt; 5 or select(7, UnitDebuffID(&amp;quot;target&amp;quot;, 7386, &amp;quot;player&amp;quot;)) - GetTime() &amp;lt; 3 )) 
+ and not AOE
+then
+	if UnitPower(&amp;quot;player&amp;quot;) &amp;gt; 30 then
+		CastSpellByID(7386)
+	end	
+	CastSpellByID(7386)
+	return true
+end</Lua><RecastDelay>5500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARRIOR>

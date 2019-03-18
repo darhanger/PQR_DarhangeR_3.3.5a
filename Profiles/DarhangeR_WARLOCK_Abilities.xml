@@ -439,6 +439,17 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False
 		end
 	end
 
+	-- Glyph Check -- 
+	GlyphCheck = nil
+	function GlyphCheck(GetSpellInfo)
+		for i=1, 6 do
+		if select(4, GetGlyphSocketInfo(i)) == GetSpellInfo then
+			return true
+			end
+		end
+		return false
+	end
+	
 		-- CastSpell --
 	function _castSpell(spellid,tar)
 		if UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
@@ -614,7 +625,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False
 	end
 
 functionsloaded = true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dest:Rain of Fire</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if RoF == true
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dest:Rain of Fire</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if RoF == true
 and UnitExists(&amp;quot;target&amp;quot;)
 and GetUnitSpeed(&amp;quot;player&amp;quot;) == 0
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
