@@ -8,49 +8,52 @@
 * ⁉️ - currently unknown or in development;
 
 ### Death Knight
-* Blood_DPS_DarhangeR          - ✅
-* Frost2W_DPS_DarhangeR          - ✅
-* Unholy_DPS_DarhangeR          - ✅
-* Blood_Tank_DarhangeR          - ✅
-*** 
+* Blood_DPS_DarhangeR - ✅
+* Frost2W_DPS_DarhangeR - ✅
+* Unholy_DPS_DarhangeR - ✅
+* Blood_Tank_DarhangeR - ✅
+
 ### Druid
-* Resto_DarhangeR          - ✅
-* Resto25_DarhangeR          - ✅
-* Balance_DPS_DarhangeR          - ✅
-* FeralCat_DPS_DarhangeR          - ✅
-* FeralCat_DPS_DarhangeR          - ✅
-*** 
+* Resto_DarhangeR - ✅
+* Resto25_DarhangeR - ✅
+* Balance_DPS_DarhangeR - ✅
+* FeralCat_DPS_DarhangeR - ✅
+* FeralCat_DPS_DarhangeR - ✅
+
 ### Hunter
-* Marksmanship_DPS_DarhangeR            - ✅
-*** 
+* Marksmanship_DPS_DarhangeR - ✅
+* BM_DPS_DarhangeR - ✅
+* Survival_DPS_DarhangeR - ✅
+
 ### Mage
-* DPS -      ⁉️
-*** 
+* Frost_DPS_Darhanger - ✅
+* Fire_DPS_Darhanger - ✅
+* Arcane_DPS_Darhanger - ✅
+
 ### Paladin
-* Retri_DPS_DarhangeR            - ✅
-* Retri_DPS(AOE)_DarhangeR            - ✅
-* Heal_Holy_DarhangeR           - ✅
-* Proto_Tank_DarhangeR             - ✅
-*** 
+* Retri_DPS_DarhangeR - ✅
+* Heal_Holy_DarhangeR - ✅
+* Proto_Tank_DarhangeR - ✅
+
 ### Priest
-* Shadow_DPS_DarhangeR         - ✅
-* Heal_Holy25_DarhangeR     - ✅
-*** 
+* Shadow_DPS_DarhangeR - ✅
+* Heal_Holy25_DarhangeR - ✅
+
 ### Rogue
 * Combat_DPS_DarhangeR - ✅
 * Assassination_DPS_DarhangeR - ✅
-*** 
+
 ### Shaman
-* Ench_DPS_DarhangeR   - ✅
-* Ench_DPS(AOE)_DarhangeR   - ✅
-* Elem_DPS_DarhangeR   - ✅
+* Ench_DPS_DarhangeR - ✅
+* Elem_DPS_DarhangeR - ✅
 * Heal_Resto_Darhanger - ✅
-*** 
+
 ### Warlock
-* Destruction -     ✅
-*** 
+* Destro_DPS_Darhanger - ✅
+* Demon_DPS_DarhangeR - ✅
+* Afli_DPS_DarhangeR ✅
+
 ### Warrior
-* Fury_DPS_DarhangeR -     ✅
-* Fury_DPS(AOE)_DarhangeR -     ✅
+* Fury_DPS_DarhangeR - ✅
 * Proto_Tank_DarhangeR - ✅
-* Arms_DPS_DarhangeR -  ✔️
+* Arms_DPS_DarhangeR - ✅
