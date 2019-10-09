@@ -143,17 +143,6 @@ if lowhpmembers == 0 then
 	end
 end
 
-	    -- Need this to stop casting to avoid stun --
-local name, _, _, _, caststart, castend = UnitCastingInfo(&amp;quot;target&amp;quot;)
-
-if UnitCastingInfo(&amp;quot;target&amp;quot;) ~= nil
-and UnitCastingInfo(&amp;quot;target&amp;quot;) == &amp;quot;Flame Jets&amp;quot;
-and castend - ( GetTime() * 1000 ) &amp;lt; .5
-then
-	SpellStopCasting()
-	return true
-end
-
 if view == nil then 
 	view = true
 	local eventframe = CreateFrame(&amp;quot;FRAME&amp;quot;)
@@ -814,17 +803,6 @@ if racialCheck ~= nil then
 	end
 end
 
-	-- Worgen --
-if racialCheck ~= nil then
-	if (expire - GetTime()) &amp;gt;= 4 then 
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Worgen&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744)
-	and CanAttack() then
-		CastSpellByID(7744)
-		return true
-		end
-	end
-end
-
 if IsBoss()
 and CanAttack()
 then
@@ -857,12 +835,6 @@ then
 	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
 	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; and IsSpellKnown(28880) and not CooldownRemains(28880) then
 		CastSpellByID(28880)
-		return true
-	end
-	--Naga--
-	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Naga&amp;quot; and IsSpellKnown(59542) and not CooldownRemains(59542) then
-		CastSpellByID(59542)
 		return true
 	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Elem DPS</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if ELE
@@ -946,17 +918,6 @@ for i = 1, members, 1 do
   end
 end
 
-end
-
-	    -- Need this to stop casting to avoid stun --
-local name, _, _, _, caststart, castend = UnitCastingInfo(&amp;quot;target&amp;quot;)
-
-if UnitCastingInfo(&amp;quot;target&amp;quot;) ~= nil
-and UnitCastingInfo(&amp;quot;target&amp;quot;) == &amp;quot;Flame Jets&amp;quot;
-and castend - ( GetTime() * 1000 ) &amp;lt; .5
-then
-	SpellStopCasting()
-	return true
 end
 
 if view == nil then 

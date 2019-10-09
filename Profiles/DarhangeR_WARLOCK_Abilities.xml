@@ -82,7 +82,7 @@ and PQR_IsCastingSpell(60220) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Fel Armor</Name><Default>false</Default><SpellID>47893</SpellID><Actions></Actions><Lua>if not felarmor
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Imp</Name><Default>false</Default><SpellID>688</SpellID><Actions></Actions><Lua>if (UnitExists(&amp;quot;pet&amp;quot;) or UnitExists(&amp;quot;pet&amp;quot;) == nil)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Imp</Name><Default>false</Default><SpellID>688</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(688) == false
 and ( select(7, GetSpellInfo(688)) == 0 or pStay() )
 then 
@@ -107,7 +107,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 
 if ( immolate == nil or ( immolate and immolatetime - GetTime() &amp;lt; 2.5 ) )
 and rangeCheck(47811, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(47811)) == 0 or GetUnitSpeed(&amp;quot;player&amp;quot;) == 0 )
+and ( select(7, GetSpellInfo(47811)) == 0 or pStay() )
 and CanAttack()
 and PQR_IsCastingSpell(47811) == false
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
@@ -164,8 +164,6 @@ then return true end</Lua><RecastDelay>1500</RecastDelay><Target>Target</Target>
 if getHp(&amp;quot;target&amp;quot;) &amp;lt;= 25
 and (ds == nil or (ds and dstime - GetTime() &amp;lt; 2.1) )
 and CanAttack()
-and haunt
-and (ua or immolate)
 and rangeCheck(47855, &amp;quot;target&amp;quot;)
 and PQR_IsCastingSpell(47855) == false
 and ( select(7, GetSpellInfo(47855)) == 0 or pStay() )
@@ -489,17 +487,6 @@ if racialCheck ~= nil then
 	end
 end
 
-	-- Worgen --
-if racialCheck ~= nil then
-	if (expire - GetTime()) &amp;gt;= 4 then 
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Worgen&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744)
-	and CanAttack() then
-		CastSpellByID(7744)
-		return true
-		end
-	end
-end
-
 if IsBoss()
 and CanAttack()
 then
@@ -534,31 +521,25 @@ then
 		CastSpellByID(28880)
 		return true
 	end
-	--Naga--
-	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Naga&amp;quot; and IsSpellKnown(59542) and not CooldownRemains(59542) then
-		CastSpellByID(59542)
-		return true
-	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Voidwalker</Name><Default>false</Default><SpellID>697</SpellID><Actions></Actions><Lua>if (UnitExists(&amp;quot;pet&amp;quot;) or UnitExists(&amp;quot;pet&amp;quot;) == nil)
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Voidwalker</Name><Default>false</Default><SpellID>697</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(697) == false
 and (GetSpellInfo(697) or GetItemCount(6265) &amp;gt;= 1)
 and ( select(7, GetSpellInfo(697)) == 0 or pStay() )
 then 
 	CastSpellByID(18708)
-return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Felhunter</Name><Default>false</Default><SpellID>691</SpellID><Actions></Actions><Lua>if (UnitExists(&amp;quot;pet&amp;quot;) or UnitExists(&amp;quot;pet&amp;quot;) == nil)
+return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Felhunter</Name><Default>false</Default><SpellID>691</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(691) == false
 and (GetSpellInfo(691) or GetItemCount(6265) &amp;gt;= 1)
 and ( select(7, GetSpellInfo(691)) == 0 or pStay() )
 then 
 	CastSpellByID(18708)
-return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Succubus</Name><Default>false</Default><SpellID>712</SpellID><Actions></Actions><Lua>if (UnitExists(&amp;quot;pet&amp;quot;) or UnitExists(&amp;quot;pet&amp;quot;) == nil)
+return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Succubus</Name><Default>false</Default><SpellID>712</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(712) == false
 and (GetSpellInfo(712) or GetItemCount(6265) &amp;gt;= 1)
 and ( select(7, GetSpellInfo(712)) == 0 or pStay() )
 then 
 	CastSpellByID(18708)
-return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Felguard</Name><Default>false</Default><SpellID>30146</SpellID><Actions></Actions><Lua>if (UnitExists(&amp;quot;pet&amp;quot;) or UnitExists(&amp;quot;pet&amp;quot;) == nil)
+return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Felguard</Name><Default>false</Default><SpellID>30146</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(30146) == false
 and (GetSpellInfo(30146) or GetItemCount(6265) &amp;gt;= 1)
 and ( select(7, GetSpellInfo(30146)) == 0 or pStay() )
