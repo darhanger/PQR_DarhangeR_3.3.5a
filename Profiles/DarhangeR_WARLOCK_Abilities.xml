@@ -249,7 +249,9 @@ and not IsMounted()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
--- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Function --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not functionsloaded then
+-- Instagram: https://instagram.com/darhanger
+-- E-mail: civayan@gmail.com
+-- Discord: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Function --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not functionsloaded then
 
 		-- Glyph Check -- 
 	glyph = function(glyphID)
@@ -615,16 +617,16 @@ then
 	UseItemByName(36895,&amp;quot;focus&amp;quot;)
 end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dest:Shadowflame</Name><Default>false</Default><SpellID>61290</SpellID><Actions></Actions><Lua>if CheckInteractDistance(&amp;quot;target&amp;quot;, 3)
 and CanAttack()
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Create Healthstone</Name><Default>false</Default><SpellID>47878</SpellID><Actions></Actions><Lua>if GetItemCount(36894) == 0
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Create Healthstone</Name><Default>false</Default><SpellID>47878</SpellID><Actions></Actions><Lua>if GetItemCount(36892) == 0
 and (GetSpellInfo(47878) or GetItemCount(6265) &amp;gt;= 1)
 and ( select(7, GetSpellInfo(47878)) == 0 or pStay() )
 and inCombat() == nil
 and PQR_IsCastingSpell(47878) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Use Healthstone</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35
-and GetItemCount(36894) &amp;gt;= 1
-and not ItemCooldownRemains(36894)
+and GetItemCount(36892) &amp;gt;= 1
+and not ItemCooldownRemains(36892)
 then
-	UseItemByName(36894)
+	UseItemByName(36892)
 end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Void - Sacrifice</Name><Default>false</Default><SpellID>47986</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 65
 and UnitExists(&amp;quot;pet&amp;quot;)
 and (not UnitIsDeadOrGhost(&amp;quot;pet&amp;quot;))
@@ -692,7 +694,9 @@ lifetap = UnitBuffID(&amp;quot;player&amp;quot;, 63321)
 meta = UnitBuffID(&amp;quot;player&amp;quot;, 47241)
 soullink = UnitBuffID(&amp;quot;player&amp;quot;, 19028)
 -- Other --
-scorch = UnitDebuffID(&amp;quot;target&amp;quot;, 22959)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Soul Fire (MC)</Name><Default>false</Default><SpellID>47825</SpellID><Actions></Actions><Lua>if moltencore
+scorch = UnitDebuffID(&amp;quot;target&amp;quot;, 22959)
+eplag = UnitDebuffID(&amp;quot;target&amp;quot;, 51161)
+earmoon = UnitDebuffID(&amp;quot;target&amp;quot;, 60433)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Soul Fire (MC)</Name><Default>false</Default><SpellID>47825</SpellID><Actions></Actions><Lua>if moltencore
 and immolate
 and CanAttack()
 and rangeCheck(47825, &amp;quot;target&amp;quot;)

@@ -261,10 +261,11 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><Cance
 and rangeCheck(53339, &amp;quot;target&amp;quot;)
 and getHp(&amp;quot;player&amp;quot;) &amp;lt; 50
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
--- Discord official chanel: https://discord.gg/zayx7p9
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
--- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Steady Shot(SV)</Name><Default>false</Default><SpellID>49052</SpellID><Actions></Actions><Lua>if CanAttack()
+-- Instagram: https://instagram.com/darhanger
+-- E-mail: civayan@gmail.com
+-- Discord: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Steady Shot(SV)</Name><Default>false</Default><SpellID>49052</SpellID><Actions></Actions><Lua>if CanAttack()
 and rangeCheck(49052, &amp;quot;target&amp;quot;)
 and CooldownRemains(63672)
 and CooldownRemains(60053)

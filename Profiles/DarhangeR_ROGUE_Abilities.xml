@@ -24,6 +24,16 @@ if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime
 		AoE = true
 		PQR_WriteToChat(&amp;quot;AoE: \124cFF15E615Enabled&amp;quot;)
 	end
+end
+
+if not AOE then
+	function AOE()
+		if AoE == true then
+			return true
+		else
+			return false
+		end
+	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
 or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
@@ -84,7 +94,7 @@ and UnitExists(&amp;quot;focus&amp;quot;)
 and UnitInRange(&amp;quot;focus&amp;quot;)
 and rangeCheck(57934, &amp;quot;focus&amp;quot;)
 and not UnitIsDeadOrGhost(&amp;quot;focus&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Stealth</Name><Default>false</Default><SpellID>1784</SpellID><Actions></Actions><Lua>if Stealth == true
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Stealth</Name><Default>false</Default><SpellID>1784</SpellID><Actions></Actions><Lua>if not Stealth
 and IsMounted() == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Adrenaline Rush</Name><Default>false</Default><SpellID>13750</SpellID><Actions></Actions><Lua>if IsBoss() 
 and energycost(13750)
@@ -102,7 +112,7 @@ and CanAttack()
 and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then
 
-	if cp == 5 and hunger and  rapture and snd then
+	if cp == 5 and  rapture and snd then
 		return true
 	end
 	if cp &amp;gt;= 5 and snd and energy &amp;gt; 40 and rapture then
@@ -147,13 +157,14 @@ and AOE() == false
 --and spender(&amp;quot;envenom&amp;quot;)
 and valid(&amp;quot;target&amp;quot;, 57993)
 and CanAttack()
-and deadly and (hunger and rapture) or ( calc_time ~= nil and calc_time &amp;lt;= 15 )
+and deadly 
+and rapture or ( calc_time ~= nil and calc_time &amp;lt;= 15 )
 and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then
 	if cp &amp;gt;= 4 and envenom == nil then
 		return true
 	end
-	if cp &amp;gt;= 4 and energy &amp;gt; 90 then
+	if cp &amp;gt;= 4 and energy &amp;gt; 45 then
 		return true
 	end
 	if cp &amp;gt;= 2 and ( snd and sndtime - GetTime() &amp;lt; 2 ) then
@@ -163,6 +174,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 and CanAttack()
 and valid(&amp;quot;target&amp;quot;, 48666)
 and cp &amp;lt; 5
+and AOE() == false
 and rangeCheck(48666, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Slice and Dice</Name><Default>false</Default><SpellID>6774</SpellID><Actions></Actions><Lua>local snd, _, _, _, _, _, sndtime = UnitBuffID(&amp;quot;player&amp;quot;, 6774)
 
@@ -202,7 +214,9 @@ and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
--- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if racialCheck == nil then
+-- Instagram: https://instagram.com/darhanger
+-- E-mail: civayan@gmail.com
+-- Discord: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if racialCheck == nil then
 	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6215) --Fear
 end
 if racialCheck == nil then
@@ -664,10 +678,10 @@ envenom = UnitBuffID(&amp;quot;player&amp;quot;, 57993)
 -- Buffs -- 
 snd = UnitBuffID(&amp;quot;player&amp;quot;, 6774)
 hunger = UnitBuffID(&amp;quot;player&amp;quot;, 63848)
-Stealthed = UnitBuffID(&amp;quot;player&amp;quot;, 1784)
+Stealth = UnitBuffID(&amp;quot;player&amp;quot;, 1784)
 -- Other --
 cp = GetComboPoints(&amp;quot;player&amp;quot;)
-energy = UnitPower(&amp;quot;player&amp;quot;)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Ambush(S)</Name><Default>false</Default><SpellID>48691</SpellID><Actions></Actions><Lua>if Opender == false
+energy = UnitPower(&amp;quot;player&amp;quot;)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Ambush(S)</Name><Default>false</Default><SpellID>48691</SpellID><Actions></Actions><Lua>if Opener == false
 and Stealthed
 and rangeCheck(48691, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
@@ -706,5 +720,15 @@ if IsLeftAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime 
 	else
 		Opener = true
 		PQR_WriteToChat(&amp;quot;Garrote: \124cFF15E615Opener Enabled&amp;quot;)
+	end
+end
+
+if not AOE then
+	function AOE()
+		if AoE == true then
+			return true
+		else
+			return false
+		end
 	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>
