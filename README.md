@@ -1,8 +1,7 @@
 # PQR DarhangeR 3.3.5a
 
-## Support Status Meanings 
-
-
+## Profile Status & [ChangeLog](https://github.com/darhanger/PQR_DarhangeR_3.3.5a/wiki/ChangeLog)
+### Support Status Meanings 
 * ✅ - BEST - use multispec rotattion for max DPS
 * ✔️ - works well, but not as I would like)
 * ⁉️ - currently unknown or in development;
