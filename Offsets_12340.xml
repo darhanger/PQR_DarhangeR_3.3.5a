@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Offsets>
+	<CurrentWoWVersion>12340</CurrentWoWVersion>
+	<WoWVersionOffset>0x8AD851</WoWVersionOffset>
+	<PlayerName>0x879D18</PlayerName>
+	<PlayerClass>0x879E89</PlayerClass>
+	<GetCurrentKeyBoardFocus>0x9CE474</GetCurrentKeyBoardFocus>
+	<GameState>0x7D078A</GameState>	
+	<Lua_DoStringAddress>0x419210</Lua_DoStringAddress>
+	<Lua_GetLocalizedTextAddress>0x3225E0</Lua_GetLocalizedTextAddress>
+	<Detour>0xBF0F0</Detour>
+	<Overwritten>55 8B EC 81 EC F8 00 00 00</Overwritten>
+</Offsets>

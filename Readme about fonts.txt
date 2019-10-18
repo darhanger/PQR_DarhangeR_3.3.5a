@@ -1,0 +1,7 @@
+-- Я - являюсь оригинальным разработчиком данных профилей для сервера Sirus.su. Любые изменения, копирование или обмен без моего ведома - является прямым нарушением авторских прав. Для получения дополнительной информации:
+-- VK: https://vk.com/darhanger
+-- FB: https://fb.com/darhanger
+-- Instagram: https://instagram.com/darhanger
+-- E-mail: civayan@gmail.com
+-- Discord: DarhangeR#6786
+-- официальный канал Discord: https://discord.gg/6ydzs2t
