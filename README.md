@@ -1,3 +1,5 @@
+## [Donate/Help US](https://github.com/darhanger/PQR_DarhangeR_3.3.5a/wiki/Donate)
+
 # PQR DarhangeR 3.3.5a
 
 ## Profile Status & [ChangeLog](https://github.com/darhanger/PQR_DarhangeR_3.3.5a/wiki/ChangeLog)
