@@ -104,7 +104,7 @@ while buff do
   i = i + 1;
   buff,_,_,_,bufftype = UnitBuff(&amp;quot;target&amp;quot;, i)
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Aspect of the Dragonhawk</Name><Default>false</Default><SpellID>61847</SpellID><Actions></Actions><Lua>if not aspofdragon
-and getMana(&amp;quot;player&amp;quot;) &amp;gt; 10
+and getMana(&amp;quot;player&amp;quot;) &amp;gt; 55
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Rapid Fire</Name><Default>false</Default><SpellID>3045</SpellID><Actions></Actions><Lua>if IsBoss()
 and CanAttack()
 and rangeCheck(49052, &amp;quot;target&amp;quot;)
@@ -146,7 +146,7 @@ and rangeCheck(60053, &amp;quot;target&amp;quot;)
 and not exshot
 and not CooldownRemains(60053)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Aspect of the Viper</Name><Default>false</Default><SpellID>34074</SpellID><Actions></Actions><Lua>if not viper
-and getMana(&amp;quot;player&amp;quot;) &amp;lt; 10
+and getMana(&amp;quot;player&amp;quot;) &amp;lt; 15
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Chimera Shot</Name><Default>false</Default><SpellID>53209</SpellID><Actions></Actions><Lua>if CanAttack()
 and not CooldownRemains(53209)
 and rangeCheck(53209, &amp;quot;target&amp;quot;)
@@ -654,4 +654,31 @@ and rangeCheck(49052, &amp;quot;target&amp;quot;)
 and CooldownRemains(49045)
 and CooldownRemains(49048)
 and pStay()
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></HUNTER>
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Healthstone --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local stones = { 36892, 36893, 36894 }
+
+for i = 1, #stones do
+   	 if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 25
+	and GetItemCount(stones[i]) &amp;gt;= 1 
+	and not ItemCooldownRemains(stones[i]) then
+       		UseItemByName(stones[i])
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Potions --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>hpot = { 33447, 43569, 40087, 41166, 40067 }
+
+for i = 1, #hpot do
+   	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 12
+	and GetItemCount(hpot[i]) &amp;gt;= 1 
+	and not ItemCooldownRemains(hpot[i]) then
+       		UseItemByName(hpot[i])
+	end
+end
+
+mpot = { 33448, 43570, 40087, 42545, 39671 }
+
+for i = 1, #mpot do
+   	if getMana(&amp;quot;player&amp;quot;) &amp;lt;= 20
+	and IsBoss()
+	and GetItemCount(mpot[i]) &amp;gt;= 1 
+	and not ItemCooldownRemains(mpot[i]) then
+       		UseItemByName(mpot[i])
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></HUNTER>

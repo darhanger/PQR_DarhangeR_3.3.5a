@@ -211,6 +211,7 @@ and CanAttack()
 and rangeCheck(47827, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Incinerate</Name><Default>false</Default><SpellID>47838</SpellID><Actions></Actions><Lua>if moltencore
 and immolate
+and not IsBoss()
 and CanAttack()
 and rangeCheck(47838, &amp;quot;target&amp;quot;)
 and ( select(7, GetSpellInfo(47838)) == 0 or pStay() )
@@ -617,16 +618,36 @@ then
 	UseItemByName(36895,&amp;quot;focus&amp;quot;)
 end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dest:Shadowflame</Name><Default>false</Default><SpellID>61290</SpellID><Actions></Actions><Lua>if CheckInteractDistance(&amp;quot;target&amp;quot;, 3)
 and CanAttack()
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Create Healthstone</Name><Default>false</Default><SpellID>47878</SpellID><Actions></Actions><Lua>if GetItemCount(36892) == 0
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Create Healthstone</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local hstones = { 36892, 36893, 36894 }
+local Stones = nil
+
+if Stones == nil then
+    for b = 0, 4 do
+    for s = 1, GetContainerNumSlots(b) do
+    for i = 1, #hstones do
+    if GetContainerItemID(b, s) == hstones[i] then
+        Stones = true
+    break
+                end
+            end
+        end
+    end
+end
+
+if Stones == nil
 and (GetSpellInfo(47878) or GetItemCount(6265) &amp;gt;= 1)
 and ( select(7, GetSpellInfo(47878)) == 0 or pStay() )
 and inCombat() == nil
-and PQR_IsCastingSpell(47878) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Use Healthstone</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35
-and GetItemCount(36892) &amp;gt;= 1
-and not ItemCooldownRemains(36892)
-then
-	UseItemByName(36892)
+and PQR_IsCastingSpell(47878) == false then
+        CastSpellByID(47878)
+return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Use Healthstone</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local stones = { 36892, 36893, 36894 }
+
+for i = 1, #stones do
+   	 if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35
+	and GetItemCount(stones[i]) &amp;gt;= 1 
+	and not ItemCooldownRemains(stones[i]) then
+       		UseItemByName(stones[i])
+	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Void - Sacrifice</Name><Default>false</Default><SpellID>47986</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 65
 and UnitExists(&amp;quot;pet&amp;quot;)
 and (not UnitIsDeadOrGhost(&amp;quot;pet&amp;quot;))
@@ -698,6 +719,7 @@ scorch = UnitDebuffID(&amp;quot;target&amp;quot;, 22959)
 eplag = UnitDebuffID(&amp;quot;target&amp;quot;, 51161)
 earmoon = UnitDebuffID(&amp;quot;target&amp;quot;, 60433)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Soul Fire (MC)</Name><Default>false</Default><SpellID>47825</SpellID><Actions></Actions><Lua>if moltencore
 and immolate
+and IsBoss()
 and CanAttack()
 and rangeCheck(47825, &amp;quot;target&amp;quot;)
 and ( select(7, GetSpellInfo(47825)) == 0 or pStay() )
@@ -720,4 +742,23 @@ and immolate
 and CanAttack()
 and rangeCheck(47825, &amp;quot;target&amp;quot;)
 and ( select(7, GetSpellInfo(47825)) == 0 or pStay() )
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARLOCK>
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Potions --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>hpot = { 33447, 43569, 40087, 41166, 40067 }
+
+for i = 1, #hpot do
+   	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 12
+	and GetItemCount(hpot[i]) &amp;gt;= 1 
+	and not ItemCooldownRemains(hpot[i]) then
+       		UseItemByName(hpot[i])
+	end
+end
+
+mpot = { 33448, 43570, 40087, 42545, 39671 }
+
+for i = 1, #mpot do
+   	if getMana(&amp;quot;player&amp;quot;) &amp;lt;= 20
+	and IsBoss()
+	and GetItemCount(mpot[i]) &amp;gt;= 1 
+	and not ItemCooldownRemains(mpot[i]) then
+       		UseItemByName(mpot[i])
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARLOCK>
