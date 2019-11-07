@@ -999,7 +999,7 @@ and not CooldownRemains(64843)
 and PQR_IsCastingSpell(64843) == false
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 and ( select(7, GetSpellInfo(64843)) == 0 or pStay() )
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Dispel Magic(Target)</Name><Default>false</Default><SpellID>988</SpellID><Actions></Actions><Lua>buff = { 43002 }
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Dispel Magic(Target)</Name><Default>false</Default><SpellID>988</SpellID><Actions></Actions><Lua>buff = { }
 local candispel = 1
 
 for i,v in ipairs(buff) do
@@ -1007,11 +1007,16 @@ for i,v in ipairs(buff) do
 end
 
 local i = 1
-local buff,_,_,count,bufftype,duration = UnitDebuff(&amp;quot;target&amp;quot;, i)
+local buff,_,_,_,bufftype = UnitBuff(&amp;quot;target&amp;quot;, i)
 while buff do
-  if bufftype == &amp;quot;Magic&amp;quot; and duration &amp;gt; 6 and count ~= 1 and candispel and UnitIsFriend(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;) then return true end
+  if bufftype == &amp;quot;Magic&amp;quot;
+  and candispel
+  and rangeCheck(988, &amp;quot;target&amp;quot;)
+  then
+    return true
+  end
   i = i + 1;
-  buff,_,_,count,bufftype,duration = UnitDebuff(&amp;quot;target&amp;quot;, i)
+  buff,_,_,_,bufftype = UnitBuff(&amp;quot;target&amp;quot;, i)
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Flash Heal(Buff+Move)</Name><Default>false</Default><SpellID>48071</SpellID><Actions></Actions><Lua>if ( pMove() or surge )
 and PQR_CustomTargetHP &amp;lt; 80
 and PQR_IsCastingSpell(48071) == false

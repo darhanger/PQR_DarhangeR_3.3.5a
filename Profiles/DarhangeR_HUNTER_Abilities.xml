@@ -93,11 +93,20 @@ function IsBoss()
 		then return 
 			true 
 		end
-	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Tranquilizing Shot</Name><Default>false</Default><SpellID>19801</SpellID><Actions></Actions><Lua>local i = 1
+	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Tranquilizing Shot</Name><Default>false</Default><SpellID>19801</SpellID><Actions></Actions><Lua>buff = { }
+local candispel = 1
+
+for i,v in ipairs(buff) do
+ if UnitDebuffID(&amp;quot;target&amp;quot;,v) then candispel = nil end
+end
+
+local i = 1
 local buff,_,_,_,bufftype = UnitBuff(&amp;quot;target&amp;quot;, i)
 while buff do
-  if bufftype == &amp;quot;Magic&amp;quot; or buff == &amp;quot;Enrage&amp;quot;
+  if (bufftype == &amp;quot;Magic&amp;quot; or buff == &amp;quot;Enrage&amp;quot;) 
+  and candispel
   and rangeCheck(19801, &amp;quot;target&amp;quot;)
+  and not CooldownRemains(19801)
   then
     return true
   end
@@ -652,7 +661,6 @@ mpet = UnitBuffID(&amp;quot;pet&amp;quot;, 48990)
 trueaura = UnitBuffID(&amp;quot;player&amp;quot;, 19506)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Steady Shot(BM)</Name><Default>false</Default><SpellID>49052</SpellID><Actions></Actions><Lua>if CanAttack()
 and rangeCheck(49052, &amp;quot;target&amp;quot;)
 and CooldownRemains(49045)
-and CooldownRemains(49048)
 and pStay()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Healthstone --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local stones = { 36892, 36893, 36894 }
 
@@ -681,4 +689,48 @@ for i = 1, #mpot do
 	and not ItemCooldownRemains(mpot[i]) then
        		UseItemByName(mpot[i])
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></HUNTER>
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>BM: -- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
+
+if IsLeftControlKeyDown() and GetTime() - leftkeydown &amp;gt; 1 then
+	leftkeydown = GetTime()
+  	if StopRota then 
+    		StopRota = false 
+		PQR_WriteToChat(&amp;quot;Rotation \124cFF15E615reenabled!&amp;quot;)
+  	else 
+		StopRota = true 
+		PQR_WriteToChat(&amp;quot;Rotation \124cFFE61515stopped!&amp;quot;)
+
+  	end
+end
+
+if modtime == nil then
+	modtime = 0
+end
+
+if IsRightShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
+	modtime = GetTime()
+  	if VoL then
+		VoL = false
+		PQR_WriteToChat(&amp;quot;\124cFFE61515Volley stopped!&amp;quot;)
+  	else 
+		VoL = true
+		PQR_WriteToChat(&amp;quot;\124cff00ff00Volley active!&amp;quot;)
+  	end
+end
+
+if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
+	modtime = GetTime()
+  	if AoE then
+		AoE = false 
+		PQR_WriteToChat(&amp;quot;\124cFFE61515Multi-Shot deactivate!&amp;quot;)
+  	else 
+		AoE = true 
+		PQR_WriteToChat(&amp;quot;\124cff00ff00Multi-Shot active!&amp;quot;)
+  	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Multi-Shot()</Name><Default>false</Default><SpellID>49048</SpellID><Actions></Actions><Lua>if AoE == true
+and CanAttack()
+and rangeCheck(53209, &amp;quot;target&amp;quot;)
+and not CooldownRemains(49048)
+and PQR_IsCastingSpell(49048) == false
+and pStay()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></HUNTER>
