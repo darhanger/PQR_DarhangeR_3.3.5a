@@ -179,7 +179,7 @@ then
 	return true
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Multi-Shot</Name><Default>false</Default><SpellID>49048</SpellID><Actions></Actions><Lua>if AOE() == true
 and CanAttack()
-and rangeCheck(53209, &amp;quot;target&amp;quot;)
+and rangeCheck(49052, &amp;quot;target&amp;quot;)
 and not CooldownRemains(49048)
 and PQR_IsCastingSpell(49048) == false
 and pStay()
