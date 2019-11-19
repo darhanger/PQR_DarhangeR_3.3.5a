@@ -13,6 +13,27 @@ if IsLeftControlKeyDown() and GetTime() - leftkeydown &amp;gt; 1 then
 		StopRota = true 
 		PQR_WriteToChat(&amp;quot;Rotation \124cFFE61515stopped!&amp;quot;)
   	end
+end
+
+if not AOE then
+	function AOE()
+		if AoE == true then
+			return true
+		else
+			return false
+		end
+	end
+end
+
+if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
+	modtime = GetTime()
+  	if AoE then
+		AoE = false 
+		PQR_WriteToChat(&amp;quot;\124c00FFFC01AOE stoped!&amp;quot;)
+  	else 
+		AoE = true 
+		PQR_WriteToChat(&amp;quot;\124c00fEBA0EAOE enabled!&amp;quot;)
+  	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733 }
 local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
 local elite = {  }
@@ -443,6 +464,7 @@ for i = 0, members, 1 do
     end
   end
 end</Lua><RecastDelay>150</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Seal of Light</Name><Default>false</Default><SpellID>20165</SpellID><Actions></Actions><Lua>if not SoL
+and AOE() == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Avenging Wrath</Name><Default>false</Default><SpellID>31884</SpellID><Actions></Actions><Lua>if ( dplea ~= nil and dillum == nil )
 or lowhpmembers &amp;gt;= 5
 or PQR_CustomTargetHP &amp;lt; 30
@@ -506,6 +528,8 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and rangeCheck(53408, &amp;quot;target&amp;quot;)
 and not CooldownRemains(53408)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Seal of Command</Name><Default>false</Default><SpellID>20375</SpellID><Actions></Actions><Lua>if not SoC
+and AOE() == true
+and IsSpellKnown(20375)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Consecration</Name><Default>false</Default><SpellID>48819</SpellID><Actions></Actions><Lua>if CanAttack()
 and rangeCheck(35395, &amp;quot;target&amp;quot;)
 and not CooldownRemains(48819)
@@ -530,7 +554,11 @@ and rangeCheck(53407, &amp;quot;target&amp;quot;)
 and not CooldownRemains(53407)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Flash of Light</Name><Default>false</Default><SpellID>48785</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt; 60
 and AoW
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Consecration(A)</Name><Default>false</Default><SpellID>48819</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Consecration(A)</Name><Default>false</Default><SpellID>48819</SpellID><Actions></Actions><Lua>if AOE() == true
+and CanAttack()
+and getMana(&amp;quot;player&amp;quot;) &amp;gt;= 30
+and ( rangeCheck(35395, &amp;quot;target&amp;quot;) or rangeCheck(53595, &amp;quot;target&amp;quot;) )
+and not CooldownRemains(48819)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>P:Divine Sacrifice</Name><Default>false</Default><SpellID>64205</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 4
 or PQR_CustomTargetHP &amp;lt; 35
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>P:Exorcism(S)</Name><Default>false</Default><SpellID>48801</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
@@ -542,14 +570,16 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 -- E-mail: civayan@gmail.com
 -- Discord: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Seal of Righteousness</Name><Default>false</Default><SpellID>21084</SpellID><Actions></Actions><Lua>if not SoR
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Seal of Corruption/Vengeance</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsSpellKnown(53736) then
-	if not (SoCr or SoV) then
+	if not (SoCr or SoV)
+	and AOE() == false then
 		CastSpellByID(53736)
 		return true
 	end
 end
 
 if IsSpellKnown(31801) then
-	if not (SoV or SoCr) then
+	if not (SoV or SoCr)
+	and AOE() == false then
 		CastSpellByID(31801)
 		return true
 	end

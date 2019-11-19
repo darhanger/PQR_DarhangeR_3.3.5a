@@ -1188,6 +1188,14 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><Ca
 			return 100 * UnitHealth(unit) / UnitHealthMax(unit)
 		end
 	end
+		
+		-- Get Mana simple --
+	function getMana(unit)
+	if UnitExists(unit) ~= nil
+		then
+			return 100 * UnitPower(unit) / UnitPowerMax(unit)
+		end
+	end
 			
 	function testv()
 	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/4jsWaty&amp;quot;

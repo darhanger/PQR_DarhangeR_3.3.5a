@@ -733,4 +733,8 @@ and rangeCheck(49052, &amp;quot;target&amp;quot;)
 and not CooldownRemains(49048)
 and PQR_IsCastingSpell(49048) == false
 and pStay()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Arcane Shot(ММ)</Name><Default>false</Default><SpellID>49045</SpellID><Actions></Actions><Lua>if GetCombatRating(25) &amp;lt; 350
+and CanAttack()
+and rangeCheck(49052, &amp;quot;target&amp;quot;)
+and not CooldownRemains(49045)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></HUNTER>

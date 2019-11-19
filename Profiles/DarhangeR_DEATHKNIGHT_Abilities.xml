@@ -29,8 +29,9 @@ and runpow(56815)
 and CanAttack()
 and rangeCheck(49930, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Heart Strike</Name><Default>false</Default><SpellID>55262</SpellID><Actions></Actions><Lua>local BR = select(2, BloodRuneCD())
+local DR = select(2, DeathRuneCD())
 
-if BR &amp;gt;= 1
+if ( BR &amp;gt;= 1 or DR &amp;gt;= 1 )
 and CanAttack()
 and rangeCheck(49930, &amp;quot;target&amp;quot;)
 and FrostFever

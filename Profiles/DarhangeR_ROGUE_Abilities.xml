@@ -747,4 +747,5 @@ for i = 1, #hpot do
 	and not ItemCooldownRemains(hpot[i]) then
        		UseItemByName(hpot[i])
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>TEST</Name><Default>false</Default><SpellID>48657</SpellID><Actions></Actions><Lua>if PQR_NotBehindTarget() == false
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>

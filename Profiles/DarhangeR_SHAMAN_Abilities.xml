@@ -15,14 +15,24 @@ if modtime == nil then
 	modtime = 0
 end
 
+if not AOE then
+	function AOE()
+		if AoE == true then
+			return true
+		else
+			return false
+		end
+	end
+end
+
 if IsRightShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
 	modtime = GetTime()
-	if AOE then
-		AOE = false
-		PQR_WriteToChat(&amp;quot;AOE \124cFFE61515Disabled&amp;quot;)
+	if AoE then
+		AoE = false
+		PQR_WriteToChat(&amp;quot;AoE \124cFFE61515Disabled&amp;quot;)
 	else
-		AOE = true
-		PQR_WriteToChat(&amp;quot;AOE \124cFF15E615Enabled&amp;quot;)
+		AoE = true
+		PQR_WriteToChat(&amp;quot;AoE \124cFF15E615Enabled&amp;quot;)
 	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733 }
 local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
@@ -187,7 +197,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 if rangeCheck(17364, &amp;quot;target&amp;quot;)
 and CanAttack()
 and not CooldownRemains(61657)
-and AOE
+and AOE() == true
 and select(2, GetTotemInfo(1)) ~= &amp;quot;&amp;quot;
  then
 	CastSpellByID(61657)
@@ -200,11 +210,13 @@ and not CooldownRemains(49233)
 and rangeCheck(49233, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Magma Totem</Name><Default>false</Default><SpellID>58734</SpellID><Actions></Actions><Lua>haveTotem, totemName, startTime, duration = GetTotemInfo(1)
 
-if AOE
-and totemName ~= &amp;quot;Magma Totem&amp;quot;
+if totemName ~= &amp;quot;Magma Totem VII&amp;quot;
+and AOE() == true
 and CanAttack()
 and rangeCheck(17364, &amp;quot;target&amp;quot;)
-then return true else end</Lua><RecastDelay>8500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Lightning Bolt</Name><Default>false</Default><SpellID>49238</SpellID><Actions></Actions><Lua>if CanAttack()
+then return true
+else
+return false end</Lua><RecastDelay>1</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Lightning Bolt</Name><Default>false</Default><SpellID>49238</SpellID><Actions></Actions><Lua>if CanAttack()
 and rangeCheck(49238, &amp;quot;target&amp;quot;)
 and PQR_IsCastingSpell(49238) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Elemental Mastery</Name><Default>false</Default><SpellID>16166</SpellID><Actions></Actions><Lua>if IsBoss()
@@ -262,9 +274,7 @@ and (PQR_CustomTargetHP &amp;lt; 95 or threat(PQR_CustomTarget) == 3)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Earthliving Weapon</Name><Default>false</Default><SpellID>51994</SpellID><Actions></Actions><Lua>local _,enchant,_,_,_,_,_,_ = GetWeaponEnchantInfo()
 
 if enchant == nil or false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Water Shield</Name><Default>false</Default><SpellID>57960</SpellID><Actions></Actions><Lua>local wshield = UnitBuffID(&amp;quot;player&amp;quot;, 49284)
-
-if not wshield
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Water Shield</Name><Default>false</Default><SpellID>57960</SpellID><Actions></Actions><Lua>if not wshield
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Wave</Name><Default>false</Default><SpellID>49273</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 90
@@ -758,7 +768,7 @@ and CanAttack()
 and rangeCheck(49271, &amp;quot;target&amp;quot;)
 and CooldownRemains(49233)
 then
-	if AOE then
+	if AOE() == true then
 		CastSpellByID(49271)
 		return true
 	else
@@ -868,12 +878,13 @@ and inCombat(&amp;quot;player&amp;quot;)
 	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Searing Totem</Name><Default>false</Default><SpellID>58704</SpellID><Actions></Actions><Lua>haveTotem, totemName, startTime, duration = GetTotemInfo(1)
 
-if totemName ~= &amp;quot;&amp;quot;
-and IsBoss()
+if totemName ~= &amp;quot;Searing Totem X&amp;quot;
+and AOE() == false
 and CanAttack()
 and rangeCheck(17364, &amp;quot;target&amp;quot;)
-then return false 
-else return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Purge</Name><Default>false</Default><SpellID>8012</SpellID><Actions></Actions><Lua>for i=1,40 do
+then return true
+else
+return false end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Purge</Name><Default>false</Default><SpellID>8012</SpellID><Actions></Actions><Lua>for i=1,40 do
   local name, icon, _, _, _, _, _, canPurge = UnitBuff(&amp;quot;target&amp;quot;,i)
   if canPurge then
     CastSpellByID(8012, &amp;quot;target&amp;quot;)
@@ -948,7 +959,7 @@ catform = UnitBuffID(&amp;quot;player&amp;quot;, 768, &amp;quot;player&amp;quot;
 -- Buffs -- 
 eshield = UnitBuffID(&amp;quot;player&amp;quot;, 49284)
 lshield = UnitBuffID(&amp;quot;player&amp;quot;, 49281)
-wshield = UnitBuffID(&amp;quot;player&amp;quot;, 49284)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Purge (PRO)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local purgeThis = {
+wshield = UnitBuffID(&amp;quot;player&amp;quot;, 57960)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Purge (PRO)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local purgeThis = {
 48068, -- Renew (Priest)
 48066, -- Power Word: Shield (Priest)
 61301, -- Riptide (Shaman)
