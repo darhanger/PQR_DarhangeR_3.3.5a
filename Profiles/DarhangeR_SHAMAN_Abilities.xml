@@ -101,7 +101,7 @@ if UnitExists(&amp;quot;target&amp;quot;)
   and UnitDebuffID(&amp;quot;target&amp;quot;, 69065) == nil
   and UnitDebuffID(&amp;quot;target&amp;quot;, 70157) == nil
   then PQR_CustomTarget = &amp;quot;target&amp;quot;
-          PQR_CustomTargetHP = 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;)
+       PQR_CustomTargetHP = 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;)
 else 
 
 PQR_CustomTarget = &amp;quot;player&amp;quot;
@@ -110,7 +110,6 @@ local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
 lowhpmembers = 0
 lowhpmemberspets = 0
-local lowest = 100
 
 if GetNumRaidMembers() &amp;gt; 0 then
   group = &amp;quot;raid&amp;quot;
@@ -127,13 +126,12 @@ for i = 1, members, 1 do
     if UnitThreatSituation(member) == 3 then memberhp = memberhp - 3 end
     if UnitBuffID(member, 53563) ~= nil then memberhp = memberhp + 7 end
     if memberhp &amp;lt; 85 then lowhpmembers = lowhpmembers +1 end
-    if memberhp &amp;lt; lowest then
-      PQR_CustomTarget = member
-      lowest = memberhp
-      PQR_CustomTargetHP = 100 * UnitHealth(PQR_CustomTarget) / UnitHealthMax(PQR_CustomTarget)
-    end
-  end
-end
+	if memberhp &amp;lt; PQR_CustomTargetHP then
+		  PQR_CustomTarget = member
+		  PQR_CustomTargetHP = memberhp
+		end
+	  end
+	end
 
 if lowhpmembers == 0 then
   for i = 1, members, 1 do
@@ -143,14 +141,12 @@ if lowhpmembers == 0 then
   and UnitIsFriend(&amp;quot;player&amp;quot;, memberpet)
   and UnitIsDeadOrGhost(memberpet) == nil  then
     if memberpethp &amp;lt; 85 then lowhpmemberspets = lowhpmemberspets +1 end
-    if memberpethp &amp;lt; lowest then
-      PQR_CustomTarget = memberpet
-      lowest = memberpethp
-      PQR_CustomTargetHP = 100 * UnitHealth(PQR_CustomTarget) / UnitHealthMax(PQR_CustomTarget)
-				end
-			end
-		end
-	end
+		  PQR_CustomTarget = memberpet
+		  PQR_CustomTargetHP = memberpethp
+		  PQR_CustomTargetHP = 100 * UnitHealth(PQR_CustomTarget) / UnitHealthMax(PQR_CustomTarget)
+		  end
+	   end
+    end
 end
 
 if view == nil then 
@@ -898,7 +894,7 @@ if UnitExists(&amp;quot;target&amp;quot;)
   and UnitDebuffID(&amp;quot;target&amp;quot;, 69065) == nil
   and UnitDebuffID(&amp;quot;target&amp;quot;, 70157) == nil
   then PQR_CustomTarget = &amp;quot;target&amp;quot;
-          PQR_CustomTargetHP = 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;)
+       PQR_CustomTargetHP = 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;)
 else 
 
 PQR_CustomTarget = &amp;quot;player&amp;quot;
@@ -906,7 +902,6 @@ PQR_CustomTargetHP = 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMa
 local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
 lowhpmembers = 0
-local lowest = 100
 
 if GetNumRaidMembers() &amp;gt; 0 then
   group = &amp;quot;raid&amp;quot;
@@ -922,15 +917,13 @@ for i = 1, members, 1 do
     if UnitGroupRolesAssigned(member) == &amp;quot;TANK&amp;quot; then memberhp = memberhp - 1 end
     if UnitThreatSituation(member) == 3 then memberhp = memberhp - 3 end
     if UnitBuffID(member, 53563) ~= nil then memberhp = memberhp + 7 end
-    if memberhp &amp;lt; 85 then lowhpmembers = lowhpmembers +1 end
-    if memberhp &amp;lt; lowest then
-      PQR_CustomTarget = member
-      lowest = memberhp
-      PQR_CustomTargetHP = 100 * UnitHealth(PQR_CustomTarget) / UnitHealthMax(PQR_CustomTarget)
-    end
-  end
-end
-
+		if memberhp &amp;lt; 85 then lowhpmembers = lowhpmembers +1 end
+		if memberhp &amp;lt; PQR_CustomTargetHP then
+		  PQR_CustomTarget = member
+		  PQR_CustomTargetHP = memberhp
+		end
+	  end
+	end
 end
 
 if view == nil then 
@@ -1005,4 +998,28 @@ for i = 1, #mpot do
 	and not ItemCooldownRemains(mpot[i]) then
        		UseItemByName(mpot[i])
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells (H) --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
+local elite = { }
+local noaggromobs = nil
+local eliteboss = nil
+
+for i,v in ipairs(mob) do
+  if UnitName(&amp;quot;target&amp;quot;) == v then noaggromobs = 1 end
+end
+
+if UnitCanAttack(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;) == nil
+or (UnitAffectingCombat(&amp;quot;target&amp;quot;) == nil and noaggromobs == nil and UnitIsPlayer(&amp;quot;target&amp;quot;) == nil)
+then return true end
+
+for i,v in ipairs(elite) do
+  if UnitName(&amp;quot;target&amp;quot;) == v then eliteboss = 1 end
+end
+
+IsBoss = nil
+function IsBoss()
+	if UnitExists(&amp;quot;target&amp;quot;)
+	and ( UnitLevel(&amp;quot;target&amp;quot;) == -1 or eliteboss )
+	then return 
+		true 
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>
