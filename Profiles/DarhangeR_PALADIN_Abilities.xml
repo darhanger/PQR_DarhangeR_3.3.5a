@@ -842,4 +842,14 @@ function IsBoss()
 	then return 
 		true 
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></PALADIN>
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Judgements (PRO)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if CanAttack()
+and rangeCheck(20271, &amp;quot;target&amp;quot;)
+and not CooldownRemains(20271)
+then
+	if getMana(&amp;quot;player&amp;quot;) &amp;lt;= 15
+	and getHp(&amp;quot;player&amp;quot;) &amp;gt;= 70 then	
+		CastSpellByID(53408)
+	end
+		CastSpellByID(20271)
+	return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></PALADIN>
