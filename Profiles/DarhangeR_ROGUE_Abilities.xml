@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?><ROGUE><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
+if modtime == nil then
+	modtime = 0
+end
+
 if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
   	if StopRota  then
@@ -10,6 +14,18 @@ if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 		PQR_WriteToChat(&amp;quot;Rotation \124cFFE61515stopped!&amp;quot;)
   	end
 end
+
+if not AOE then
+	function AOE()
+		if AoE == true then
+			return true
+		else
+			return false
+		end
+	end
+end
+
+if not rightkeydown then rightkeydown = 0 end
 
 if modtime == nil then
 	modtime = 0
@@ -23,16 +39,6 @@ if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime
 	else
 		AoE = true
 		PQR_WriteToChat(&amp;quot;AoE: \124cFF15E615Enabled&amp;quot;)
-	end
-end
-
-if not AOE then
-	function AOE()
-		if AoE == true then
-			return true
-		else
-			return false
-		end
 	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
 or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)

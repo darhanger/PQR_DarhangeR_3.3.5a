@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?><HUNTER><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
+if modtime == nil then
+	modtime = 0
+end
+
 if IsLeftControlKeyDown() and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
   	if StopRota then 
@@ -11,6 +15,8 @@ if IsLeftControlKeyDown() and GetTime() - leftkeydown &amp;gt; 1 then
 
   	end
 end
+
+if not rightkeydown then rightkeydown = 0 end
 
 if modtime == nil then
 	modtime = 0
@@ -35,6 +41,12 @@ if not AOE then
 			return false
 		end
 	end
+end
+
+if not rightkeydown then rightkeydown = 0 end
+
+if modtime == nil then
+	modtime = 0
 end
 
 if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
@@ -691,6 +703,10 @@ for i = 1, #mpot do
 	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>BM: -- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
+if modtime == nil then
+	modtime = 0
+end
+
 if IsLeftControlKeyDown() and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
   	if StopRota then 
@@ -702,6 +718,8 @@ if IsLeftControlKeyDown() and GetTime() - leftkeydown &amp;gt; 1 then
 
   	end
 end
+
+if not rightkeydown then rightkeydown = 0 end
 
 if modtime == nil then
 	modtime = 0
@@ -716,6 +734,12 @@ if IsRightShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modti
 		VoL = true
 		PQR_WriteToChat(&amp;quot;\124cff00ff00Volley active!&amp;quot;)
   	end
+end
+
+if not rightkeydown then rightkeydown = 0 end
+
+if modtime == nil then
+	modtime = 0
 end
 
 if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then

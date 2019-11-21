@@ -550,6 +550,10 @@ then
 	CastSpellByID(18708)
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
+if modtime == nil then
+	modtime = 0
+end
+
 if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
   	if StopRota then
@@ -560,6 +564,8 @@ if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 		PQR_WriteToChat(&amp;quot;Rotation \124cFFE61515stopped!&amp;quot;)
   	end
 end
+
+if not rightkeydown then rightkeydown = 0 end
 
 if modtime == nil then
 	modtime = 0
@@ -574,6 +580,12 @@ if IsRightShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modti
 		SoC = true
 		PQR_WriteToChat(&amp;quot;Seed of Corruption \124cFF15E615Enabled&amp;quot;)
 	end
+end
+
+if not rightkeydown then rightkeydown = 0 end
+
+if modtime == nil then
+	modtime = 0
 end
 
 if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then

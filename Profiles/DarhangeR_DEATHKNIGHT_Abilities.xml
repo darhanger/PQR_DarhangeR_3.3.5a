@@ -125,9 +125,10 @@ and FrostFever
 and BloodPlague
 and rangeCheck(55271, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Rune Tap</Name><Default>false</Default><SpellID>48982</SpellID><Actions>/use Blood Tap</Actions><Lua>local BR = select(2, BloodRuneCD())
+local DR = select(2, DeathRuneCD())
 
-if getHp(&amp;quot;player&amp;quot;) &amp;lt; 80
-and BR &amp;gt;= 1
+if getHp(&amp;quot;player&amp;quot;) &amp;lt; 40
+and ( BR &amp;gt;= 1 or DR &amp;gt;= 1 )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Raise Dead</Name><Default>false</Default><SpellID>46584</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(46584) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Blood Boil</Name><Default>false</Default><SpellID>49941</SpellID><Actions></Actions><Lua>if CanAttack()

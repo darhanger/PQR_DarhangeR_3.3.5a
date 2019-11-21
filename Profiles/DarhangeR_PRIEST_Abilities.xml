@@ -408,6 +408,10 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 and not CooldownRemains(33206)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
+if modtime == nil then
+	modtime = 0
+end
+
 if IsLeftControlKeyDown() and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
   	if StopRota then
@@ -914,21 +918,6 @@ if IsLeftControlKeyDown() and GetTime() - leftkeydown &amp;gt; 1 then
 		StopRota = true 
 		PQR_WriteToChat(&amp;quot;Rotation \124cFFE61515stopped!&amp;quot;)
 
-  	end
-end
-
-if modtime == nil then
-	modtime = 0
-end
-
-if IsLeftShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
-	modtime = GetTime()
-  	if VAMP then
-		VAMP = false
-		PQR_WriteToChat(&amp;quot;\124cFFE61515Healing DPS Disabled!&amp;quot;)
-  	else 
-		VAMP = true
-		PQR_WriteToChat(&amp;quot;\124cff00ff00Healing DPS Enabled!&amp;quot;)
   	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Auto Buff(Raid/Party)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()

@@ -25,6 +25,12 @@ if not AOE then
 	end
 end
 
+if not rightkeydown then rightkeydown = 0 end
+
+if modtime == nil then
+	modtime = 0
+end
+
 if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
 	modtime = GetTime()
   	if AoE then
