@@ -560,7 +560,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and AoW
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Consecration(A)</Name><Default>false</Default><SpellID>48819</SpellID><Actions></Actions><Lua>if AOE() == true
 and CanAttack()
-and getMana(&amp;quot;player&amp;quot;) &amp;gt;= 30
+and getMana(&amp;quot;player&amp;quot;) &amp;gt; 30
 and ( rangeCheck(35395, &amp;quot;target&amp;quot;) or rangeCheck(53595, &amp;quot;target&amp;quot;) )
 and not CooldownRemains(48819)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>P:Divine Sacrifice</Name><Default>false</Default><SpellID>64205</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 4
