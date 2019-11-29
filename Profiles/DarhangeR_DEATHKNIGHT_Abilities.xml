@@ -10,7 +10,7 @@ then
   CastSpellByID(49938)
   if SpellIsTargeting() then CameraOrSelectOrMoveStart() CameraOrSelectOrMoveStop() end  
   return true
-end</Lua><RecastDelay>500</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Howling Blast</Name><Default>false</Default><SpellID>51411</SpellID><Actions></Actions><Lua>if CanAttack()
+end</Lua><RecastDelay>500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Howling Blast</Name><Default>false</Default><SpellID>51411</SpellID><Actions></Actions><Lua>if CanAttack()
 and freezf
 and not CooldownRemains(51411)
 and rangeCheck(51411, &amp;quot;target&amp;quot;)
@@ -29,9 +29,8 @@ and runpow(56815)
 and CanAttack()
 and rangeCheck(49930, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Heart Strike</Name><Default>false</Default><SpellID>55262</SpellID><Actions></Actions><Lua>local BR = select(2, BloodRuneCD())
-local DR = select(2, DeathRuneCD())
 
-if ( BR &amp;gt;= 1 or DR &amp;gt;= 1 )
+if BR &amp;gt;= 1
 and CanAttack()
 and rangeCheck(49930, &amp;quot;target&amp;quot;)
 and FrostFever
@@ -101,48 +100,57 @@ function IsBoss()
 		then return 
 			true 
 		end
-	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Horn of Winter</Name><Default>false</Default><SpellID>57623</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,58646,65991,58643,31634,37223) == nil
-and UnitBuffID(&amp;quot;player&amp;quot;,57623) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Mouseover --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
-	then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Frost Presence</Name><Default>false</Default><SpellID>48263</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48263) ~= nil 
-then 
-	return false 
-else 
-	return true 
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Howling Blast (AOE)</Name><Default>false</Default><SpellID>51411</SpellID><Actions></Actions><Lua>if CanAttack()
+	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Horn of Winter</Name><Default>false</Default><SpellID>57623</SpellID><Actions></Actions><Lua>if not Horn
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Mouseover --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
+	then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Frost Presence</Name><Default>false</Default><SpellID>48263</SpellID><Actions></Actions><Lua>if not fPres
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Howling Blast (AOE)</Name><Default>false</Default><SpellID>51411</SpellID><Actions></Actions><Lua>if CanAttack()
 and not CooldownRemains(51411)
 and rangeCheck(51411, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Horn of Winter (Tank)</Name><Default>false</Default><SpellID>57623</SpellID><Actions></Actions><Lua>local Horn, _, _, _, _, _, hwexpire = UnitBuffID(&amp;quot;player&amp;quot;, 57623)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 
-if Horn ~= nill then
-	hwexpire =(hwexpire - GetTime())
-	if hwexpire &amp;lt; 5 then
-		return true
-	end
-else
-	return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Scourge Strike</Name><Default>false</Default><SpellID>55271</SpellID><Actions></Actions><Lua>if CanAttack()
+if cd == 0 and havecd == 1
+and IsUsableTrink()
+and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
+and CanAttack()
+then 
+  UseInventoryItem(13)
+  return true
+end
+
+local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
+
+if cd == 0 and havecd == 1
+and IsUsableTrink()
+and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
+and CanAttack()
+then 
+  UseInventoryItem(14)
+  return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Scourge Strike</Name><Default>false</Default><SpellID>55271</SpellID><Actions></Actions><Lua>if CanAttack()
 and FrostFever
 and BloodPlague
 and rangeCheck(55271, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Rune Tap</Name><Default>false</Default><SpellID>48982</SpellID><Actions>/use Blood Tap</Actions><Lua>local BR = select(2, BloodRuneCD())
 local DR = select(2, DeathRuneCD())
 
-if getHp(&amp;quot;player&amp;quot;) &amp;lt; 40
+if getHp(&amp;quot;player&amp;quot;) &amp;lt; 45
 and ( BR &amp;gt;= 1 or DR &amp;gt;= 1 )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Raise Dead</Name><Default>false</Default><SpellID>46584</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(46584) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Blood Boil</Name><Default>false</Default><SpellID>49941</SpellID><Actions></Actions><Lua>if CanAttack()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Blood Boil</Name><Default>false</Default><SpellID>49941</SpellID><Actions></Actions><Lua>local BR = select(2, BloodRuneCD())
+local DR = select(2, DeathRuneCD())
+
+if ( BR &amp;gt;= 1 or DR &amp;gt;= 1 )
+and CanAttack()
 and rangeCheck(49930, &amp;quot;target&amp;quot;)
+and FrostFever
+and BloodPlague
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Blood Tap</Name><Default>false</Default><SpellID>45529</SpellID><Actions></Actions><Lua>if CanAttack()
 and select(1, BloodRuneCD()) &amp;gt;= 1
 and rangeCheck(49930, &amp;quot;target&amp;quot;)
 and not CooldownRemains(45529)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Blood Presence</Name><Default>false</Default><SpellID>48266</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48266) ~= nil 
-then 
-	return false 
-else 
-	return true 
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Blood Strike</Name><Default>false</Default><SpellID>49930</SpellID><Actions></Actions><Lua>local BR = select(2, BloodRuneCD())
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Blood Presence</Name><Default>false</Default><SpellID>48266</SpellID><Actions></Actions><Lua>if not bPres
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Blood Strike</Name><Default>false</Default><SpellID>49930</SpellID><Actions></Actions><Lua>local BR = select(2, BloodRuneCD())
 
 if BR &amp;gt;= 1
 and CanAttack()
@@ -189,14 +197,20 @@ if FrostFever ~= nil then
 else
 	return true
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Mark of Blood</Name><Default>false</Default><SpellID>49005</SpellID><Actions>/use Blood Tap</Actions><Lua>local BR = select(2, BloodRuneCD())
+local DR = select(2, DeathRuneCD())
 
-if BR &amp;gt;= 1
-and getHp(&amp;quot;player&amp;quot;) &amp;lt; 50
+if ( BR &amp;gt;= 1 or DR &amp;gt;= 1 )
+and getHp(&amp;quot;player&amp;quot;) &amp;lt; 39
+and not CooldownRemains(49005) 
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Obliterate</Name><Default>false</Default><SpellID>51425</SpellID><Actions></Actions><Lua>if CanAttack()
 and FrostFever
 and BloodPlague
 and rangeCheck(51425, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Pestilence (Renew)</Name><Default>false</Default><SpellID>50842</SpellID><Actions></Actions><Lua>if CanAttack()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Pestilence (Renew)</Name><Default>false</Default><SpellID>50842</SpellID><Actions></Actions><Lua>local BR = select(2, BloodRuneCD())
+local DR = select(2, DeathRuneCD())
+
+if ( BR &amp;gt;= 1 or DR &amp;gt;= 1 )
+and CanAttack()
 and glyph(63334)
 and rangeCheck(50842, &amp;quot;target&amp;quot;)
 and ( ( FrostFever ~= nil and select(7, UnitDebuffID(&amp;quot;target&amp;quot;, 55095, &amp;quot;player&amp;quot;)) - GetTime() &amp;lt;= 5 )
@@ -209,8 +223,9 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 and CanAttack()
 and rangeCheck(49930, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Vampiric Blood</Name><Default>false</Default><SpellID>55233</SpellID><Actions>/use Blood Tap</Actions><Lua>local BR = select(2, BloodRuneCD())
+local DR = select(2, DeathRuneCD())
 
-if BR &amp;gt;= 1
+if ( BR &amp;gt;= 1 or DR &amp;gt;= 1 )
 and getHp(&amp;quot;player&amp;quot;) &amp;lt; 70
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Plague Strike</Name><Default>false</Default><SpellID>49921</SpellID><Actions></Actions><Lua>local BloodPlague, _, _, _, _, _, BloodPlagueExpire = UnitDebuffID(&amp;quot;target&amp;quot;,55078, &amp;quot;player&amp;quot;)
 
@@ -228,30 +243,8 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 -- FB: https://fb.com/darhanger
 -- Instagram: https://instagram.com/darhanger
 -- E-mail: civayan@gmail.com
--- Discord: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Unholy Presence</Name><Default>false</Default><SpellID>48265</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48265) ~= nil 
-then 
-	return false 
-else 
-	return true 
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket(Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
-
-if cd == 0 and havecd == 1
-and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
-and CanAttack()
-then 
-  UseInventoryItem(13)
-  return true
-end
-
-local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
-
-if cd == 0 and havecd == 1
-and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
-and CanAttack()
-then 
-  UseInventoryItem(14)
-  return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Interrupt Engine --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- New Interrupt Engine // Новый движок--
+-- Discord: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Unholy Presence</Name><Default>false</Default><SpellID>48265</SpellID><Actions></Actions><Lua>if not uPres
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Interrupt Engine --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- New Interrupt Engine // Новый движок--
 if xelperInterruptInit == nil then
 		xelperInterruptInit = true
 		function PQR_InterruptSpell()
@@ -269,24 +262,9 @@ if xelperInterruptInit == nil then
 				return 1766
 			elseif playerClass == &amp;quot;SHAMAN&amp;quot; then
 				return 57994
-			elseif playerClass == &amp;quot;WARRIOR&amp;quot; then
-				local BattleStance = UnitBuffID(&amp;quot;player&amp;quot;, 2457)
-				if BattleStance ~= nil then
-					return 57755
-				else
-				local DefensiveStance = UnitBuffID(&amp;quot;player&amp;quot;, 71)
-				if DefensiveStance ~= nil then
-					return 72
-				else
-				local BerserkerStance = UnitBuffID(&amp;quot;player&amp;quot;, 2458)
-				if BerserkerStance ~= nil then
-					return 6552
-				else
-					return 57755
-					end	
-				end
-			end
-		end
+			else
+				return 0
+		end	
 	end
 end
 
@@ -336,7 +314,7 @@ if castInterruptable then
 	end
 
 	--make sure the interrupt spell is available
-	local interruptSpell = PQR_InterruptSpell()
+	local interruptSpell = 47528 
 	if interruptSpell ~= 0 then
 		
 		local interruptName = GetSpellInfo(interruptSpell)
@@ -367,7 +345,7 @@ if not PQR_InterruptStart then
 	--PQR_AddInterrupt(GetSpellInfo(16914)) --Hurricane
 
 	--This is the delay before interrupting in seconds.
-	PQR_InterruptDelay = 0.05
+	PQR_InterruptDelay = 0.15
 	
 	--This is the percentage of the cast to wait before interrupting
 	PQR_InterruptPercent = math.random(30,60)
@@ -683,33 +661,17 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	end
 
 functionsloaded = true
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6215) --Fear
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5484) --Howl of Terror
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 2637) --Hibernate
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5246) --Intimidating Shout
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6358) --Seduction
-end
-	 
-	 -- Undead --
-if racialCheck ~= nil then
-	if (expire - GetTime()) &amp;gt;= 4 then 
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744)
-	and CanAttack() then
-		CastSpellByID(7744)
-		return true
-		end
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
+
+	-- Undead --
+for i,v in ipairs(debuff) do
+  if UnitDebuffID(&amp;quot;player&amp;quot;,v)
+  and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; 
+  and IsSpellKnown(7744) 
+  and not CooldownRemains(7744)
+  and CanAttack() then
+	  CastSpellByID(7744)
+	   return true
 	end
 end
 
@@ -717,17 +679,23 @@ if IsBoss()
 and CanAttack()
 then
 	--Troll Berserking--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Troll&amp;quot; and IsSpellKnown(26297) and not CooldownRemains(26297) then
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Troll&amp;quot; 
+	and IsSpellKnown(26297) 
+	and not CooldownRemains(26297) then
 		CastSpellByID(26297)
 		return true
 	end
 	--Orc Blood Fury--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(33697) and not CooldownRemains(33697) then 
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; 
+	and IsSpellKnown(33697) 
+	and not CooldownRemains(33697) then 
 		CastSpellByID(33697)
 		return true
 	end
 	--Orc Blood Fury 2--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(20572) and not CooldownRemains(20572) then
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; 
+	and IsSpellKnown(20572) 
+	and not CooldownRemains(20572) then
 		CastSpellByID(20572)
 		return true
 	end
@@ -737,13 +705,17 @@ if CanAttack()
 then
 	--Dwarf Stoneform--
 	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Dwarf&amp;quot; and IsSpellKnown(20594) and not CooldownRemains(20594) then
+	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Dwarf&amp;quot; 
+	and IsSpellKnown(20594) 
+	and not CooldownRemains(20594) then
 		CastSpellByID(20594)
 		return true
 	end
 	--Draenei--
 	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; and IsSpellKnown(28880) and not CooldownRemains(28880) then
+	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; 
+	and IsSpellKnown(28880) 
+	and not CooldownRemains(28880) then
 		CastSpellByID(28880)
 		return true
 	end
@@ -758,6 +730,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Death Pact</Name><Default>false</Default><SpellID>48743</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt; 10
 and UnitExists(&amp;quot;pet&amp;quot;)
 and runpow(48743)
+and not CooldownRemains(48743)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget script --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;)
 and (not UnitExists(&amp;quot;target&amp;quot;)
 or (UnitExists(&amp;quot;target&amp;quot;) and not UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;))) then
@@ -777,35 +750,15 @@ and UnitExists(&amp;quot;pet&amp;quot;)
 and (not UnitIsDeadOrGhost(&amp;quot;pet&amp;quot;))
 and UnitInRange(&amp;quot;pet&amp;quot;)
 and rangeCheck(49895, &amp;quot;pet&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Death Strike(Lich)</Name><Default>false</Default><SpellID>49924</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt; 65
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Death Strike (Lich)</Name><Default>false</Default><SpellID>49924</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt; 65
 and CanAttack()
 and FrostFever
 and BloodPlague
 and rangeCheck(49924, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Death Coil(Range)</Name><Default>false</Default><SpellID>49895</SpellID><Actions></Actions><Lua>if runpow(49895)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Death Coil (Range)</Name><Default>false</Default><SpellID>49895</SpellID><Actions></Actions><Lua>if runpow(49895)
 and CanAttack()
 and not rangeCheck(49930, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket(Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
-
-if cd == 0 and havecd == 1
-and IsUsableTrink()
-and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
-and CanAttack()
-then 
-  UseInventoryItem(13)
-  return true
-end
-
-local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
-
-if cd == 0 and havecd == 1
-and IsUsableTrink()
-and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
-and CanAttack()
-then 
-  UseInventoryItem(14)
-  return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DK Stuff --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- DK Stuff --
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DK Stuff --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- DK Stuff --
 -- Dots --
 FrostFever = UnitDebuffID(&amp;quot;target&amp;quot;, 55095, &amp;quot;player&amp;quot;)
 BloodPlague = UnitDebuffID(&amp;quot;target&amp;quot;, 55078, &amp;quot;player&amp;quot;)
@@ -829,7 +782,11 @@ unbarmor = UnitBuffID(&amp;quot;player&amp;quot;, 51271)
 amshell = UnitBuffID(&amp;quot;player&amp;quot;, 48707)
 bonshield = UnitBuffID(&amp;quot;player&amp;quot;, 49222)
 gfrenzy = UnitBuffID(&amp;quot;pet&amp;quot;, 63560)
-Horn = UnitBuffID(&amp;quot;player&amp;quot;, 57623)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Icy Touch (DPS)</Name><Default>false</Default><SpellID>49909</SpellID><Actions></Actions><Lua>local FrostFever, _, _, _, _, _, ffexpire = UnitDebuffID(&amp;quot;target&amp;quot;, 55095, &amp;quot;player&amp;quot;)
+Horn = UnitBuffID(&amp;quot;player&amp;quot;, 57623)
+-- Presence --
+bPres = UnitBuffID(&amp;quot;player&amp;quot;, 48266)
+fPres = UnitBuffID(&amp;quot;player&amp;quot;, 48263)
+uPres = UnitBuffID(&amp;quot;player&amp;quot;, 48265)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Icy Touch (DPS)</Name><Default>false</Default><SpellID>49909</SpellID><Actions></Actions><Lua>local FrostFever, _, _, _, _, _, ffexpire = UnitDebuffID(&amp;quot;target&amp;quot;, 55095, &amp;quot;player&amp;quot;)
 
 if FrostFever ~= nil then		
 	ffexpire =(ffexpire - GetTime())
@@ -856,4 +813,18 @@ for i = 1, #hpot do
 	and not ItemCooldownRemains(hpot[i]) then
        		UseItemByName(hpot[i])
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DEATHKNIGHT>
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Lichborne</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
+
+for i,v in ipairs(debuff) do
+  if UnitDebuffID(&amp;quot;player&amp;quot;,v)
+  and ( CooldownRemains(7744) or not IsSpellKnown(7744) )
+  and CanAttack() then
+	  CastSpellByID(49039)
+	  return true
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Anti-Magic Shell</Name><Default>false</Default><SpellID>48707</SpellID><Actions></Actions><Lua>local AMS = { 48125 }
+
+for i,v in ipairs(AMS) do
+  if UnitDebuffID(&amp;quot;player&amp;quot;,v) 
+  then return true end 
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DEATHKNIGHT>

@@ -1402,10 +1402,11 @@ if not FrameCreated then
 		end
 	end
 
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket(Heal)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Heal)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 
 if PQR_CustomTargetHP &amp;lt;= 15
 and cd == 0 and havecd == 1
+and IsUsableTrink()
 then 
   UseInventoryItem(13, PQR_CustomTarget)
   return true
@@ -1415,6 +1416,7 @@ local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
 
 if PQR_CustomTargetHP &amp;lt;= 15
 and cd == 0 and havecd == 1
+and IsUsableTrink()
 then 
   UseInventoryItem(14, PQR_CustomTarget)
   return true
@@ -1460,7 +1462,7 @@ if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime
 		AoE = true
 		PQR_WriteToChat(&amp;quot;AoE: \124cFF15E615Enabled&amp;quot;)
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Shred(PRO)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local savage,_,_,_,_,_, savagetime = UnitBuffID(&amp;quot;player&amp;quot;, 52610)
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Shred (PRO)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local savage,_,_,_,_,_, savagetime = UnitBuffID(&amp;quot;player&amp;quot;, 52610)
 local rake, _, _, _, _, _, raketime = UnitDebuffID(&amp;quot;target&amp;quot;, 48574, &amp;quot;player&amp;quot;)
 
 if energycost(48572) and ( mangle or CantMangle() == true )
@@ -1501,33 +1503,17 @@ for i = 1, members, 1 do
     then
         CastSpellByID(48443, member)
    end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6215) --Fear
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5484) --Howl of Terror
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 2637) --Hibernate
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5246) --Intimidating Shout
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6358) --Seduction
-end
-	 
-	 -- Undead --
-if racialCheck ~= nil then
-	if (expire - GetTime()) &amp;gt;= 4 then 
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744)
-	and CanAttack() then
-		CastSpellByID(7744)
-		return true
-		end
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
+
+	-- Undead --
+for i,v in ipairs(debuff) do
+  if UnitDebuffID(&amp;quot;player&amp;quot;,v)
+  and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; 
+  and IsSpellKnown(7744) 
+  and not CooldownRemains(7744)
+  and CanAttack() then
+	  CastSpellByID(7744)
+	   return true
 	end
 end
 
@@ -1535,17 +1521,23 @@ if IsBoss()
 and CanAttack()
 then
 	--Troll Berserking--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Troll&amp;quot; and IsSpellKnown(26297) and not CooldownRemains(26297) then
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Troll&amp;quot; 
+	and IsSpellKnown(26297) 
+	and not CooldownRemains(26297) then
 		CastSpellByID(26297)
 		return true
 	end
 	--Orc Blood Fury--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(33697) and not CooldownRemains(33697) then 
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; 
+	and IsSpellKnown(33697) 
+	and not CooldownRemains(33697) then 
 		CastSpellByID(33697)
 		return true
 	end
 	--Orc Blood Fury 2--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(20572) and not CooldownRemains(20572) then
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; 
+	and IsSpellKnown(20572) 
+	and not CooldownRemains(20572) then
 		CastSpellByID(20572)
 		return true
 	end
@@ -1555,13 +1547,17 @@ if CanAttack()
 then
 	--Dwarf Stoneform--
 	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Dwarf&amp;quot; and IsSpellKnown(20594) and not CooldownRemains(20594) then
+	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Dwarf&amp;quot; 
+	and IsSpellKnown(20594) 
+	and not CooldownRemains(20594) then
 		CastSpellByID(20594)
 		return true
 	end
 	--Draenei--
 	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; and IsSpellKnown(28880) and not CooldownRemains(28880) then
+	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; 
+	and IsSpellKnown(28880) 
+	and not CooldownRemains(28880) then
 		CastSpellByID(28880)
 		return true
 	end
@@ -1597,7 +1593,7 @@ if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime
 		HN = true
 		PQR_WriteToChat(&amp;quot;Hurricane \124cFF15E615Enabled&amp;quot;)
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Auto Buff(Raid/Party)</Name><Default>false</Default><SpellID>48470</SpellID><Actions></Actions><Lua>local group = &amp;quot;party&amp;quot;
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Auto Buff (Raid/Party) --</Name><Default>false</Default><SpellID>48470</SpellID><Actions></Actions><Lua>local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
 
 if GetNumRaidMembers() &amp;gt; 0 then
@@ -1624,7 +1620,7 @@ for i = 1, members, 1 do
 		CastSpellByID(48470, member)
 	end
   end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Regrowth(Cat)</Name><Default>false</Default><SpellID>48443</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt; 55
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Regrowth (Cat)</Name><Default>false</Default><SpellID>48443</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt; 55
 and not bearform
 and pswitness
 and not regrowth
@@ -1675,7 +1671,7 @@ if view == nil then
 	print(&amp;quot;\124cFFE61515DO NOT TARGET A FRIENDLY PLAYER!&amp;quot;)
 	print(&amp;quot;\124cFFE61515НЕ ВЫБИРАТЬ В КАЧЕСТВИ ЦЕЛИ СОЮЗНИКА!&amp;quot;)
 	eventframe:RegisterEvent(&amp;quot;EXECUTE_CHAT_LINE&amp;quot;)	
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket(Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 
 if cd == 0 and havecd == 1
 and IsUsableTrink()
@@ -1695,25 +1691,7 @@ and UnitExists(&amp;quot;target&amp;quot;)
 then 
   UseInventoryItem(14)
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket(Heal)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
-
-if PQR_CustomTargetHP &amp;lt;= 15
-and cd == 0 and havecd == 1
-and IsUsableTrink()
-then 
-  UseInventoryItem(13, PQR_CustomTarget)
-  return true
-end
-
-local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
-
-if PQR_CustomTargetHP &amp;lt;= 15
-and cd == 0 and havecd == 1
-and IsUsableTrink()
-then 
-  UseInventoryItem(14, PQR_CustomTarget)
-  return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget script --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;)
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget script --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;)
 and not UnitExists(&amp;quot;target&amp;quot;)
 and not SpellIsTargeting() then
     RunMacroText(&amp;quot;/targetenemy&amp;quot;)

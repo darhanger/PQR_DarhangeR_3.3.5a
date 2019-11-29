@@ -103,7 +103,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and CanAttack()
 and not CooldownRemains(23881) 
 and rangeCheck(47465, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket(Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 
 if cd == 0 and havecd == 1
 and IsUsableTrink()
@@ -239,7 +239,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and CanAttack()
 and UnitDebuffID(&amp;quot;target&amp;quot;,47437,&amp;quot;player&amp;quot;) == nil
 and rangeCheck(47465, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Bladestorm(Sh)</Name><Default>false</Default><SpellID>46924</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Bladestorm (Sh)</Name><Default>false</Default><SpellID>46924</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Thunder Clap</Name><Default>false</Default><SpellID>47502</SpellID><Actions></Actions><Lua>if AoE == true
 and ragecost(47502)
 and CanAttack()
@@ -266,7 +266,7 @@ and getHp(&amp;quot;player&amp;quot;) &amp;lt; 85
 and CanAttack()
 and not CooldownRemains(23881)
 and rangeCheck(47465, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>P:Shockwave(Tank)</Name><Default>false</Default><SpellID>46968</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt; 20
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>P:Shockwave (Tank)</Name><Default>false</Default><SpellID>46968</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt; 20
 and ragecost(46968)
 and CanAttack()
 and not CooldownRemains(46968) 
@@ -337,27 +337,12 @@ if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 		StopRota  = true 
 		PQR_WriteToChat(&amp;quot;Rotation \124cFFE61515stopped!&amp;quot;)
   	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Berserker Rage(PvP)</Name><Default>false</Default><SpellID>18499</SpellID><Actions></Actions><Lua>if pvpdebuffCheck == nil then
-	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5782) --fear
-end
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Berserker Rage (PvP)</Name><Default>false</Default><SpellID>18499</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358, 20066 }
 
-if pvpdebuffCheck == nil then
-	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --psychic scream
-end
-
-if pvpdebuffCheck == nil then
-	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6770) --sap
-end
-
-if pvpdebuffCheck == nil then
-	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 20066) --Repentance
-end
-
-if pvpdebuffCheck ~= nil then
-	if (expire - GetTime()) &amp;gt;= 3 then
-		return true
-	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Shattering Throw(PvP)</Name><Default>false</Default><SpellID>64382</SpellID><Actions></Actions><Lua>if bDS ~= nil or bBOP ~= nil or bIB ~= nil then
+for i,v in ipairs(debuff) do
+  if UnitDebuffID(&amp;quot;player&amp;quot;,v) 
+  then return true end 
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Shattering Throw (PvP)</Name><Default>false</Default><SpellID>64382</SpellID><Actions></Actions><Lua>if bDS ~= nil or bBOP ~= nil or bIB ~= nil then
 	return true
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Rend (DPS)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if ragecost(47465)
 and CanAttack()
@@ -999,33 +984,17 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	end
 
 	functionsloaded = true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6215) --Fear
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5484) --Howl of Terror
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 2637) --Hibernate
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5246) --Intimidating Shout
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6358) --Seduction
-end
-	 
-	 -- Undead --
-if racialCheck ~= nil then
-	if (expire - GetTime()) &amp;gt;= 4 then 
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744)
-	and CanAttack() then
-		CastSpellByID(7744)
-		return true
-		end
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
+
+	-- Undead --
+for i,v in ipairs(debuff) do
+  if UnitDebuffID(&amp;quot;player&amp;quot;,v)
+  and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; 
+  and IsSpellKnown(7744) 
+  and not CooldownRemains(7744)
+  and CanAttack() then
+	  CastSpellByID(7744)
+	   return true
 	end
 end
 
@@ -1033,17 +1002,23 @@ if IsBoss()
 and CanAttack()
 then
 	--Troll Berserking--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Troll&amp;quot; and IsSpellKnown(26297) and not CooldownRemains(26297) then
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Troll&amp;quot; 
+	and IsSpellKnown(26297) 
+	and not CooldownRemains(26297) then
 		CastSpellByID(26297)
 		return true
 	end
 	--Orc Blood Fury--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(33697) and not CooldownRemains(33697) then 
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; 
+	and IsSpellKnown(33697) 
+	and not CooldownRemains(33697) then 
 		CastSpellByID(33697)
 		return true
 	end
 	--Orc Blood Fury 2--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(20572) and not CooldownRemains(20572) then
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; 
+	and IsSpellKnown(20572) 
+	and not CooldownRemains(20572) then
 		CastSpellByID(20572)
 		return true
 	end
@@ -1053,13 +1028,17 @@ if CanAttack()
 then
 	--Dwarf Stoneform--
 	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Dwarf&amp;quot; and IsSpellKnown(20594) and not CooldownRemains(20594) then
+	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Dwarf&amp;quot; 
+	and IsSpellKnown(20594) 
+	and not CooldownRemains(20594) then
 		CastSpellByID(20594)
 		return true
 	end
 	--Draenei--
 	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; and IsSpellKnown(28880) and not CooldownRemains(28880) then
+	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; 
+	and IsSpellKnown(28880) 
+	and not CooldownRemains(28880) then
 		CastSpellByID(28880)
 		return true
 	end

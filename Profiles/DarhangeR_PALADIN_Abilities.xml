@@ -293,7 +293,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 		
 functionsloaded = true
 end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
-    then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket(Heal)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+    then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Heal)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 
 if PQR_CustomTargetHP &amp;lt;= 15
 and cd == 0 and havecd == 1
@@ -311,33 +311,17 @@ and CanAttack()
 then 
   UseInventoryItem(14, PQR_CustomTarget)
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6215) --Fear
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5484) --Howl of Terror
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 2637) --Hibernate
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5246) --Intimidating Shout
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6358) --Seduction
-end
-	 
-	 -- Undead --
-if racialCheck ~= nil then
-	if (expire - GetTime()) &amp;gt;= 4 then 
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744)
-	and CanAttack() then
-		CastSpellByID(7744)
-		return true
-		end
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
+
+	-- Undead --
+for i,v in ipairs(debuff) do
+  if UnitDebuffID(&amp;quot;player&amp;quot;,v)
+  and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; 
+  and IsSpellKnown(7744) 
+  and not CooldownRemains(7744)
+  and CanAttack() then
+	  CastSpellByID(7744)
+	   return true
 	end
 end
 
@@ -345,17 +329,23 @@ if IsBoss()
 and CanAttack()
 then
 	--Troll Berserking--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Troll&amp;quot; and IsSpellKnown(26297) and not CooldownRemains(26297) then
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Troll&amp;quot; 
+	and IsSpellKnown(26297) 
+	and not CooldownRemains(26297) then
 		CastSpellByID(26297)
 		return true
 	end
 	--Orc Blood Fury--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(33697) and not CooldownRemains(33697) then 
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; 
+	and IsSpellKnown(33697) 
+	and not CooldownRemains(33697) then 
 		CastSpellByID(33697)
 		return true
 	end
 	--Orc Blood Fury 2--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(20572) and not CooldownRemains(20572) then
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; 
+	and IsSpellKnown(20572) 
+	and not CooldownRemains(20572) then
 		CastSpellByID(20572)
 		return true
 	end
@@ -365,13 +355,17 @@ if CanAttack()
 then
 	--Dwarf Stoneform--
 	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Dwarf&amp;quot; and IsSpellKnown(20594) and not CooldownRemains(20594) then
+	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Dwarf&amp;quot; 
+	and IsSpellKnown(20594) 
+	and not CooldownRemains(20594) then
 		CastSpellByID(20594)
 		return true
 	end
 	--Draenei--
 	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; and IsSpellKnown(28880) and not CooldownRemains(28880) then
+	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; 
+	and IsSpellKnown(28880) 
+	and not CooldownRemains(28880) then
 		CastSpellByID(28880)
 		return true
 	end
@@ -547,7 +541,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and CanAttack()
 and not CooldownRemains(31884)
 and rangeCheck(35395, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Crusader Strike(S)</Name><Default>false</Default><SpellID>35395</SpellID><Actions></Actions><Lua>local fd={UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Formidable&amp;quot;)}
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Crusader Strike (S)</Name><Default>false</Default><SpellID>35395</SpellID><Actions></Actions><Lua>local fd={UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Formidable&amp;quot;)}
 
 if UnitBuffID(&amp;quot;player&amp;quot;, 67371)
 then return false end
@@ -564,14 +558,14 @@ and rangeCheck(53407, &amp;quot;target&amp;quot;)
 and not CooldownRemains(53407)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Flash of Light</Name><Default>false</Default><SpellID>48785</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt; 60
 and AoW
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Consecration(A)</Name><Default>false</Default><SpellID>48819</SpellID><Actions></Actions><Lua>if AOE() == true
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Consecration (A)</Name><Default>false</Default><SpellID>48819</SpellID><Actions></Actions><Lua>if AOE() == true
 and CanAttack()
 and getMana(&amp;quot;player&amp;quot;) &amp;gt; 30
 and ( rangeCheck(35395, &amp;quot;target&amp;quot;) or rangeCheck(53595, &amp;quot;target&amp;quot;) )
 and not CooldownRemains(48819)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>P:Divine Sacrifice</Name><Default>false</Default><SpellID>64205</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 4
 or PQR_CustomTargetHP &amp;lt; 35
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>P:Exorcism(S)</Name><Default>false</Default><SpellID>48801</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>P:Exorcism (S)</Name><Default>false</Default><SpellID>48801</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
 and AoW
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
 -- VK: https://vk.com/darhanger
@@ -770,7 +764,7 @@ if view == nil then
 	print(&amp;quot;\124cFFE61515НЕ ВЫБИРАТЬ В КАЧЕСТВИ ЦЕЛИ СОЮЗНИКА!&amp;quot;)
 	eventframe:RegisterEvent(&amp;quot;EXECUTE_CHAT_LINE&amp;quot;)	
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Mouseover --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
-	then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket(Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+	then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 
 if cd == 0 and havecd == 1
 and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
@@ -852,7 +846,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True<
 and rangeCheck(20271, &amp;quot;target&amp;quot;)
 and not CooldownRemains(20271)
 then
-	if getMana(&amp;quot;player&amp;quot;) &amp;lt;= 15
+	if getMana(&amp;quot;player&amp;quot;) &amp;lt; 30
 	and getHp(&amp;quot;player&amp;quot;) &amp;gt;= 70 then	
 		CastSpellByID(53408)
 	end
