@@ -86,7 +86,9 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 and PQR_IsCastingSpell(688) == false
 and ( select(7, GetSpellInfo(688)) == 0 or pStay() )
 then 
+	if IsSpellKnown(18708) then
 	CastSpellByID(18708)
+	end
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Unstable Affliction</Name><Default>false</Default><SpellID>47843</SpellID><Actions></Actions><Lua>local ua, _, _, _, _, _, uatime = UnitDebuffID(&amp;quot;target&amp;quot;, 47843, &amp;quot;player&amp;quot;) 
 
 if ( ua == nil or ( ua and uatime - GetTime() &amp;lt; 2.5 ) )
@@ -159,7 +161,7 @@ and CanAttack()
 and pStay()
 and rangeCheck(47809, &amp;quot;target&amp;quot;)
 and PQR_IsCastingSpell(47809) == false
-then return true end</Lua><RecastDelay>1500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Drain Soul</Name><Default>false</Default><SpellID>47855</SpellID><Actions></Actions><Lua>local ds, _, _, _, _, _, dstime = UnitDebuffID(&amp;quot;target&amp;quot;, 47855, &amp;quot;player&amp;quot;)
+then return true end</Lua><RecastDelay>1700</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Drain Soul</Name><Default>false</Default><SpellID>47855</SpellID><Actions></Actions><Lua>local ds, _, _, _, _, _, dstime = UnitDebuffID(&amp;quot;target&amp;quot;, 47855, &amp;quot;player&amp;quot;)
 
 if getHp(&amp;quot;target&amp;quot;) &amp;lt;= 25
 and (ds == nil or (ds and dstime - GetTime() &amp;lt; 2.1) )
@@ -185,7 +187,7 @@ and PQR_IsCastingSpell(55194) == false
 and GetItemCount(41196) &amp;gt;= 1
 and ( select(7, GetSpellInfo(55194)) == 0 or pStay() )
 then
-    UseItemByName(41196,&amp;quot;player&amp;quot;) 
+    UseItemByName(&amp;quot;41196&amp;quot;,&amp;quot;player&amp;quot;) 
     if SpellIsTargeting() then PickupInventoryItem(16) end
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Create Spellstone</Name><Default>false</Default><SpellID>47888</SpellID><Actions></Actions><Lua>if GetItemCount(41196) == 0
 and (GetSpellInfo(47888) or GetItemCount(6265) &amp;gt;= 1)
@@ -215,9 +217,10 @@ and not IsBoss()
 and CanAttack()
 and rangeCheck(47838, &amp;quot;target&amp;quot;)
 and ( select(7, GetSpellInfo(47838)) == 0 or pStay() )
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Soul Link</Name><Default>false</Default><SpellID>19028</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) 
-and soullink == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Demonic Empowerment</Name><Default>false</Default><SpellID>47193</SpellID><Actions></Actions><Lua>if IsBoss()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Soul Link</Name><Default>false</Default><SpellID>19028</SpellID><Actions></Actions><Lua>if IsSpellKnown(19028)
+and UnitExists(&amp;quot;pet&amp;quot;) 
+and not soullink
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Demonic Empowerment</Name><Default>false</Default><SpellID>47193</SpellID><Actions></Actions><Lua>if IsBoss()
 and CanAttack()
 and UnitExists(&amp;quot;pet&amp;quot;)
 and rangeCheck(47838, &amp;quot;target&amp;quot;)
@@ -523,25 +526,33 @@ and PQR_IsCastingSpell(697) == false
 and (GetSpellInfo(697) or GetItemCount(6265) &amp;gt;= 1)
 and ( select(7, GetSpellInfo(697)) == 0 or pStay() )
 then 
+	if IsSpellKnown(18708) then
 	CastSpellByID(18708)
+	end
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Felhunter</Name><Default>false</Default><SpellID>691</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(691) == false
 and (GetSpellInfo(691) or GetItemCount(6265) &amp;gt;= 1)
 and ( select(7, GetSpellInfo(691)) == 0 or pStay() )
 then 
+	if IsSpellKnown(18708) then
 	CastSpellByID(18708)
+	end
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Succubus</Name><Default>false</Default><SpellID>712</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(712) == false
 and (GetSpellInfo(712) or GetItemCount(6265) &amp;gt;= 1)
 and ( select(7, GetSpellInfo(712)) == 0 or pStay() )
 then 
+	if IsSpellKnown(18708) then
 	CastSpellByID(18708)
+	end
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Felguard</Name><Default>false</Default><SpellID>30146</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(30146) == false
 and (GetSpellInfo(30146) or GetItemCount(6265) &amp;gt;= 1)
 and ( select(7, GetSpellInfo(30146)) == 0 or pStay() )
 then 
+	if IsSpellKnown(18708) then
 	CastSpellByID(18708)
+	end
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
 if modtime == nil then

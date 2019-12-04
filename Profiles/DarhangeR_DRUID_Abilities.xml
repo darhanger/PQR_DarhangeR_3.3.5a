@@ -1719,6 +1719,7 @@ dash = UnitBuffID(&amp;quot;player&amp;quot;, 33357, &amp;quot;player&amp;quot;)
 berserk = select(11, UnitBuffID(&amp;quot;player&amp;quot;, 50334))
 berserk = UnitBuffID(&amp;quot;player&amp;quot;, 50334)
 tigers = UnitBuffID(&amp;quot;player&amp;quot;, 50213)
+innervate = UnitBuffID(&amp;quot;player&amp;quot;, 29166)
 -- Healing --
 regrowth = UnitBuffID(&amp;quot;player&amp;quot;, 48443)
 -- Other --
@@ -1775,4 +1776,7 @@ function IsBoss()
 	then return 
 		true 
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DRUID>
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Innervate</Name><Default>false</Default><SpellID>29166</SpellID><Actions></Actions><Lua>if getMana(&amp;quot;player&amp;quot;) &amp;lt; 15
+and not innervate
+and not CooldownRemains(29166)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DRUID>
