@@ -137,6 +137,8 @@ if getHp(&amp;quot;player&amp;quot;) &amp;lt; 45
 and ( BR &amp;gt;= 1 or DR &amp;gt;= 1 )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Raise Dead</Name><Default>false</Default><SpellID>46584</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(46584) == false
+and ( GetItemCount(37201) &amp;gt;= 1 
+or glyph(60200) ) 
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Blood Boil</Name><Default>false</Default><SpellID>49941</SpellID><Actions></Actions><Lua>local BR = select(2, BloodRuneCD())
 local DR = select(2, DeathRuneCD())
 
