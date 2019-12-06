@@ -792,6 +792,10 @@ if OH == nil or false
 then
     CastSpellByID(58790)
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
+local hracial = { 33697, 20572, 33702, 26297 }
+local alracial = { 20594, 28880 }
+local hrace = { &amp;quot;Troll&amp;quot;, &amp;quot;Orc&amp;quot; }
+local alrace = { &amp;quot;Dwarf&amp;quot;, &amp;quot;Draenei&amp;quot; }
 
 	-- Undead --
 for i,v in ipairs(debuff) do
@@ -806,48 +810,34 @@ for i,v in ipairs(debuff) do
 end
 
 if IsBoss()
-and CanAttack()
-then
-	--Troll Berserking--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Troll&amp;quot; 
-	and IsSpellKnown(26297) 
-	and not CooldownRemains(26297) then
-		CastSpellByID(26297)
+and CanAttack() then
+
+	-- Horde race --
+	for i,v in ipairs(hracial) do
+	for i,c in ipairs(hrace) do
+	if UnitRace(&amp;quot;player&amp;quot;) == c
+	and IsSpellKnown(v) 
+	and not CooldownRemains(v) then 
+		CastSpellByID(v)
 		return true
-	end
-	--Orc Blood Fury--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; 
-	and IsSpellKnown(33697) 
-	and not CooldownRemains(33697) then 
-		CastSpellByID(33697)
-		return true
-	end
-	--Orc Blood Fury 2--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; 
-	and IsSpellKnown(20572) 
-	and not CooldownRemains(20572) then
-		CastSpellByID(20572)
-		return true
+			end
+		end
 	end
 end
 
-if CanAttack()
-then
-	--Dwarf Stoneform--
+if CanAttack() then
+
+	-- Ally race -- 
+	for i,v in ipairs(alracial) do
+	for i,c in ipairs(alrace) do
 	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Dwarf&amp;quot; 
-	and IsSpellKnown(20594) 
-	and not CooldownRemains(20594) then
-		CastSpellByID(20594)
+	and UnitRace(&amp;quot;player&amp;quot;) == c 
+	and IsSpellKnown(v) 
+	and not CooldownRemains(v) then
+		CastSpellByID(v)
 		return true
-	end
-	--Draenei--
-	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; 
-	and IsSpellKnown(28880) 
-	and not CooldownRemains(28880) then
-		CastSpellByID(28880)
-		return true
+			end
+		end
 	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Elem DPS</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if ELE
 and CanAttack()
