@@ -796,49 +796,44 @@ local hracial = { 33697, 20572, 33702, 26297 }
 local alracial = { 20594, 28880 }
 local hrace = { &amp;quot;Troll&amp;quot;, &amp;quot;Orc&amp;quot; }
 local alrace = { &amp;quot;Dwarf&amp;quot;, &amp;quot;Draenei&amp;quot; }
+local myrace = UnitRace(&amp;quot;player&amp;quot;)
 
 	-- Undead --
-for i,v in ipairs(debuff) do
-  if UnitDebuffID(&amp;quot;player&amp;quot;,v)
-  and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; 
-  and IsSpellKnown(7744) 
-  and not CooldownRemains(7744)
-  and CanAttack() then
-	  CastSpellByID(7744)
-	   return true
-	end
+for i = 1, #debuff do
+  if UnitDebuffID(&amp;quot;player&amp;quot;,debuff[i])
+   and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; 
+   and IsSpellKnown(7744) 
+   and not CooldownRemains(7744)
+   and CanAttack() then
+    CastSpellByID(7744)
+    return true
+  end
 end
-
-if IsBoss()
-and CanAttack() then
 
 	-- Horde race --
-	for i,v in ipairs(hracial) do
-	for i,c in ipairs(hrace) do
-	if UnitRace(&amp;quot;player&amp;quot;) == c
-	and IsSpellKnown(v) 
-	and not CooldownRemains(v) then 
-		CastSpellByID(v)
-		return true
-			end
-		end
-	end
+if IsBoss()
+ and CanAttack()
+ and tContains(hrace, UnitRace(&amp;quot;player&amp;quot;)) then
+  for i = 1, #hracial do
+    if IsSpellKnown(hracial[i]) 
+     and not CooldownRemains(hracial[i]) then 
+      CastSpellByID(hracial[i])
+      return true
+    end
+  end
 end
 
-if CanAttack() then
-
 	-- Ally race -- 
-	for i,v in ipairs(alracial) do
-	for i,c in ipairs(alrace) do
-	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35 
-	and UnitRace(&amp;quot;player&amp;quot;) == c 
-	and IsSpellKnown(v) 
-	and not CooldownRemains(v) then
-		CastSpellByID(v)
-		return true
-			end
-		end
-	end
+if CanAttack() 
+and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35 
+and tContains(alrace, UnitRace(&amp;quot;player&amp;quot;)) then
+  for i = 1, #alracial do
+    if IsSpellKnown(alracial[i]) 
+     and not CooldownRemains(alracial[i]) then
+      CastSpellByID(alracial[i])
+      return true
+    end
+  end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Elem DPS</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if ELE
 and CanAttack()
 and not UnitCastingInfo(&amp;quot;player&amp;quot;)
