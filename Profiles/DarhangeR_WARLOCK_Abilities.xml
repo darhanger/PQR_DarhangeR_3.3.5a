@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?><WARLOCK><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
-or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
+or UnitInVehicle(&amp;quot;player&amp;quot;)
+or UnitIsDeadOrGhost(&amp;quot;target&amp;quot;) 
+or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
+or UnitBuff(&amp;quot;target&amp;quot;, 59301)
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(430))
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(433))
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733 }
 local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
 local elite = {  }
@@ -70,21 +73,21 @@ if enchant == nil
 and inCombat() == nil
 and PQR_IsCastingSpell(55158) == false
 and GetItemCount(&amp;quot;41174&amp;quot;) &amp;gt;= 1
-and ( select(7, GetSpellInfo(55158)) == 0 or pStay() )
+and pStay()
 then
     UseItemByName(&amp;quot;41174&amp;quot;,&amp;quot;player&amp;quot;) 
     if SpellIsTargeting() then PickupInventoryItem(16) end
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Create Firestone</Name><Default>false</Default><SpellID>60220</SpellID><Actions></Actions><Lua>if GetItemCount(41174) == 0
-and (GetSpellInfo(60220) or GetItemCount(6265) &amp;gt;= 1)
-and ( select(7, GetSpellInfo(60220)) == 0 or pStay() )
+and pStay()
 and inCombat() == nil
+and (GetSpellInfo(60220) or GetItemCount(6265) &amp;gt;= 1)
 and PQR_IsCastingSpell(60220) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Fel Armor</Name><Default>false</Default><SpellID>47893</SpellID><Actions></Actions><Lua>if not felarmor
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Imp</Name><Default>false</Default><SpellID>688</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(688) == false
-and ( select(7, GetSpellInfo(688)) == 0 or pStay() )
+and pStay()
 then 
 	if IsSpellKnown(18708) then
 	CastSpellByID(18708)
@@ -92,10 +95,9 @@ then
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Unstable Affliction</Name><Default>false</Default><SpellID>47843</SpellID><Actions></Actions><Lua>local ua, _, _, _, _, _, uatime = UnitDebuffID(&amp;quot;target&amp;quot;, 47843, &amp;quot;player&amp;quot;) 
 
 if ( ua == nil or ( ua and uatime - GetTime() &amp;lt; 2.5 ) )
---if ( ua == nil or ( ua and uatime - GetTime() &amp;lt; select(7, GetSpellInfo(47843))/1000 ) )
 and CanAttack()
+and pStay()
 and rangeCheck(47843, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(47843)) == 0 or pStay() )
 then return true end</Lua><RecastDelay>450</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Death Coil</Name><Default>false</Default><SpellID>47860</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 50
 and CanAttack()
 and rangeCheck(47860, &amp;quot;target&amp;quot;)
@@ -111,7 +113,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 
 if ( immolate == nil or ( immolate and immolatetime - GetTime() &amp;lt; 2.5 ) )
 and rangeCheck(47811, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(47811)) == 0 or pStay() )
+and pStay()
 and CanAttack()
 and PQR_IsCastingSpell(47811) == false
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
@@ -119,7 +121,7 @@ then return true end</Lua><RecastDelay>450</RecastDelay><Target>Target</Target><
 and ( immolate or ua )
 and not CooldownRemains(59172)
 and rangeCheck(59172, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(59172)) == 0 or pStay() )
+and pStay()
 and PQR_IsCastingSpell(47838) == false
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dest:Conflagrate</Name><Default>false</Default><SpellID>17962</SpellID><Actions></Actions><Lua>if (immolate or sflame)
@@ -129,7 +131,7 @@ and rangeCheck(17962, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dest:Incinerate</Name><Default>false</Default><SpellID>47838</SpellID><Actions></Actions><Lua>if immolate
 and CanAttack()
 and rangeCheck(47838, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(47838)) == 0 or pStay() or backlash )
+and ( pStay() or backlash )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Curse of the Elements</Name><Default>false</Default><SpellID>47865</SpellID><Actions></Actions><Lua>if IsBoss()
 and not elem
 and CanAttack()
@@ -145,33 +147,30 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 
 if ( haunt == nil or ( haunt and htime - GetTime() &amp;lt; 1.8 ) )
 and not CooldownRemains(59164)
-and rangeCheck(59164, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(59164)) == 0 or pStay() )
 and CanAttack()
+and pStay()
+and rangeCheck(59164, &amp;quot;target&amp;quot;)
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Soul Fire</Name><Default>false</Default><SpellID>47825</SpellID><Actions></Actions><Lua>if immolate 
 and CanAttack()
 and rangeCheck(47825, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(47825)) == 0 or pStay() )
+and pStay()
 and PQR_IsCastingSpell(47825) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Shadow Bolt</Name><Default>false</Default><SpellID>47809</SpellID><Actions></Actions><Lua>if CanAttack()
 and rangeCheck(47809, &amp;quot;target&amp;quot;)
 and pStay()
 and PQR_IsCastingSpell(47809) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Shadow Bolt (Debuff)</Name><Default>false</Default><SpellID>47809</SpellID><Actions></Actions><Lua>if not sbolt
-and not scorch
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Shadow Bolt (Debuff)</Name><Default>false</Default><SpellID>47809</SpellID><Actions></Actions><Lua>if not ( sbolt or scorch)
 and CanAttack()
 and pStay()
 and rangeCheck(47809, &amp;quot;target&amp;quot;)
-and PQR_IsCastingSpell(47809) == false
 then return true end</Lua><RecastDelay>1700</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Drain Soul</Name><Default>false</Default><SpellID>47855</SpellID><Actions></Actions><Lua>local ds, _, _, _, _, _, dstime = UnitDebuffID(&amp;quot;target&amp;quot;, 47855, &amp;quot;player&amp;quot;)
 
 if getHp(&amp;quot;target&amp;quot;) &amp;lt;= 25
 and (ds == nil or (ds and dstime - GetTime() &amp;lt; 2.1) )
+and pStay()
 and CanAttack()
 and rangeCheck(47855, &amp;quot;target&amp;quot;)
-and PQR_IsCastingSpell(47855) == false
-and ( select(7, GetSpellInfo(47855)) == 0 or pStay() )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Life Tap (Buff)</Name><Default>false</Default><SpellID>57946</SpellID><Actions></Actions><Lua>if not lifetap
 and glyph(63320)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Seed of Corruption</Name><Default>false</Default><SpellID>47836</SpellID><Actions></Actions><Lua>if not seed
@@ -189,14 +188,14 @@ if enchant == nil
 and inCombat() == nil
 and PQR_IsCastingSpell(55194) == false
 and GetItemCount(41196) &amp;gt;= 1
-and ( select(7, GetSpellInfo(55194)) == 0 or pStay() )
+and pStay()
 then
     UseItemByName(&amp;quot;41196&amp;quot;,&amp;quot;player&amp;quot;) 
     if SpellIsTargeting() then PickupInventoryItem(16) end
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Create Spellstone</Name><Default>false</Default><SpellID>47888</SpellID><Actions></Actions><Lua>if GetItemCount(41196) == 0
-and (GetSpellInfo(47888) or GetItemCount(6265) &amp;gt;= 1)
-and ( select(7, GetSpellInfo(47888)) == 0 or pStay() )
+and pStay()
 and inCombat() == nil
+and (GetSpellInfo(47888) or GetItemCount(6265) &amp;gt;= 1)
 and PQR_IsCastingSpell(47888) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Corruption</Name><Default>false</Default><SpellID>47813</SpellID><Actions></Actions><Lua>if not corruption
 and CanAttack()
@@ -220,8 +219,9 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and immolate
 and getHp(&amp;quot;target&amp;quot;) &amp;gt; 35
 and CanAttack()
+and usable(47838)
+and pStay()
 and rangeCheck(47838, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(47838)) == 0 or pStay() )
 then return true end</Lua><RecastDelay>35</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Soul Link</Name><Default>false</Default><SpellID>19028</SpellID><Actions></Actions><Lua>if IsSpellKnown(19028)
 and UnitExists(&amp;quot;pet&amp;quot;) 
 and not soullink
@@ -242,9 +242,8 @@ then
   return true
 end</Lua><RecastDelay>500</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Sead of Corruption (AOE)</Name><Default>false</Default><SpellID>47836</SpellID><Actions></Actions><Lua>if SoC == true
 and CanAttack()
-and rangeCheck(47836, &amp;quot;target&amp;quot;)
 and pStay()
-and PQR_IsCastingSpell(47836) == false
+and rangeCheck(47836, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Shadow Cleave</Name><Default>false</Default><SpellID>50581</SpellID><Actions></Actions><Lua>if IsItemInRange(37727, &amp;quot;target&amp;quot;) == 1
 and not CooldownRemains(50581)
 and meta
@@ -300,7 +299,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 		
 		-- Check if player move --
 	function pMove()
-	if GetUnitSpeed(&amp;quot;player&amp;quot;) &amp;gt;= 3
+	if GetUnitSpeed(&amp;quot;player&amp;quot;) ~= 0
 		then
 			return true
 		end
@@ -348,11 +347,22 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 		end
 	end
 		
+		-- Calculate HP simple --
+	function gcd()
+	local _, d = GetSpellCooldown(61304)
+		if (d ~= 0) then
+			return true
+		else
+			return false
+		end
+	end	
+		
 		-- Spell Cooldown remaining check --
 	CooldownRemains = nil
 	function CooldownRemains(spell)
 		local start, duration, enable = GetSpellCooldown(spell)
-		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) then
+		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) 
+		and not gcd() then
 			return start + duration - GetTime()
 		else
 			return false
@@ -381,6 +391,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 		-- Range Check Simple --
 	function rangeCheck(spellid,unit)
 	if IsSpellInRange(GetSpellInfo(spellid),unit) == 1
+	and not gcd()
 	then
 		return true
 		end
@@ -395,7 +406,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 			return 0
 		end
 	end
-	
+
 		-- Validator --
 	valid = nil
 	function valid(t, spellid)
@@ -524,7 +535,7 @@ and tContains(alrace, UnitRace(&amp;quot;player&amp;quot;)) then
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Voidwalker</Name><Default>false</Default><SpellID>697</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(697) == false
 and (GetSpellInfo(697) or GetItemCount(6265) &amp;gt;= 1)
-and ( select(7, GetSpellInfo(697)) == 0 or pStay() )
+and pStay()
 then 
 	if IsSpellKnown(18708) then
 	CastSpellByID(18708)
@@ -532,7 +543,7 @@ then
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Felhunter</Name><Default>false</Default><SpellID>691</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(691) == false
 and (GetSpellInfo(691) or GetItemCount(6265) &amp;gt;= 1)
-and ( select(7, GetSpellInfo(691)) == 0 or pStay() )
+and pStay()
 then 
 	if IsSpellKnown(18708) then
 	CastSpellByID(18708)
@@ -540,7 +551,7 @@ then
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Succubus</Name><Default>false</Default><SpellID>712</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(712) == false
 and (GetSpellInfo(712) or GetItemCount(6265) &amp;gt;= 1)
-and ( select(7, GetSpellInfo(712)) == 0 or pStay() )
+and pStay()
 then 
 	if IsSpellKnown(18708) then
 	CastSpellByID(18708)
@@ -548,7 +559,7 @@ then
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Felguard</Name><Default>false</Default><SpellID>30146</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(30146) == false
 and (GetSpellInfo(30146) or GetItemCount(6265) &amp;gt;= 1)
-and ( select(7, GetSpellInfo(30146)) == 0 or pStay() )
+and pStay()
 then 
 	if IsSpellKnown(18708) then
 	CastSpellByID(18708)
@@ -614,14 +625,13 @@ then
 	return true
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Drain Life</Name><Default>false</Default><SpellID>47857</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30
 and CanAttack()
+and pStay()
 and rangeCheck(47857, &amp;quot;target&amp;quot;)
-and PQR_IsCastingSpell(47857) == false
-and ( select(7, GetSpellInfo(47857)) == 0 or pStay() )
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Create Soulstone</Name><Default>false</Default><SpellID>47884</SpellID><Actions></Actions><Lua>if GetItemCount(36895) == 0
-and (GetSpellInfo(47884) or GetItemCount(6265) &amp;gt;= 1)
-and ( select(7, GetSpellInfo(47884)) == 0 or pStay() )
+and pStay()
 and inCombat() == nil
+and (GetSpellInfo(47884) or GetItemCount(6265) &amp;gt;= 1)
 and PQR_IsCastingSpell(47884) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Use Soulstone</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;focus&amp;quot;)
 and UnitInRange(&amp;quot;focus&amp;quot;)
@@ -630,7 +640,7 @@ and UnitBuffID(&amp;quot;focus&amp;quot;, 47883) == nil
 and inCombat() == nil
 and GetItemCount(36895) &amp;gt;= 1
 and not ItemCooldownRemains(36895)
-and ( select(7, GetSpellInfo(55158)) == 0 or pStay() )
+and pStay()
 then
 	UseItemByName(36895,&amp;quot;focus&amp;quot;)
 end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dest:Shadowflame</Name><Default>false</Default><SpellID>61290</SpellID><Actions></Actions><Lua>if CheckInteractDistance(&amp;quot;target&amp;quot;, 3)
@@ -652,10 +662,8 @@ if Stones == nil then
 end
 
 if Stones == nil
-and (GetSpellInfo(47878) or GetItemCount(6265) &amp;gt;= 1)
-and ( select(7, GetSpellInfo(47878)) == 0 or pStay() )
-and inCombat() == nil
-and PQR_IsCastingSpell(47878) == false then
+and pStay()
+and inCombat() == nil then
         CastSpellByID(47878)
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Use Healthstone</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local stones = { 36892, 36893, 36894 }
 
@@ -746,26 +754,25 @@ and immolate
 and IsBoss()
 and CanAttack()
 and rangeCheck(47825, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(47825)) == 0 or pStay() )
+and pStay()
 and PQR_IsCastingSpell(47825) == false
 then return true end</Lua><RecastDelay>35</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Soul Fire (MC+DC)</Name><Default>false</Default><SpellID>47825</SpellID><Actions></Actions><Lua>if moltencore
 and decimation
 and immolate
 and CanAttack()
 and rangeCheck(47825, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(47825)) == 0 or pStay() )
+and pStay()
 and PQR_IsCastingSpell(47825) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Shadow Bolt (Corrupt)</Name><Default>false</Default><SpellID>47809</SpellID><Actions></Actions><Lua>local corrupt, _, _, _, _, _, corrtime = UnitDebuffID(&amp;quot;target&amp;quot;, 47813, &amp;quot;player&amp;quot;)
 
 if ( corrupt == nil or ( corrupt and corrtime - GetTime() &amp;lt; 2.8 ) )
 and pStay()
 and rangeCheck(47809, &amp;quot;target&amp;quot;)
-and PQR_IsCastingSpell(47809) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Soul Fire (DC)</Name><Default>false</Default><SpellID>47825</SpellID><Actions></Actions><Lua>if decimation
 and immolate
 and CanAttack()
 and rangeCheck(47825, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(47825)) == 0 or pStay() )
+and pStay()
 then return true end</Lua><RecastDelay>35</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Potions --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>hpot = { 33447, 43569, 40087, 41166, 40067 }
 
 for i = 1, #hpot do
@@ -790,17 +797,18 @@ and not moltencore
 and not decimation
 and pStay()
 and rangeCheck(47809, &amp;quot;target&amp;quot;)
-and PQR_IsCastingSpell(47809) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Incinerate (No DC)</Name><Default>false</Default><SpellID>47838</SpellID><Actions></Actions><Lua>if moltencore
 and immolate
 and not decimation
 and getHp(&amp;quot;target&amp;quot;) &amp;lt; 35
 and CanAttack()
+and usable(47838)
+and pStay()
 and rangeCheck(47838, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(47838)) == 0 or pStay() )
 then return true end</Lua><RecastDelay>35</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Curse of the Elements</Name><Default>false</Default><SpellID>47865</SpellID><Actions></Actions><Lua>if IsBoss()
 and not (elem or CotE or eplag or earmoon)
 and CanAttack()
+and usable(47865)
 and (not myTime or GetTime() - myTime &amp;gt; 5 )
 and rangeCheck(47865, &amp;quot;target&amp;quot;)
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil

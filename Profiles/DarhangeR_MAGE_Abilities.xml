@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?><MAGE><Ability><Name>F:Fireball</Name><Default>false</Default><SpellID>42833</SpellID><Actions></Actions><Lua>if ( CanAttack() or fireball )
-and rangeCheck(42833, &amp;quot;target&amp;quot;)
-and PQR_IsCastingSpell(42833) == false
+<?xml version="1.0" encoding="utf-8" ?><MAGE><Ability><Name>F:Fireball</Name><Default>false</Default><SpellID>42833</SpellID><Actions></Actions><Lua>if not IsSpellKnown(12472)
+and pStay()
+and CanAttack()
+and rangeCheck(47610, &amp;quot;target&amp;quot;)
+and PQR_IsCastingSpell(47610) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Ice Block</Name><Default>false</Default><SpellID>45438</SpellID><Actions></Actions><Lua>if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 20
 and UnX()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
@@ -36,12 +38,15 @@ if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime
 		PQR_WriteToChat(&amp;quot;Flamestrike Spam \124cFF15E615Enabled&amp;quot;)
 	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
-or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
+or UnitInVehicle(&amp;quot;player&amp;quot;)
+or UnitIsDeadOrGhost(&amp;quot;target&amp;quot;) 
+or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
+or UnitBuff(&amp;quot;target&amp;quot;, 59301)
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(430))
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(433))
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Presence of Mind</Name><Default>false</Default><SpellID>12043</SpellID><Actions></Actions><Lua>if IsBoss()
 and not CooldownRemains(12043)
 and CanAttack()
@@ -107,13 +112,11 @@ and rangeCheck(42897, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Conjure Mana Gem</Name><Default>false</Default><SpellID>42985</SpellID><Actions></Actions><Lua>if GetItemCount(33312) == 0
 and inCombat() == nil
 and PQR_IsCastingSpell(42985) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Scorch</Name><Default>false</Default><SpellID>42859</SpellID><Actions></Actions><Lua>if CanAttack()
-and IsBoss()
-and not scroch
-and not sbolt
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Scorch</Name><Default>false</Default><SpellID>42859</SpellID><Actions></Actions><Lua>if IsBoss()
+and not (scorch or sbolt)
+and CanAttack()
 and rangeCheck(42859, &amp;quot;target&amp;quot;)
-and PQR_IsCastingSpell(42859) == false
-and ( select(7, GetSpellInfo(42859)) == 0 or pMove() )
+and pStay()
 then return true end</Lua><RecastDelay>1500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Deep Freeze</Name><Default>false</Default><SpellID>44572</SpellID><Actions></Actions><Lua>if CanAttack()
 and ( fnova or fbite or freeze or FoF )
 and rangeCheck(44572, &amp;quot;target&amp;quot;)
@@ -129,7 +132,7 @@ and not IsMounted()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Molten Armor</Name><Default>false</Default><SpellID>43046</SpellID><Actions></Actions><Lua>if not moltenarmor
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Spellsteal</Name><Default>false</Default><SpellID>30449</SpellID><Actions></Actions><Lua>buff = { 43242, 31884, 2825, 32182, 1719, 17, 33763, 6940, 67108, 67107 }
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Spellsteal</Name><Default>false</Default><SpellID>30449</SpellID><Actions></Actions><Lua>buff = { 43242, 31884, 2825, 32182, 1719, 17, 33763, 6940, 67108, 67107, 66228, 67009 }
 local havebuff = nil
 
 for i,v in ipairs(buff) do
@@ -145,24 +148,27 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 and not CooldownRemains(55342)
 and CanAttack()
 and rangeCheck(42897, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Icy Veins</Name><Default>false</Default><SpellID>12472</SpellID><Actions></Actions><Lua>if IsBoss()
-and not CooldownRemains(12472)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Icy Veins</Name><Default>false</Default><SpellID>12472</SpellID><Actions></Actions><Lua>if IsSpellKnown(12472)
+and not ivence
+and IsBoss()
 and CanAttack()
 and rangeCheck(42897, &amp;quot;target&amp;quot;)
-and not ivence
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Frostfire Bolt</Name><Default>false</Default><SpellID>47610</SpellID><Actions></Actions><Lua>if CanAttack()
+and not CooldownRemains(12472)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Frostfire Bolt</Name><Default>false</Default><SpellID>47610</SpellID><Actions></Actions><Lua>if IsSpellKnown(12472)
+and pStay()
+and CanAttack()
 and rangeCheck(47610, &amp;quot;target&amp;quot;)
 and PQR_IsCastingSpell(47610) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Ice Lance</Name><Default>false</Default><SpellID>42914</SpellID><Actions></Actions><Lua>if CanAttack()
 and ( dfreeze or fnova or freeze or FoF or pMove() )
 and rangeCheck(42914, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Pyroblast (Non Cast)</Name><Default>false</Default><SpellID>42891</SpellID><Actions></Actions><Lua>if CanAttack()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Pyroblast (Non Cast)</Name><Default>false</Default><SpellID>42891</SpellID><Actions></Actions><Lua>if hot
+and CanAttack()
 and PQR_IsCastingSpell(47610) == false
 and PQR_IsCastingSpell(42833) == false
 and PQR_IsCastingSpell(42859) == false
-and hot
 and rangeCheck(42891, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>2000</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mana Sapphire</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if getMana(&amp;quot;player&amp;quot;) &amp;lt;= 60 
+then return true end</Lua><RecastDelay>1250</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mana Sapphire</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if getMana(&amp;quot;player&amp;quot;) &amp;lt;= 60 
 and GetItemCount(33312) &amp;gt;= 1
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
@@ -205,7 +211,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 if not ab or count &amp;lt; 4 
 and CanAttack()
 and rangeCheck(42897, &amp;quot;target&amp;quot;)
-and ( select(7, GetSpellInfo(42897)) == 0 or pStay() )
+and pStay()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Arcane Missiles</Name><Default>false</Default><SpellID>42846</SpellID><Actions></Actions><Lua>local ab, _, _, count = UnitDebuffID(&amp;quot;player&amp;quot;, 36032)
 
 if ab and count == 4 
@@ -491,7 +497,8 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	CooldownRemains = nil
 	function CooldownRemains(spell)
 		local start, duration, enable = GetSpellCooldown(spell)
-		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) then
+		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) 
+		and not gcd () then
 			return start + duration - GetTime()
 		else
 			return false
@@ -517,9 +524,19 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		end
 	end
 	
+		-- GCD Check --
+	function gcd()
+	local _, d = GetSpellCooldown(61304)
+		if (d ~= 0) then
+			return true
+		else
+			return false
+		end
+	end
 		-- Range Check Simple --
 	function rangeCheck(spellid,unit)
 	if IsSpellInRange(GetSpellInfo(spellid),unit) == 1
+	and not gcd()
 	then
 		return true
 		end
@@ -562,6 +579,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 		--and IsPlayerSpell(spellid) == true
 		and cdRemains(spellid) == 0
+		and not gcd()
 		then
 			if tar ~= nil
 			and rangeCheck(spellid,tar) == nil
@@ -704,17 +722,6 @@ for i = 1, members, 1 do
 	then
 		CastSpellByID(43002, member)
 	end
-	
-	-- Dempen
-	if not UnitBuffID(member, 43015)
-	and UnitInRange(member)
-	and UnitIsFriend(&amp;quot;player&amp;quot;, member)
-	and UnitIsDeadOrGhost(member) == nil
-	and UnitHasVehicleUI(member) == false
-	and UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
-	then
-		CastSpellByID(43015, member)
-	end
   end
 end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Cancel Ice Block</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local p=&amp;quot;player&amp;quot; for i=1,40 
 
@@ -741,40 +748,14 @@ and PQR_IsCastingSpell(47610) == false
 and PQR_IsCastingSpell(42833) == false
 and PQR_IsCastingSpell(42859) == false
 and rangeCheck(42891, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Focus Magic</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil then
-
-local mytarget = nil
-local doneFM = nil
-local tophp = 0
-local allinrange = 1
-local group = &amp;quot;party&amp;quot;
-local members = GetNumPartyMembers()
-
-if GetNumRaidMembers() &amp;gt; 0 then
-  group = &amp;quot;raid&amp;quot;
-  members = GetNumRaidMembers()
-end
-
-for i = 1, members, 1 do
-  local member = group..tostring(i)
-  local memberhp = UnitHealthMax(member)
-  local _,_,_,_,_,_,_,source = UnitBuffID(member, 54646)
-  if source == &amp;quot;player&amp;quot; then doneFM = 1 end
-  if UnitInRange(member) == false then allinrange = nil end
-  if memberhp &amp;gt; tophp and UnitInRange(member) and UnitIsUnit(&amp;quot;player&amp;quot;,member) == nil and source == nil and UnitGroupRolesAssigned(&amp;quot;target&amp;quot;) ~= &amp;quot;TANK&amp;quot; then
-    mytarget = member
-    tophp = memberhp
-  end
-end
-
-
-if mytarget and doneFM == nil 
-and allinrange 
-and UnitIsDead(mytarget) == nil 
-then 
-	CastSpellByID(54646, mytarget) 
-	end
-end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Elem Attack</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not UnitIsUnit(&amp;quot;target&amp;quot;,&amp;quot;pettarget&amp;quot;) then
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Focus Magic</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsSpellKnown(54646)
+and UnitExists(&amp;quot;focus&amp;quot;)
+and UnitInRange(&amp;quot;focus&amp;quot;)
+and (not UnitIsDeadOrGhost(&amp;quot;focus&amp;quot;))
+and UnitBuffID(&amp;quot;focus&amp;quot;, 54646) == nil
+then
+	CastSpellByID(54646,&amp;quot;focus&amp;quot;)
+end</Lua><RecastDelay>500</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Elem Attack</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not UnitIsUnit(&amp;quot;target&amp;quot;,&amp;quot;pettarget&amp;quot;) then
 	PetAttack()
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mana Shield (Buff)</Name><Default>false</Default><SpellID>43020</SpellID><Actions></Actions><Lua>if not manashield
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget script --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;)

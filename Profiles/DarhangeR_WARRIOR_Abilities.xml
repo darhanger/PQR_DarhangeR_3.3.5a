@@ -64,12 +64,15 @@ function IsBoss()
 			true 
 		end
 	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
-or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
+or UnitInVehicle(&amp;quot;player&amp;quot;)
+or UnitIsDeadOrGhost(&amp;quot;target&amp;quot;) 
+or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
+or UnitBuff(&amp;quot;target&amp;quot;, 59301)
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(430))
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(433))
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Berserker Rage</Name><Default>false</Default><SpellID>18499</SpellID><Actions></Actions><Lua>if IsBoss()
 and CanAttack()
 and rangeCheck(47465, &amp;quot;target&amp;quot;)
@@ -879,7 +882,8 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	CooldownRemains = nil
 	function CooldownRemains(spell)
 		local start, duration, enable = GetSpellCooldown(spell)
-		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) then
+		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) 
+		and not gcd()then
 			return start + duration - GetTime()
 		else
 			return false
@@ -905,9 +909,19 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		end
 	end
 	
+		-- GCD Check --
+	function gcd()
+	local _, d = GetSpellCooldown(61304)
+		if (d ~= 0) then
+			return true
+		else
+			return false
+		end
+	end
 		-- Range Check Simple --
 	function rangeCheck(spellid,unit)
 	if IsSpellInRange(GetSpellInfo(spellid),unit) == 1
+	and not gcd()
 	then
 		return true
 		end
@@ -945,6 +959,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 		--and IsPlayerSpell(spellid) == true
 		and cdRemains(spellid) == 0
+		and not gcd()
 		then
 			if tar ~= nil
 			and rangeCheck(spellid,tar) == nil

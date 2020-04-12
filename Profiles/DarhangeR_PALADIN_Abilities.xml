@@ -74,12 +74,15 @@ function IsBoss()
 			true 
 		end
 	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
-or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
+or UnitInVehicle(&amp;quot;player&amp;quot;)
+or UnitIsDeadOrGhost(&amp;quot;target&amp;quot;) 
+or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
+or UnitBuff(&amp;quot;target&amp;quot;, 59301)
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(430))
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(433))
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Functions --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not functionsloaded then
 
 		-- Glyph Check -- 
@@ -169,7 +172,8 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 	CooldownRemains = nil
 	function CooldownRemains(spellID)
 		local start, duration, enable = GetSpellCooldown(spellID)
-		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) then
+		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) 
+		and not gcd() then
 			return start + duration - GetTime()
 		else
 			return false
@@ -195,9 +199,19 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 		end
 	end
 	
+		-- GCD Check --
+	function gcd()
+	local _, d = GetSpellCooldown(61304)
+		if (d ~= 0) then
+			return true
+		else
+			return false
+		end
+	end
 		-- Range Check Simple --
 	function rangeCheck(spellid,unit)
 	if IsSpellInRange(GetSpellInfo(spellid),unit) == 1
+	and not gcd()
 	then
 		return true
 		end
@@ -240,6 +254,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 		--and IsPlayerSpell(spellid) == true
 		and cdRemains(spellid) == 0
+		and not gcd()
 		then
 			if tar ~= nil
 			and rangeCheck(spellid,tar) == nil
@@ -421,37 +436,35 @@ end
 if havebuff then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Holy Shock</Name><Default>false</Default><SpellID>48825</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 60
 and PQR_IsCastingSpell(48825) == false
 or pMove()
+and not gcd()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Holy Light</Name><Default>false</Default><SpellID>48782</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 90
 and PQR_IsCastingSpell(48782) == false
-and ( select(7, GetSpellInfo(48782)) == 0 or pStay() )
+and pStay()
+and not gcd()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Flash of Light</Name><Default>false</Default><SpellID>48785</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 70
 and ( IoL or AoW )
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Cleanse</Name><Default>false</Default><SpellID>4987</SpellID><Actions></Actions><Lua>local buff = { 34916, 61594, 30129, 47843 }
-local group = &amp;quot;party&amp;quot;
-local members = GetNumPartyMembers()
-if GetNumRaidMembers() &amp;gt; 0 then
-  group = &amp;quot;raid&amp;quot;
-  members = GetNumRaidMembers()
-end
+and not gcd()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Cleanse</Name><Default>false</Default><SpellID>4987</SpellID><Actions></Actions><Lua>local i = 1
+local baddispel = nil
+local goodtodispel = nil
 
-for i = 0, members, 1 do
-  if i==0 then mem = &amp;quot;player&amp;quot; else mem = group..tostring(i) end
-  if UnitInRange(mem) and UnitIsDeadOrGhost(mem) == nil then
-   local candispel = 1
-   for k,v in ipairs(buff) do
-    if UnitDebuffID(mem,v) then candispel = nil end
-   end
-   local j = 1
-   local debuff,_,_,count,bufftype,dur = UnitDebuff(mem, j)
-   while debuff do
-    if ((bufftype == &amp;quot;Magic&amp;quot;) or (bufftype == &amp;quot;Disease&amp;quot;) or (bufftype == &amp;quot;Poison&amp;quot;)) and dur &amp;gt; 1 and candispel then
-     CastSpellByID(4987,mem)
-     return true
-    end
-    j = j + 1;
-    debuff,_,_,count,bufftype,duration = UnitDebuff(mem, j)
-    end
-  end
+local dontdispel = { 34916, 34917, 34919, 48159, 48160, 30404, 30405, 31117, 34438, 35183, 43522, 47841, 47843, 65812, 68154, 68155, 68156, 44461, 55359, 55360, 55361, 55362, 61429, 30108, 34914, 74562, 74792, 70867, 70338, 70405 }
+for _,v in ipairs(dontdispel) do if UnitDebuffID(PQR_CustomTarget,v) then baddispel = 1 end end
+
+local i = 1
+local buff,_,_,count,bufftype,duration = UnitDebuff(PQR_CustomTarget, i)
+while buff do
+ if ((bufftype == &amp;quot;Magic&amp;quot;) 
+ or (bufftype == &amp;quot;Disease&amp;quot;) 
+ or (bufftype == &amp;quot;Poison&amp;quot;)) 
+  and duration &amp;gt; 2 
+  and count ~= 1 
+  and not baddispel
+  and not gcd()
+  and UnitIsFriend(&amp;quot;player&amp;quot;,PQR_CustomTarget) 
+  then return true end
+  i = i + 1;
+  buff,_,_,count,bufftype,duration = UnitDebuff(PQR_CustomTarget, i)
 end</Lua><RecastDelay>150</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Seal of Light</Name><Default>false</Default><SpellID>20165</SpellID><Actions></Actions><Lua>if not SoL
 and AOE() == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Avenging Wrath</Name><Default>false</Default><SpellID>31884</SpellID><Actions></Actions><Lua>if ( dplea ~= nil and dillum == nil )
@@ -860,4 +873,25 @@ and not glyph(56416)
 and AOE() == false then
 		CastSpellByID(20165)
 		return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></PALADIN>
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Cleanse (Self)</Name><Default>false</Default><SpellID>4987</SpellID><Actions></Actions><Lua>local i = 1
+local badCleanse = nil
+local goodCleanse = nil
+
+local badCleanse = { 34916, 34917, 34919, 48159, 48160, 30404, 30405, 31117, 34438, 35183, 43522, 47841, 47843, 65812, 68154, 68155, 68156, 44461, 55359, 55360, 55361, 55362, 61429, 30108, 34914, 74562, 74792, 70867, 70338, 70405 }
+for _,v in ipairs(dontdispel) do 
+if UnitDebuffID(&amp;quot;player&amp;quot;,v) then 
+badCleanse = 1 end end
+
+local buff,_,_,count,bufftype,duration = UnitDebuff(&amp;quot;player&amp;quot;, i)
+while buff do
+  if ((bufftype == &amp;quot;Magic&amp;quot;) 
+  or (bufftype == &amp;quot;Disease&amp;quot;) 
+  or (bufftype == &amp;quot;Poison&amp;quot;))
+  and duration &amp;gt; 2 
+  and count ~= 1 
+  and not badCleanse   
+  then return true 
+end
+  i = i + 1;
+  buff,_,_,count,bufftype,duration = UnitDebuff(&amp;quot;player&amp;quot;, i)
+end</Lua><RecastDelay>150</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></PALADIN>

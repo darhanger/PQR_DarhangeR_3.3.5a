@@ -47,12 +47,15 @@ function IsBoss()
 			true 
 		end
 	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
-or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
+or UnitInVehicle(&amp;quot;player&amp;quot;)
+or UnitIsDeadOrGhost(&amp;quot;target&amp;quot;) 
+or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
+or UnitBuff(&amp;quot;target&amp;quot;, 59301)
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(430))
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(433))
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Heal Engine (Pet also) --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- Simplest Heal Eng --
 if UnitExists(&amp;quot;target&amp;quot;) 
   and UnitIsDead(&amp;quot;target&amp;quot;) == nil
@@ -404,7 +407,8 @@ then eclipse = &amp;quot;lunar&amp;quot; end</Lua><RecastDelay>0</RecastDelay><T
 	CooldownRemains = nil
 	function CooldownRemains(spell)
 		local start, duration, enable = GetSpellCooldown(spell)
-		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) then
+		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) 
+		and not gcd() then
 			return start + duration - GetTime()
 		else
 			return false
@@ -430,9 +434,19 @@ then eclipse = &amp;quot;lunar&amp;quot; end</Lua><RecastDelay>0</RecastDelay><T
 		end
 	end
 	
+		-- GCD Check --
+	function gcd()
+	local _, d = GetSpellCooldown(61304)
+		if (d ~= 0) then
+			return true
+		else
+			return false
+		end
+	end
 		-- Range Check Simple --
 	function rangeCheck(spellid,unit)
 	if IsSpellInRange(GetSpellInfo(spellid),unit) == 1
+	and not gcd()
 	then
 		return true
 		end
@@ -460,6 +474,7 @@ then eclipse = &amp;quot;lunar&amp;quot; end</Lua><RecastDelay>0</RecastDelay><T
 		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 		--and IsPlayerSpell(spellid) == true
 		and cdRemains(spellid) == 0
+		and not gcd()
 		then
 			if tar ~= nil
 			and rangeCheck(spellid,tar) == nil
@@ -618,11 +633,11 @@ and CanAttack()
 and rangeCheck(48468, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Wrath</Name><Default>false</Default><SpellID>48461</SpellID><Actions></Actions><Lua>if eclipse == &amp;quot;solar&amp;quot;
 and CanAttack()
-and ( select(7, GetSpellInfo(48461)) == 0 or pStay() )
+and pStay()
 and rangeCheck(48461, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Starfire</Name><Default>false</Default><SpellID>48465</SpellID><Actions></Actions><Lua>if eclipse == &amp;quot;lunar&amp;quot;
 and CanAttack()
-and ( select(7, GetSpellInfo(48465)) == 0 or pStay() )
+and pStay()
 and rangeCheck(48465, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Tree of Life</Name><Default>false</Default><SpellID>33891</SpellID><Actions></Actions><Lua>if (not UnitBuffID(&amp;quot;player&amp;quot;, 33891, &amp;quot;player&amp;quot;) or not UnitBuffID(&amp;quot;player&amp;quot;, 34123, &amp;quot;player&amp;quot;))
 and UnitBuffID(&amp;quot;player&amp;quot;, 33357, &amp;quot;player&amp;quot;) == nil
@@ -657,12 +672,12 @@ for i = 0, members, 1 do
     end
   end
 end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Regrowth</Name><Default>false</Default><SpellID>48443</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 75
-and ( select(7, GetSpellInfo(48443)) == 0 or pStay() )
+and pStay()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Nourish</Name><Default>false</Default><SpellID>50464</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 75
 and UnitBuffID(PQR_CustomTarget, 48451)
 and UnitBuffID(PQR_CustomTarget, 48443)
 and UnitBuffID(PQR_CustomTarget, 48441)
-and ( select(7, GetSpellInfo(50464)) == 0 or pStay() )
+and pStay()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Swiftmend</Name><Default>false</Default><SpellID>18562</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 50
 and not CooldownRemains(18562)
 and UnitDebuffID(&amp;quot;player&amp;quot;, 69762) == nil
@@ -670,29 +685,30 @@ and (UnitBuffID(PQR_CustomTarget, 48441) or UnitBuffID(PQR_CustomTarget, 48443))
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Abolish Poison</Name><Default>false</Default><SpellID>2893</SpellID><Actions></Actions><Lua>local buff = { 30108, 34914, 74562, 74792 }
 local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
+
 if GetNumRaidMembers() &amp;gt; 0 then
   group = &amp;quot;raid&amp;quot;
   members = GetNumRaidMembers()
 end
 
 for i = 0, members, 1 do
-  if i==0 then mem = &amp;quot;player&amp;quot; else mem = group..tostring(i) end
-  if UnitInRange(mem) and UnitIsDeadOrGhost(mem) == nil then
-   local candispel = 1
-   for k,v in ipairs(buff) do
-    if UnitDebuffID(mem,v) then candispel = nil end
-   end
-   local j = 1
-   local debuff,_,_,count,bufftype,dur = UnitDebuff(mem, j)
-   while debuff do
-    if (bufftype == &amp;quot;Poison&amp;quot;) and dur &amp;gt; 1 and candispel and UnitBuffID(mem, 2893) == nil then
-     CastSpellByID(2893,mem)
-     return true
-    end
-    j = j + 1;
-    debuff,_,_,count,bufftype,duration = UnitDebuff(mem, j)
-    end
-  end
+	if i==0 then mem = &amp;quot;player&amp;quot; else mem = group..tostring(i) end
+	 if UnitInRange(mem) and UnitIsDeadOrGhost(mem) == nil then
+	 local candispel = 1
+	 for k,v in ipairs(buff) do
+	 if UnitDebuffID(mem,v) then candispel = nil end
+	end
+	local j = 1
+	local debuff,_,_,count,bufftype,dur = UnitDebuff(mem, j)
+	while debuff do
+	if (bufftype == &amp;quot;Poison&amp;quot;) and dur &amp;gt; 1 and candispel and UnitBuffID(mem, 2893) == nil then
+	 CastSpellByID(2893,mem)
+	 return true
+	end
+	j = j + 1;
+	debuff,_,_,count,bufftype,duration = UnitDebuff(mem, j)
+	      end
+	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Rejuvenation</Name><Default>false</Default><SpellID>48441</SpellID><Actions></Actions><Lua>if UnitBuffID(PQR_CustomTarget, 48441, &amp;quot;player&amp;quot;) == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Rejuvenation (All)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
@@ -823,7 +839,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and not CooldownRemains(48447)
 and PQR_IsCastingSpell(48447) == false
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-and ( select(7, GetSpellInfo(48447)) == 0 or pStay() )
+and pStay()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Force of Nature</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() 
 and not GetCurrentKeyBoardFocus() 
 and not UnitChannelInfo(&amp;quot;player&amp;quot;) 
@@ -920,7 +936,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 -- Instagram: https://instagram.com/darhanger
 -- E-mail: civayan@gmail.com
 -- Discord: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Touch</Name><Default>false</Default><SpellID>48378</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 65
-and ( select(7, GetSpellInfo(48378)) == 0 or pStay() )
+and pStay()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Feral Function --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not FuncLoaded then
 	FuncLoaded = true
 	GotClearCast = 0
@@ -1202,7 +1218,8 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><Ca
 	CooldownRemains = nil
 	function CooldownRemains(spell)
 		local start, duration, enable = GetSpellCooldown(spell)
-		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) then
+		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) 
+		and not gcd() then
 			return start + duration - GetTime()
 		else
 			return false
@@ -1228,9 +1245,20 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><Ca
 		end
 	end
 	
+		-- GCD Check --
+	function gcd()
+	local _, d = GetSpellCooldown(61304)
+		if (d ~= 0) then
+			return true
+		else
+			return false
+		end
+	end
+	
 		-- Range Check Simple --
 	function rangeCheck(spellid,unit)
 	if IsSpellInRange(GetSpellInfo(spellid),unit) == 1
+	and not gcd()
 	then
 		return true
 		end
@@ -1499,7 +1527,7 @@ for i = 1, members, 1 do
     and UnitHasVehicleUI(member) == false
     and UnitDebuffID(member, 69065) == nil
     and UnitDebuffID(member, 70157) == nil
-    and ( select(7, GetSpellInfo(48443)) == 0 or pStay() )
+    and pStay()
     then
         CastSpellByID(48443, member)
    end
