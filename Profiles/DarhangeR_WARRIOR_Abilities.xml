@@ -87,7 +87,7 @@ and CanAttack()
 and rangeCheck(47465, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>150</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Heroic Strike</Name><Default>false</Default><SpellID>47450</SpellID><Actions></Actions><Lua>if ragecost(47450)
 and CanAttack()
-and rangeCheck(47465, &amp;quot;target&amp;quot;)
+and rangeCheck2(47465, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Heroic Throw</Name><Default>false</Default><SpellID>57755</SpellID><Actions></Actions><Lua>if rangeCheck(57755, &amp;quot;target&amp;quot;)
 and CanAttack()
 and not CooldownRemains(12328) 
@@ -106,12 +106,12 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and CanAttack()
 and not CooldownRemains(23881) 
 and rangeCheck(47465, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinkets/Hands</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 
 if cd == 0 and havecd == 1
-and IsUsableTrink()
-and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
+and IsBoss()
 and CanAttack()
+and rangeCheck(47465, &amp;quot;target&amp;quot;)
 then 
   UseInventoryItem(13)
   return true
@@ -120,11 +120,22 @@ end
 local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
 
 if cd == 0 and havecd == 1
-and IsUsableTrink()
-and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
+and IsBoss()
 and CanAttack()
+and rangeCheck(47465, &amp;quot;target&amp;quot;)
 then 
   UseInventoryItem(14)
+  return true
+end
+
+local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,10)
+
+if cd == 0 and havecd == 1
+and IsBoss()
+and CanAttack()
+and rangeCheck(47465, &amp;quot;target&amp;quot;)
+then 
+  UseInventoryItem(10)
   return true
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Battle Stance</Name><Default>false</Default><SpellID>2457</SpellID><Actions></Actions><Lua>local DS = GetShapeshiftForm()
 
@@ -182,11 +193,7 @@ and IsBoss()
 and ragecost(46924)
 and CanAttack()
 and rangeCheck(47465, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Death Wish</Name><Default>false</Default><SpellID>12292</SpellID><Actions></Actions><Lua>local sa, _, _, _, _, _, satime = UnitDebuffID(&amp;quot;target&amp;quot;, 7386) 
-local _,_,_,count = UnitDebuffID(&amp;quot;target&amp;quot;, 7386)
-
-if (count == 5 and (sa and satime  - GetTime() &amp;gt;= 8 ))
-and IsBoss()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Death Wish</Name><Default>false</Default><SpellID>12292</SpellID><Actions></Actions><Lua>if IsBoss()
 and CanAttack()
 and ragecost(12292)
 and not CooldownRemains(12292)
@@ -208,7 +215,7 @@ and not IsMounted()
 and ragecost(47436)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>P:Defensive Stance</Name><Default>false</Default><SpellID>71</SpellID><Actions></Actions><Lua>local DS = GetShapeshiftForm()
 
-if DS ~= 2
+if DS ~= 3
 then return true end</Lua><RecastDelay>2000</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Commanding Shout</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- Check Warlock in Party / Raid --   
 local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
@@ -330,7 +337,7 @@ if mytarget and doneVG == nil and allinrange and UnitIsDead(mytarget) == nil the
 
 end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Heroic Strike + AOE</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if ragecost(47450)
 and CanAttack()
-and rangeCheck(47465, &amp;quot;target&amp;quot;)
+and rangeCheck2(47465, &amp;quot;target&amp;quot;)
 then
 	if AoE == true then
 		if not CooldownRemains(12328) then
@@ -379,7 +386,7 @@ then
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>P:Cleave</Name><Default>false</Default><SpellID>47520</SpellID><Actions></Actions><Lua>if AoE == true
 and CanAttack()
 and ragecost(47520)
-and rangeCheck(47465, &amp;quot;target&amp;quot;)
+and rangeCheck2(47465, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Piercing Howl</Name><Default>false</Default><SpellID>12323</SpellID><Actions></Actions><Lua>if ragecost(12323)
 and CanAttack()
 and not phowl
@@ -890,14 +897,6 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		end
 	end
 
-		-- Amount of Cooldown that remains --
-	function cdRemains(spellid)
-		if select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime()) &amp;gt; 0
-			then return select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime())
-		else return 0
-		end
-	end
-
 		-- Item Cooldown remaining check --
 	ItemCooldownRemains = nil
 	function ItemCooldownRemains(item)
@@ -927,6 +926,13 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		end
 	end
 	
+		-- Range Check Simple --
+	function rangeCheck2(spellid,unit)
+	if IsSpellInRange(GetSpellInfo(spellid),unit) == 1 then
+		return true
+		end
+	end
+	
 		-- Threat --
 	function threat(t)
 	if UnitExists(t)
@@ -952,61 +958,9 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 			return false
 		end
 	end
-
-		-- CastSpell --
-	function _castSpell(spellid,tar)
-		if UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
-		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-		--and IsPlayerSpell(spellid) == true
-		and cdRemains(spellid) == 0
-		and not gcd()
-		then
-			if tar ~= nil
-			and rangeCheck(spellid,tar) == nil
-				then
-				return false
-			elseif tar ~= nil
-			and rangeCheck(spellid,tar) == true
-				then
-				CastSpellByID(spellid, tar)
-				return true
-			elseif tar == nil
-				then
-				CastSpellByID(spellid)
-				return true
-			else
-		return false
-		end
-	end
-	end
-	
-		-- Tabled Cast Time Checking for When you Last Cast Something.
-	CheckCastTime = {}
-	Nova_CheckLastCast = nil
-	function Nova_CheckLastCast(spellid, ytime) -- SpellID of Spell To Check, How long of a gap are you looking for?
-		if ytime &amp;gt; 0 then
-			if #CheckCastTime &amp;gt; 0 then
-				for i=1, #CheckCastTime do
-					if CheckCastTime[i].SpellID == spellid then
-						if GetTime() - CheckCastTime[i].CastTime &amp;gt; ytime then
-							CheckCastTime[i].CastTime = GetTime()
-							return true
-						else
-							return false
-						end
-					end
-				end
-			end
-			table.insert(CheckCastTime, { SpellID = spellid, CastTime = GetTime() } )
-			return true
-		elseif ytime &amp;lt;= 0 then
-			return true
-		end
-		return false
-	end
 	
 	function testv()
-	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/zayx7p9&amp;quot;
+	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/way3mVx&amp;quot;
 	end
 	PQR_WriteToChat(testv())
 

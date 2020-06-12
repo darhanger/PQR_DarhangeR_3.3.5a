@@ -190,15 +190,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 			return false
 		end
 	end
-	
-		-- Amount of Cooldown that remains --
-	function cdRemains(spellid)
-		if select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime()) &amp;gt; 0
-			then return select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime())
-		else return 0
-		end
-	end
-	
+
 		-- GCD Check --
 	function gcd()
 	local _, d = GetSpellCooldown(61304)
@@ -244,61 +236,9 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 	end
 
 	function testv()
-	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/4jsWaty&amp;quot;
+	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/way3mVx&amp;quot;
 	end
 	PQR_WriteToChat(testv())
-
-		-- CastSpell --
-	function _castSpell(spellid,tar)
-		if UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
-		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-		--and IsPlayerSpell(spellid) == true
-		and cdRemains(spellid) == 0
-		and not gcd()
-		then
-			if tar ~= nil
-			and rangeCheck(spellid,tar) == nil
-				then
-				return false
-			elseif tar ~= nil
-			and rangeCheck(spellid,tar) == true
-				then
-				CastSpellByID(spellid, tar)
-				return true
-			elseif tar == nil
-				then
-				CastSpellByID(spellid)
-				return true
-			else
-		return false
-		end
-	end
-	end
-	
-		-- Tabled Cast Time Checking for When you Last Cast Something.
-	CheckCastTime = {}
-	Nova_CheckLastCast = nil
-	function Nova_CheckLastCast(spellid, ytime) -- SpellID of Spell To Check, How long of a gap are you looking for?
-		if ytime &amp;gt; 0 then
-			if #CheckCastTime &amp;gt; 0 then
-				for i=1, #CheckCastTime do
-					if CheckCastTime[i].SpellID == spellid then
-						if GetTime() - CheckCastTime[i].CastTime &amp;gt; ytime then
-							CheckCastTime[i].CastTime = GetTime()
-							return true
-						else
-							return false
-						end
-					end
-				end
-			end
-			table.insert(CheckCastTime, { SpellID = spellid, CastTime = GetTime() } )
-			return true
-		elseif ytime &amp;lt;= 0 then
-			return true
-		end
-		return false
-	end
 		
 		-- Cheking ForB --
 	function checkForbearance(unit)
@@ -308,25 +248,38 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 		
 functionsloaded = true
 end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
-    then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Heal)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+    then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinkets/Hands</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 
-if PQR_CustomTargetHP &amp;lt;= 15
-and cd == 0 and havecd == 1
+if cd == 0 and havecd == 1
+and IsBoss()
 and CanAttack()
+and rangeCheck(35395, &amp;quot;target&amp;quot;)
 then 
-  UseInventoryItem(13, PQR_CustomTarget)
+  UseInventoryItem(13)
   return true
 end
 
 local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
 
-if PQR_CustomTargetHP &amp;lt;= 15
-and cd == 0 and havecd == 1
+if cd == 0 and havecd == 1
+and IsBoss()
 and CanAttack()
+and rangeCheck(35395, &amp;quot;target&amp;quot;)
 then 
-  UseInventoryItem(14, PQR_CustomTarget)
+  UseInventoryItem(14)
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
+end
+
+local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,10)
+
+if cd == 0 and havecd == 1
+and IsBoss()
+and CanAttack()
+and rangeCheck(35395, &amp;quot;target&amp;quot;)
+then 
+  UseInventoryItem(10)
+  return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
 local hracial = { 33697, 20572, 33702, 26297 }
 local alracial = { 20594, 28880 }
 local hrace = { &amp;quot;Troll&amp;quot;, &amp;quot;Orc&amp;quot; }
@@ -762,25 +715,7 @@ if view == nil then
 	print(&amp;quot;\124cFFE61515НЕ ВЫБИРАТЬ В КАЧЕСТВИ ЦЕЛИ СОЮЗНИКА!&amp;quot;)
 	eventframe:RegisterEvent(&amp;quot;EXECUTE_CHAT_LINE&amp;quot;)	
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Mouseover --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
-	then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
-
-if cd == 0 and havecd == 1
-and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
-and CanAttack()
-then 
-  UseInventoryItem(13)
-  return true
-end
-
-local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
-
-if cd == 0 and havecd == 1
-and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
-and CanAttack()
-then 
-  UseInventoryItem(14)
-  return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Judgement of Light</Name><Default>false</Default><SpellID>20271</SpellID><Actions></Actions><Lua>if CanAttack()
+	then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Judgement of Light</Name><Default>false</Default><SpellID>20271</SpellID><Actions></Actions><Lua>if CanAttack()
 and rangeCheck(20271, &amp;quot;target&amp;quot;)
 and not CooldownRemains(20271)
 and not HJoL

@@ -57,15 +57,36 @@ function IsBoss()
 			true 
 		end
 	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Mouseover --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
-	then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket 1</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+	then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinkets/Hands</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 
-if cd == 0 and havecd == 1  
-and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
-and UnitAffectingCombat(&amp;quot;player&amp;quot;)
-and UnitLevel(&amp;quot;target&amp;quot;) == -1
+if cd == 0 and havecd == 1
+and IsBoss()
+and CanAttack()
+and rangeCheck(47809, &amp;quot;target&amp;quot;)
 then 
-  UseInventoryItem(13) 
+  UseInventoryItem(13)
+  return true
+end
+
+local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
+
+if cd == 0 and havecd == 1
+and IsBoss()
+and CanAttack()
+and rangeCheck(47809, &amp;quot;target&amp;quot;)
+then 
+  UseInventoryItem(14)
+  return true
+end
+
+local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,10)
+
+if cd == 0 and havecd == 1
+and IsBoss()
+and CanAttack()
+and rangeCheck(47809, &amp;quot;target&amp;quot;)
+then 
+  UseInventoryItem(10)
   return true
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Use Firestone</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,enchant,_,_,_,_,_,_ = GetWeaponEnchantInfo()
 
@@ -86,6 +107,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Imp</Name><Default>false</Default><SpellID>688</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
+and not UnitBuffID(&amp;quot;player&amp;quot;, 61431)
 and PQR_IsCastingSpell(688) == false
 and pStay()
 then 
@@ -264,7 +286,8 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 
 		-- Party Check -- 
 	partyCheck = function()
-		if GetNumRaidMembers() &amp;gt; 0 or GetNumPartyMembers() &amp;gt; 0 then
+		if GetNumRaidMembers() &amp;gt; 0 
+		or GetNumPartyMembers() &amp;gt; 0 then
 			return true
 		else
 			return false
@@ -369,14 +392,6 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 		end
 	end
 
-		-- Amount of Cooldown that remains --
-	function cdRemains(spellid)
-		if select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime()) &amp;gt; 0
-			then return select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime())
-		else return 0
-		end
-	end
-
 		-- Item Cooldown remaining check --
 	ItemCooldownRemains = nil
 	function ItemCooldownRemains(item)
@@ -423,59 +438,8 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 		end
 	end
 	
-		-- CastSpell --
-	function _castSpell(spellid,tar)
-		if UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
-		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-		--and IsPlayerSpell(spellid) == true
-		and cdRemains(spellid) == 0
-		then
-			if tar ~= nil
-			and rangeCheck(spellid,tar) == nil
-				then
-				return false
-			elseif tar ~= nil
-			and rangeCheck(spellid,tar) == true
-				then
-				CastSpellByID(spellid, tar)
-				return true
-			elseif tar == nil
-				then
-				CastSpellByID(spellid)
-				return true
-			else
-		return false
-		end
-	end
-	end
-	
-		-- Tabled Cast Time Checking for When you Last Cast Something.
-	CheckCastTime = {}
-	Nova_CheckLastCast = nil
-	function Nova_CheckLastCast(spellid, ytime) -- SpellID of Spell To Check, How long of a gap are you looking for?
-		if ytime &amp;gt; 0 then
-			if #CheckCastTime &amp;gt; 0 then
-				for i=1, #CheckCastTime do
-					if CheckCastTime[i].SpellID == spellid then
-						if GetTime() - CheckCastTime[i].CastTime &amp;gt; ytime then
-							CheckCastTime[i].CastTime = GetTime()
-							return true
-						else
-							return false
-						end
-					end
-				end
-			end
-			table.insert(CheckCastTime, { SpellID = spellid, CastTime = GetTime() } )
-			return true
-		elseif ytime &amp;lt;= 0 then
-			return true
-		end
-		return false
-	end
-	
 	function testv()
-	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/4jsWaty&amp;quot;
+	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/way3mVx&amp;quot;
 	end
 	PQR_WriteToChat(testv())
 	
@@ -533,6 +497,7 @@ and tContains(alrace, UnitRace(&amp;quot;player&amp;quot;)) then
     end
   end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Voidwalker</Name><Default>false</Default><SpellID>697</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
+and not UnitBuffID(&amp;quot;player&amp;quot;, 61431)
 and PQR_IsCastingSpell(697) == false
 and (GetSpellInfo(697) or GetItemCount(6265) &amp;gt;= 1)
 and pStay()
@@ -541,6 +506,7 @@ then
 	CastSpellByID(18708)
 	end
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Felhunter</Name><Default>false</Default><SpellID>691</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
+and not UnitBuffID(&amp;quot;player&amp;quot;, 61431)
 and PQR_IsCastingSpell(691) == false
 and (GetSpellInfo(691) or GetItemCount(6265) &amp;gt;= 1)
 and pStay()
@@ -549,6 +515,7 @@ then
 	CastSpellByID(18708)
 	end
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Succubus</Name><Default>false</Default><SpellID>712</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
+and not UnitBuffID(&amp;quot;player&amp;quot;, 61431)
 and PQR_IsCastingSpell(712) == false
 and (GetSpellInfo(712) or GetItemCount(6265) &amp;gt;= 1)
 and pStay()
@@ -557,6 +524,7 @@ then
 	CastSpellByID(18708)
 	end
 return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Summon Felguard</Name><Default>false</Default><SpellID>30146</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
+and not UnitBuffID(&amp;quot;player&amp;quot;, 61431)
 and PQR_IsCastingSpell(30146) == false
 and (GetSpellInfo(30146) or GetItemCount(6265) &amp;gt;= 1)
 and pStay()
@@ -688,18 +656,7 @@ do local _,_,_,_,_,_,_,u,_,_,s=UnitBuff(p,i)
 	end 
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Shadow Ward</Name><Default>false</Default><SpellID>47891</SpellID><Actions></Actions><Lua>if SWard()
 and not CooldownRemains(47891)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket 2 (PvP)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
-
-if cd == 0 and havecd == 1
-and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 20
-and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
-and inCombat()
-and CanAttack()
-then 
-	UseInventoryItem(14) 
-  return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Curse of the Elements (All)</Name><Default>false</Default><SpellID>47865</SpellID><Actions></Actions><Lua>if CanAttack()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Curse of the Elements (All)</Name><Default>false</Default><SpellID>47865</SpellID><Actions></Actions><Lua>if CanAttack()
 and not elem
 and rangeCheck(47865, &amp;quot;target&amp;quot;)
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil

@@ -84,25 +84,35 @@ or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitBuff(&amp;quot;target&amp;quot;, 59301)
 or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(430))
 or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(433))
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Heal)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinkets/Hands</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 
-if PQR_CustomTargetHP &amp;lt;= 15
-and cd == 0 and havecd == 1
-and IsUsableTrink()
+if cd == 0 and havecd == 1
+and IsBoss()
+and CanAttack()
 then 
-  UseInventoryItem(13, PQR_CustomTarget)
+  UseInventoryItem(13)
   return true
 end
 
 local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
 
-if PQR_CustomTargetHP &amp;lt;= 15
-and cd == 0 and havecd == 1
-and IsUsableTrink()
+if cd == 0 and havecd == 1
+and IsBoss()
+and CanAttack()
 then 
-  UseInventoryItem(14, PQR_CustomTarget)
+  UseInventoryItem(14)
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Heal Engine (Pet also) --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- Simplest Heal Eng --
+end
+
+local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,10)
+
+if cd == 0 and havecd == 1
+and IsBoss()
+and CanAttack()
+then 
+  UseInventoryItem(10)
+  return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Heal Engine (Pet also) --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- Simplest Heal Eng --
 if UnitExists(&amp;quot;target&amp;quot;) 
   and UnitIsDead(&amp;quot;target&amp;quot;) == nil
   and UnitIsFriend(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) 
@@ -230,6 +240,7 @@ then return true
 else
 return false end</Lua><RecastDelay>1</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Lightning Bolt</Name><Default>false</Default><SpellID>49238</SpellID><Actions></Actions><Lua>if CanAttack()
 and rangeCheck(49238, &amp;quot;target&amp;quot;)
+and pStay()
 and PQR_IsCastingSpell(49238) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Elemental Mastery</Name><Default>false</Default><SpellID>16166</SpellID><Actions></Actions><Lua>if IsBoss()
 and CanAttack()
@@ -239,11 +250,13 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and CanAttack()
 and not CooldownRemains(49271)
 and rangeCheck(49271, &amp;quot;target&amp;quot;)
+and pStay()
 and PQR_IsCastingSpell(49271) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Lava Burst</Name><Default>false</Default><SpellID>60043</SpellID><Actions></Actions><Lua>if CanAttack()
 and flameshock
 and not CooldownRemains(60043)
 and rangeCheck(60043, &amp;quot;target&amp;quot;)
+and pStay()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Flametongue Weapon</Name><Default>false</Default><SpellID>58790</SpellID><Actions></Actions><Lua>local _,enchant,_,_,_,_,_,_ = GetWeaponEnchantInfo()
 
 if enchant == nil
@@ -270,28 +283,27 @@ while buff do
   then return true end
   i = i + 1;
   buff,_,_,count,bufftype,duration = UnitDebuff(PQR_CustomTarget, i)
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Lesser Healing Wave</Name><Default>false</Default><SpellID>49276</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 95 
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Lesser Healing Wave</Name><Default>false</Default><SpellID>49276</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 35 
 and PQR_IsCastingSpell(49276) == false
-and ( select(7, GetSpellInfo(49276)) == 0 or pStay() )
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Chain Heal</Name><Default>false</Default><SpellID>55459</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 90 
-and PQR_IsCastingSpell(55459) == false
+and pStay()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Chain Heal</Name><Default>false</Default><SpellID>55459</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 75
 and lowhpmembers &amp;gt;= 2 
-and ( select(7, GetSpellInfo(55459)) == 0 or pStay() )
+and pStay()
+and PQR_IsCastingSpell(55459) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Tidal Force</Name><Default>false</Default><SpellID>55198</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 5
 or PQR_CustomTargetHP &amp;lt; 30
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Nature&amp;apos;s Swiftness</Name><Default>false</Default><SpellID>16188</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 5
-or PQR_CustomTargetHP &amp;lt; 30
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Riptide</Name><Default>false</Default><SpellID>61301</SpellID><Actions></Actions><Lua>if UnitBuffID(PQR_CustomTarget, 61301,&amp;quot;player&amp;quot;) == nil 
-and (PQR_CustomTargetHP &amp;lt; 95 or threat(PQR_CustomTarget) == 3) 
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Earthliving Weapon</Name><Default>false</Default><SpellID>51994</SpellID><Actions></Actions><Lua>local _,enchant,_,_,_,_,_,_ = GetWeaponEnchantInfo()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Nature&amp;apos;s Swiftness</Name><Default>false</Default><SpellID>16188</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 30
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Riptide</Name><Default>false</Default><SpellID>61301</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 85
+and UnitBuffID(PQR_CustomTarget, 61301, &amp;quot;player&amp;quot;) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Earthliving Weapon</Name><Default>false</Default><SpellID>51994</SpellID><Actions></Actions><Lua>local _,enchant,_,_,_,_,_,_ = GetWeaponEnchantInfo()
 
 if enchant == nil or false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Water Shield</Name><Default>false</Default><SpellID>57960</SpellID><Actions></Actions><Lua>if not wshield
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Wave</Name><Default>false</Default><SpellID>49273</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 90
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Wave</Name><Default>false</Default><SpellID>49273</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 70
 and PQR_IsCastingSpell(49273) == false
-and ( select(7, GetSpellInfo(49273)) == 0 or pStay() )
+and pStay()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Lightning Bolt</Name><Default>false</Default><SpellID>49238</SpellID><Actions></Actions><Lua>local maelstrom, _, _, maelstromstack = UnitBuffID(&amp;quot;player&amp;quot;, 53817)
 
 if maelstromstack == 5
@@ -377,7 +389,7 @@ and not CooldownRemains(30823)
 and rangeCheck(17364, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Chain Heal (Spam 2)</Name><Default>false</Default><SpellID>55459</SpellID><Actions></Actions><Lua>if Heal == true
 and PQR_IsCastingSpell(55459) == false
-and ( select(7, GetSpellInfo(55459)) == 0 or pStay() )
+and pStay()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
 if modtime == nil then
@@ -649,7 +661,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	end
 		
 	function testv()
-	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/4jsWaty&amp;quot;
+	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/way3mVx&amp;quot;
 	end
 	PQR_WriteToChat(testv())
 	
@@ -662,14 +674,6 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 			return start + duration - GetTime()
 		else
 			return false
-		end
-	end
-
-		-- Amount of Cooldown that remains --
-	function cdRemains(spellid)
-		if select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime()) &amp;gt; 0
-			then return select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime())
-		else return 0
 		end
 	end
 
@@ -726,57 +730,6 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		else
 			return false
 		end
-	end
-
-		-- CastSpell --
-	function _castSpell(spellid,tar)
-		if UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
-		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-		--and IsPlayerSpell(spellid) == true
-		and cdRemains(spellid) == 0
-		then
-			if tar ~= nil
-			and rangeCheck(spellid,tar) == nil
-				then
-				return false
-			elseif tar ~= nil
-			and rangeCheck(spellid,tar) == true
-				then
-				CastSpellByID(spellid, tar)
-				return true
-			elseif tar == nil
-				then
-				CastSpellByID(spellid)
-				return true
-			else
-		return false
-		end
-	end
-	end
-	
-		-- Tabled Cast Time Checking for When you Last Cast Something.
-	CheckCastTime = {}
-	Nova_CheckLastCast = nil
-	function Nova_CheckLastCast(spellid, ytime) -- SpellID of Spell To Check, How long of a gap are you looking for?
-		if ytime &amp;gt; 0 then
-			if #CheckCastTime &amp;gt; 0 then
-				for i=1, #CheckCastTime do
-					if CheckCastTime[i].SpellID == spellid then
-						if GetTime() - CheckCastTime[i].CastTime &amp;gt; ytime then
-							CheckCastTime[i].CastTime = GetTime()
-							return true
-						else
-							return false
-						end
-					end
-				end
-			end
-			table.insert(CheckCastTime, { SpellID = spellid, CastTime = GetTime() } )
-			return true
-		elseif ytime &amp;lt;= 0 then
-			return true
-		end
-		return false
 	end
 
 functionsloaded = true
@@ -1025,4 +978,9 @@ function IsBoss()
 	then return 
 		true 
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Earth Shock</Name><Default>false</Default><SpellID>49231</SpellID><Actions></Actions><Lua>if CanAttack()
+and ( flameshock or frostshock )
+and pMove()
+and not CooldownRemains(49231)
+and rangeCheck(49231, &amp;quot;target&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>

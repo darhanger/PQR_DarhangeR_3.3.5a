@@ -27,7 +27,7 @@ and rangeCheck(49924, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Rune Strike</Name><Default>false</Default><SpellID>56815</SpellID><Actions></Actions><Lua>if valid(&amp;quot;target&amp;quot;, 56815)
 and runpow(56815)
 and CanAttack()
-and rangeCheck(49930, &amp;quot;target&amp;quot;)
+and rangeCheck2(49930, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Heart Strike</Name><Default>false</Default><SpellID>55262</SpellID><Actions></Actions><Lua>local BR = select(2, BloodRuneCD())
 
 if BR &amp;gt;= 1
@@ -109,27 +109,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Howling Blast (AOE)</Name><Default>false</Default><SpellID>51411</SpellID><Actions></Actions><Lua>if CanAttack()
 and not CooldownRemains(51411)
 and rangeCheck(51411, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Tank)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
-
-if cd == 0 and havecd == 1
-and IsUsableTrink()
-and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
-and CanAttack()
-then 
-  UseInventoryItem(13)
-  return true
-end
-
-local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
-
-if cd == 0 and havecd == 1
-and IsUsableTrink()
-and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 15
-and CanAttack()
-then 
-  UseInventoryItem(14)
-  return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Scourge Strike</Name><Default>false</Default><SpellID>55271</SpellID><Actions></Actions><Lua>if CanAttack()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Scourge Strike</Name><Default>false</Default><SpellID>55271</SpellID><Actions></Actions><Lua>if CanAttack()
 and FrostFever
 and BloodPlague
 and rangeCheck(55271, &amp;quot;target&amp;quot;)
@@ -139,7 +119,7 @@ local DR = select(2, DeathRuneCD())
 if getHp(&amp;quot;player&amp;quot;) &amp;lt; 45
 and ( BR &amp;gt;= 1 or DR &amp;gt;= 1 )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Raise Dead</Name><Default>false</Default><SpellID>46584</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
-and PQR_IsCastingSpell(46584) == false
+and not UnitBuffID(&amp;quot;player&amp;quot;, 61431)
 and ( GetItemCount(37201) &amp;gt;= 1 
 or glyph(60200) ) 
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Blood Boil</Name><Default>false</Default><SpellID>49941</SpellID><Actions></Actions><Lua>local BR = select(2, BloodRuneCD())
@@ -468,14 +448,6 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		end
 	end
 
-		-- Amount of Cooldown that remains --
-	function cdRemains(spellid)
-		if select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime()) &amp;gt; 0
-			then return select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime())
-		else return 0
-		end
-	end
-
 		-- Item Cooldown remaining check --
 	ItemCooldownRemains = nil
 	function ItemCooldownRemains(item)
@@ -506,6 +478,13 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		end
 	end
 	
+		-- Range Check Simple --
+	function rangeCheck2(spellid,unit)
+	if IsSpellInRange(GetSpellInfo(spellid),unit) == 1 then
+		return true
+		end
+	end
+	
 		-- Threat --
 	function threat(t)
 	if UnitExists(t)
@@ -523,7 +502,6 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		 and not UnitIsDeadOrGhost(t)
 		 and UnitCanAttack(&amp;quot;player&amp;quot;, t) == 1
 		 and UnitDebuffID(&amp;quot;target&amp;quot;, 33786) == nil
-		 and IsUsableSpell(GetSpellInfo(spellid)) == 1
 		 and IsSpellInRange(GetSpellInfo(spellid), t) == 1
 		 then
 			return true
@@ -531,61 +509,9 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 			return false
 		end
 	end
-
-		-- CastSpell --
-	function _castSpell(spellid,tar)
-		if UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
-		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-		--and IsPlayerSpell(spellid) == true
-		and cdRemains(spellid) == 0
-		and not gcd()
-		then
-			if tar ~= nil
-			and rangeCheck(spellid,tar) == nil
-				then
-				return false
-			elseif tar ~= nil
-			and rangeCheck(spellid,tar) == true
-				then
-				CastSpellByID(spellid, tar)
-				return true
-			elseif tar == nil
-				then
-				CastSpellByID(spellid)
-				return true
-			else
-		return false
-		end
-	end
-	end
-	
-		-- Tabled Cast Time Checking for When you Last Cast Something.
-	CheckCastTime = {}
-	Nova_CheckLastCast = nil
-	function Nova_CheckLastCast(spellid, ytime) -- SpellID of Spell To Check, How long of a gap are you looking for?
-		if ytime &amp;gt; 0 then
-			if #CheckCastTime &amp;gt; 0 then
-				for i=1, #CheckCastTime do
-					if CheckCastTime[i].SpellID == spellid then
-						if GetTime() - CheckCastTime[i].CastTime &amp;gt; ytime then
-							CheckCastTime[i].CastTime = GetTime()
-							return true
-						else
-							return false
-						end
-					end
-				end
-			end
-			table.insert(CheckCastTime, { SpellID = spellid, CastTime = GetTime() } )
-			return true
-		elseif ytime &amp;lt;= 0 then
-			return true
-		end
-		return false
-	end
 	
 	function testv()
-	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/4jsWaty&amp;quot;
+	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/way3mVx&amp;quot;
 	end
 	PQR_WriteToChat(testv())
 	
@@ -849,4 +775,35 @@ and not CooldownRemains(56222)
 and ( UnitDebuffID(&amp;quot;targettarget&amp;quot;, 72410) 
 or UnitDebuffID(&amp;quot;targettarget&amp;quot;, 72411)
 or threat(&amp;quot;player&amp;quot;) &amp;lt; 2 )
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DEATHKNIGHT>
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinkets/Hands</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+
+if cd == 0 and havecd == 1
+and IsBoss()
+and CanAttack()
+and rangeCheck(49930, &amp;quot;target&amp;quot;)
+then 
+  UseInventoryItem(13)
+  return true
+end
+
+local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
+
+if cd == 0 and havecd == 1
+and IsBoss()
+and CanAttack()
+and rangeCheck(49930, &amp;quot;target&amp;quot;)
+then 
+  UseInventoryItem(14)
+  return true
+end
+
+local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,10)
+
+if cd == 0 and havecd == 1
+and IsBoss()
+and CanAttack()
+and rangeCheck(49930, &amp;quot;target&amp;quot;)
+then 
+  UseInventoryItem(10)
+  return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DEATHKNIGHT>
