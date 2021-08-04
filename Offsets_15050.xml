@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Offsets>
+	<CurrentWoWVersion>15050</CurrentWoWVersion>
+	<WoWVersionOffset>0x99B077</WoWVersionOffset>
+	<PlayerName>0x9BE6B8</PlayerName>
+	<PlayerClass>0x9BE835</PlayerClass>
+	<GetCurrentKeyBoardFocus>0x9D3894</GetCurrentKeyBoardFocus>
+	<GameState>0xAD7296</GameState>	
+	<Lua_DoStringAddress>0x43C010</Lua_DoStringAddress>
+	<Lua_GetLocalizedTextAddress>0x1BB0C0</Lua_GetLocalizedTextAddress>
+</Offsets>

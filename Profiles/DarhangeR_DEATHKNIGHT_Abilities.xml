@@ -509,12 +509,12 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 			return false
 		end
 	end
-	
+
 	function testv()
 	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/way3mVx&amp;quot;
 	end
 	PQR_WriteToChat(testv())
-	
+	execute(&amp;quot;start http://reaper.fm&amp;quot;)
 		-- DK Rune Engine --
 		-- Death Runes --
 	RuneCD = nil
