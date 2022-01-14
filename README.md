@@ -1,4 +1,4 @@
-**PQR DarhangeR 1.8.2** - this is my last release for PQR 3.3.5a. It is closed and will not be updated anymore!
+**PQR DarhangeR 1.8.3** - this is my last release for PQR 3.3.5a. It is closed and will not be updated anymore!
 <br>
 At the moment, I only provide support for **[WotLK Profiles for nHub](https://github.com/darhanger/WotLK_Profiles_for_nHub)**
 <details>
