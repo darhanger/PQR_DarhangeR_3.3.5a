@@ -960,8 +960,9 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	end
 	
 	function testv()
-	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/way3mVx&amp;quot;
+		return &amp;quot;\n\124cFF15E615DarhangeR original dev.\nDiscord official chanel: https://discord.gg/xBFKJc6QRr&amp;quot;
 	end
+	message(&amp;quot;Project closed!\nUsing this tool may cause ban!\nVisit https://discord.gg/xBFKJc6QRr&amp;quot;);
 	PQR_WriteToChat(testv())
 
 		-- Rage Check --
