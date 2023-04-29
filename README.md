@@ -3,7 +3,7 @@
 
 # PQR DarhangeR 3.3.5a (CLOSED)
 
-![LagBar](https://i.ibb.co/Hxk58bY/f444fa00-f1d5-11e9-8bc4-accfe6efc61d.png)
+![PQR](https://i.ibb.co/Hxk58bY/f444fa00-f1d5-11e9-8bc4-accfe6efc61d.png)
 
 **PQR DarhangeR 1.8.2** - this is my last release for PQR 3.3.5a. It is closed and will not be updated anymore!
 <br>
