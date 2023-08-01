@@ -217,11 +217,7 @@ and energycost(51723)
 and CanAttack()
 and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
--- VK: https://vk.com/darhanger
--- FB: https://fb.com/darhanger
--- Instagram: https://instagram.com/darhanger
--- E-mail: civayan@gmail.com
--- Discord: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
+-- Discord: https://discord.com/users/250267265285488641</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
 local hracial = { 33697, 20572, 33702, 26297 }
 local alracial = { 20594, 28880 }
 local hrace = { &amp;quot;Troll&amp;quot;, &amp;quot;Orc&amp;quot; }
@@ -523,11 +519,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False
 		end
 	end
 	
-	function testv()
-		return &amp;quot;\n\124cFF15E615DarhangeR original dev.\nDiscord official chanel: https://discord.gg/xBFKJc6QRr&amp;quot;
-	end
-	message(&amp;quot;Project closed!\nUsing this tool may cause ban!\nVisit https://discord.gg/xBFKJc6QRr&amp;quot;);
-	PQR_WriteToChat(testv())
+	message(&amp;quot;Project closed!\nUsing this tool may cause ban!\nVisit https://darhanger.github.io/rotations/&amp;quot;);
 	
 		-- Validator --
 	valid = nil

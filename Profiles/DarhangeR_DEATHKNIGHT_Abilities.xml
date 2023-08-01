@@ -224,11 +224,7 @@ if  BloodPlague ~= nil then
 else
 	return true
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
--- VK: https://vk.com/darhanger
--- FB: https://fb.com/darhanger
--- Instagram: https://instagram.com/darhanger
--- E-mail: civayan@gmail.com
--- Discord: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Unholy Presence</Name><Default>false</Default><SpellID>48265</SpellID><Actions></Actions><Lua>if not uPres
+-- Discord: https://discord.com/users/250267265285488641</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>U:Unholy Presence</Name><Default>false</Default><SpellID>48265</SpellID><Actions></Actions><Lua>if not uPres
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Interrupt Engine --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- New Interrupt Engine // Новый движок--
 if xelperInterruptInit == nil then
 		xelperInterruptInit = true
@@ -359,7 +355,191 @@ if not spells then
 		&amp;quot;Cyclone&amp;quot;,
 		&amp;quot;Polymorph&amp;quot;
 		}
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Function --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not functionsloaded then glyph=function(a)local b=false;local c=1;local glyph=GetGlyphSocketInfo(c)while glyph do local d=select(3,GetGlyphSocketInfo(c))if d==a then b=true;break end;c=c+1;glyph=GetGlyphSocketInfo(c)end;return b end;function CanAttack()if UnitExists(&amp;quot;target&amp;quot;)and UnitCanAttack(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;)==1 then return true end end;function UnX()if UnitExists(&amp;quot;target&amp;quot;)then return true end end;function pMove()if GetUnitSpeed(&amp;quot;player&amp;quot;)&amp;gt;=3 then return true end end;function pStay()if GetUnitSpeed(&amp;quot;player&amp;quot;)==0 then return true end end;function inCombat()if UnitAffectingCombat(&amp;quot;player&amp;quot;)~=nil then return true end end;function getHp(e)if UnitExists(e)~=nil then return 100*UnitHealth(e)/UnitHealthMax(e)end end;function CalculateHP(f)local g=100*UnitHealth(f)/UnitHealthMax(f)if g then return g else return 100 end end;CooldownRemains=nil;function CooldownRemains(h)local i,j,k=GetSpellCooldown(h)if i&amp;gt;0 and j&amp;gt;1.5 and not gcd()then return i+j-GetTime()else return false end end;ItemCooldownRemains=nil;function ItemCooldownRemains(l)local i,j,k=GetItemCooldown(l)if i&amp;gt;0 and j&amp;gt;1.5 then return i+j-GetTime()else return false end end;function gcd()local m,n=GetSpellCooldown(61304)if n~=0 then return true else return false end end;function rangeCheck(o,e)if IsSpellInRange(GetSpellInfo(o),e)==1 and not gcd()then return true end end;function rangeCheck2(o,e)if IsSpellInRange(GetSpellInfo(o),e)==1 then return true end end;function threat(f)if UnitExists(f)and UnitThreatSituation(f)~=nil then return UnitThreatSituation(f)else return 0 end end;valid=nil;function valid(f,o)if UnitExists(f)and not UnitIsDeadOrGhost(f)and UnitCanAttack(&amp;quot;player&amp;quot;,f)==1 and UnitDebuffID(&amp;quot;target&amp;quot;,33786)==nil and IsSpellInRange(GetSpellInfo(o),f)==1 then return true else return false end end;function testv()return&amp;quot;\n\124cFF15E615DarhangeR original dev.\nDiscord official chanel: https://discord.gg/xBFKJc6QRr&amp;quot;end;message(&amp;quot;Project closed!\nUsing this tool may cause ban!\nVisit https://discord.gg/xBFKJc6QRr&amp;quot;)PQR_WriteToChat(testv())RuneCD=nil;function RuneCD()local p=0;for c=1,6 do if select(3,GetRuneCooldown(c))==false then p=p+1 end end;return p end;DeathRuneCD=nil;function DeathRuneCD()local q=0;local r=0;for c=1,6 do if GetRuneType(c)==4 and select(3,GetRuneCooldown(c))==false then q=q+1 elseif GetRuneType(c)==4 and select(3,GetRuneCooldown(c))==true then r=r+1 end end;return q,r end;FrostRuneCD=nil;function FrostRuneCD()local s=0;local t=0;for c=1,6 do if GetRuneType(c)==2 and select(3,GetRuneCooldown(c))==false then s=s+1 elseif GetRuneType(c)==2 and select(3,GetRuneCooldown(c))==true then t=t+1 end end;return s,t end;UnholyRuneCD=nil;function UnholyRuneCD()local u=0;local v=0;for c=1,6 do if GetRuneType(c)==3 and select(3,GetRuneCooldown(c))==false then u=u+1 elseif GetRuneType(c)==3 and select(3,GetRuneCooldown(c))==true then v=v+1 end end;return u,v end;BloodRuneCD=nil;function BloodRuneCD()local w=0;local x=0;for c=1,6 do if GetRuneType(c)==1 and select(3,GetRuneCooldown(c))==false then w=w+1 elseif GetRuneType(c)==1 and select(3,GetRuneCooldown(c))==true then x=x+1 end end;return w,x end;runpow=nil;function runpow(o)local y=UnitPower(&amp;quot;player&amp;quot;)if y&amp;gt;=select(4,GetSpellInfo(o))then return true else return false end end;functionsloaded=true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Function --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not functionsloaded then
+    glyph = function(a)
+        local b = false
+        local c = 1
+        local glyph = GetGlyphSocketInfo(c)
+        while glyph do
+            local d = select(3, GetGlyphSocketInfo(c))
+            if d == a then
+                b = true
+                break
+            end
+            c = c + 1
+            glyph = GetGlyphSocketInfo(c)
+        end
+        return b
+    end
+    function CanAttack()
+        if UnitExists(&amp;quot;target&amp;quot;) and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1 then
+            return true
+        end
+    end
+    function UnX()
+        if UnitExists(&amp;quot;target&amp;quot;) then
+            return true
+        end
+    end
+    function pMove()
+        if GetUnitSpeed(&amp;quot;player&amp;quot;) &amp;gt;= 3 then
+            return true
+        end
+    end
+    function pStay()
+        if GetUnitSpeed(&amp;quot;player&amp;quot;) == 0 then
+            return true
+        end
+    end
+    function inCombat()
+        if UnitAffectingCombat(&amp;quot;player&amp;quot;) ~= nil then
+            return true
+        end
+    end
+    function getHp(e)
+        if UnitExists(e) ~= nil then
+            return 100 * UnitHealth(e) / UnitHealthMax(e)
+        end
+    end
+    function CalculateHP(f)
+        local g = 100 * UnitHealth(f) / UnitHealthMax(f)
+        if g then
+            return g
+        else
+            return 100
+        end
+    end
+    CooldownRemains = nil
+    function CooldownRemains(h)
+        local i, j, k = GetSpellCooldown(h)
+        if i &amp;gt; 0 and j &amp;gt; 1.5 and not gcd() then
+            return i + j - GetTime()
+        else
+            return false
+        end
+    end
+    ItemCooldownRemains = nil
+    function ItemCooldownRemains(l)
+        local i, j, k = GetItemCooldown(l)
+        if i &amp;gt; 0 and j &amp;gt; 1.5 then
+            return i + j - GetTime()
+        else
+            return false
+        end
+    end
+    function gcd()
+        local m, n = GetSpellCooldown(61304)
+        if n ~= 0 then
+            return true
+        else
+            return false
+        end
+    end
+    function rangeCheck(o, e)
+        if IsSpellInRange(GetSpellInfo(o), e) == 1 and not gcd() then
+            return true
+        end
+    end
+    function rangeCheck2(o, e)
+        if IsSpellInRange(GetSpellInfo(o), e) == 1 then
+            return true
+        end
+    end
+    function threat(f)
+        if UnitExists(f) and UnitThreatSituation(f) ~= nil then
+            return UnitThreatSituation(f)
+        else
+            return 0
+        end
+    end
+    valid = nil
+    function valid(f, o)
+        if
+            UnitExists(f) and not UnitIsDeadOrGhost(f) and UnitCanAttack(&amp;quot;player&amp;quot;, f) == 1 and
+                UnitDebuffID(&amp;quot;target&amp;quot;, 33786) == nil and
+                IsSpellInRange(GetSpellInfo(o), f) == 1
+         then
+            return true
+        else
+            return false
+        end
+    end
+	
+	message(&amp;quot;Project closed!\nUsing this tool may cause ban!\nVisit https://darhanger.github.io/rotations/&amp;quot;);
+    
+	RuneCD = nil
+    function RuneCD()
+        local p = 0
+        for c = 1, 6 do
+            if select(3, GetRuneCooldown(c)) == false then
+                p = p + 1
+            end
+        end
+        return p
+    end
+    DeathRuneCD = nil
+    function DeathRuneCD()
+        local q = 0
+        local r = 0
+        for c = 1, 6 do
+            if GetRuneType(c) == 4 and select(3, GetRuneCooldown(c)) == false then
+                q = q + 1
+            elseif GetRuneType(c) == 4 and select(3, GetRuneCooldown(c)) == true then
+                r = r + 1
+            end
+        end
+        return q, r
+    end
+    FrostRuneCD = nil
+    function FrostRuneCD()
+        local s = 0
+        local t = 0
+        for c = 1, 6 do
+            if GetRuneType(c) == 2 and select(3, GetRuneCooldown(c)) == false then
+                s = s + 1
+            elseif GetRuneType(c) == 2 and select(3, GetRuneCooldown(c)) == true then
+                t = t + 1
+            end
+        end
+        return s, t
+    end
+    UnholyRuneCD = nil
+    function UnholyRuneCD()
+        local u = 0
+        local v = 0
+        for c = 1, 6 do
+            if GetRuneType(c) == 3 and select(3, GetRuneCooldown(c)) == false then
+                u = u + 1
+            elseif GetRuneType(c) == 3 and select(3, GetRuneCooldown(c)) == true then
+                v = v + 1
+            end
+        end
+        return u, v
+    end
+    BloodRuneCD = nil
+    function BloodRuneCD()
+        local w = 0
+        local x = 0
+        for c = 1, 6 do
+            if GetRuneType(c) == 1 and select(3, GetRuneCooldown(c)) == false then
+                w = w + 1
+            elseif GetRuneType(c) == 1 and select(3, GetRuneCooldown(c)) == true then
+                x = x + 1
+            end
+        end
+        return w, x
+    end
+    runpow = nil
+    function runpow(o)
+        local y = UnitPower(&amp;quot;player&amp;quot;)
+        if y &amp;gt;= select(4, GetSpellInfo(o)) then
+            return true
+        else
+            return false
+        end
+    end
+    functionsloaded = true
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
 local hracial = { 33697, 20572, 33702, 26297 }
 local alracial = { 20594, 28880 }
 local hrace = { &amp;quot;Troll&amp;quot;, &amp;quot;Orc&amp;quot; }

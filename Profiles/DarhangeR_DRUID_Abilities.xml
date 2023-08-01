@@ -274,11 +274,7 @@ then eclipse = &amp;quot;lunar&amp;quot; end</Lua><RecastDelay>0</RecastDelay><T
 	return true
 	end
 	
-	function testv()
-		return &amp;quot;\n\124cFF15E615DarhangeR original dev.\nDiscord official chanel: https://discord.gg/xBFKJc6QRr&amp;quot;
-	end
-	message(&amp;quot;Project closed!\nUsing this tool may cause ban!\nVisit https://discord.gg/xBFKJc6QRr&amp;quot;);
-	PQR_WriteToChat(testv())
+	message(&amp;quot;Project closed!\nUsing this tool may cause ban!\nVisit https://darhanger.github.io/rotations/&amp;quot;);
 	
 	CantMangle = nil
 	function CantMangle()
@@ -932,11 +928,7 @@ and inCombat() == nil
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
--- VK: https://vk.com/darhanger
--- FB: https://fb.com/darhanger
--- Instagram: https://instagram.com/darhanger
--- E-mail: civayan@gmail.com
--- Discord: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Touch</Name><Default>false</Default><SpellID>48378</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 65
+-- Discord: https://discord.com/users/250267265285488641</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Touch</Name><Default>false</Default><SpellID>48378</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 65
 and pStay()
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Feral Function --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not FuncLoaded then
 	FuncLoaded = true

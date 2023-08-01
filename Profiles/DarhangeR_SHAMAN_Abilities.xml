@@ -379,11 +379,7 @@ and CanAttack()
 and not CooldownRemains(49271)
 and rangeCheck(49271, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
--- VK: https://vk.com/darhanger
--- FB: https://fb.com/darhanger
--- Instagram: https://instagram.com/darhanger
--- E-mail: civayan@gmail.com
--- Discord: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Shamanistic Rage (Burst)</Name><Default>false</Default><SpellID>30823</SpellID><Actions></Actions><Lua>if IsBoss()
+-- Discord: https://discord.com/users/250267265285488641</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Shamanistic Rage (Burst)</Name><Default>false</Default><SpellID>30823</SpellID><Actions></Actions><Lua>if IsBoss()
 and CanAttack()
 and not CooldownRemains(30823)
 and rangeCheck(17364, &amp;quot;target&amp;quot;)
@@ -660,11 +656,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		end
 	end
 		
-	function testv()
-		return &amp;quot;\n\124cFF15E615DarhangeR original dev.\nDiscord official chanel: https://discord.gg/xBFKJc6QRr&amp;quot;
-	end
-	message(&amp;quot;Project closed!\nUsing this tool may cause ban!\nVisit https://discord.gg/xBFKJc6QRr&amp;quot;);
-	PQR_WriteToChat(testv())
+	message(&amp;quot;Project closed!\nUsing this tool may cause ban!\nVisit https://darhanger.github.io/rotations/&amp;quot;);
 	
 		-- Spell Cooldown remaining check --
 	CooldownRemains = nil
