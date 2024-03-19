@@ -2,12 +2,8 @@
 <div align="center">
 
 # PQR DarhangeR 3.3.5a (CLOSED)
-
+**PQR DarhangeR 1.8.3 (СLOSED FROM 2020)** - this is my last release for PQR 3.3.5a. It is closed and will not be updated PROFILES anymore!
 ![PQR](https://i.ibb.co/Hxk58bY/f444fa00-f1d5-11e9-8bc4-accfe6efc61d.png)
-
-**PQR DarhangeR 1.8.3 (СLOSED FROM 2020)** - this is my last release for PQR 3.3.5a. It is closed and will not be updated anymore!
-<br>
-At the moment, I only provide support for **[WotLK Profiles for nHub](https://github.com/darhanger/WotLK_Profiles_for_nHub)**
 
 ![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-squaree&logo=lua&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-squaree&logo=c%2B%2B&logoColor=white)
@@ -26,6 +22,9 @@ At the moment, I only provide support for **[WotLK Profiles for nHub](https://gi
 * ✔️ - works well, but not as I would like)
 * ⁉️ - currently unknown or in development;
 
+<details>
+  <summary>Classes List</summary>
+  
 ### Death Knight
 * Blood_DPS_DarhangeR - ✅
 * Frost2W_DPS_DarhangeR - ✅
@@ -76,3 +75,9 @@ At the moment, I only provide support for **[WotLK Profiles for nHub](https://gi
 * Fury_DPS_DarhangeR - ✅
 * Proto_Tank_DarhangeR - ✅
 * Arms_DPS_DarhangeR - ✅
+
+</details>
+
+## Alternative
+* "PQR" on steroids [ni (v2) Legacy](https://github.com/darhanger/ni) (free project / free profiles);
+* Also have paid version. Just [DM me](https://allmylinks.com/darhanger);
