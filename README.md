@@ -5,13 +5,13 @@
 **PQR DarhangeR 1.8.3 (СLOSED FROM 2020)** - this is my last release for PQR 3.3.5a. It is closed and will not be updated PROFILES anymore!
 ![PQR](https://i.ibb.co/Hxk58bY/f444fa00-f1d5-11e9-8bc4-accfe6efc61d.png)
 
-![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-squaree&logo=lua&logoColor=white)
-![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-squaree&logo=c%2B%2B&logoColor=white)
+![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat-square&logo=lua&logoColor=white)
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)
 [![License](https://img.shields.io/github/license/darhanger/PQR_DarhangeR_3.3.5a?style=flat-square)](https://github.com/darhanger/PQR_DarhangeR_3.3.5a/releases) 
 [![Last Release](https://img.shields.io/github/v/release/darhanger/PQR_DarhangeR_3.3.5a?style=flat-square)](https://github.com/darhanger/PQR_DarhangeR_3.3.5a)
 [![GitHub Last Download](https://img.shields.io/github/downloads/darhanger/PQR_DarhangeR_3.3.5a/1.8.4/total?style=flat-square)](https://github.com/darhanger/PQR_DarhangeR_3.3.5a/releases)
 [![GitHub All Releases](https://img.shields.io/github/downloads/darhanger/PQR_DarhangeR_3.3.5a/total?style=flat-square)](https://github.com/darhanger/PQR_DarhangeR_3.3.5a/releases)
-[![Discord Server](https://img.shields.io/badge/Discord-7289DA?style=flat-squaree&logo=discord&logoColor=white)](https://discord.gg/xBFKJc6QRr)
+[![Discord Server](https://img.shields.io/badge/Discord-7289DA?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/ZKFkvrzaU4)
 [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=flat-square&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=WMPGGC32C7U7U)
 
 </div>
