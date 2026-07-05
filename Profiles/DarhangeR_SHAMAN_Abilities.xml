@@ -378,8 +378,7 @@ if maelstromstack == 5
 and CanAttack()
 and not CooldownRemains(49271)
 and rangeCheck(49271, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
--- Discord: https://discord.com/users/250267265285488641</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Shamanistic Rage (Burst)</Name><Default>false</Default><SpellID>30823</SpellID><Actions></Actions><Lua>if IsBoss()
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Shamanistic Rage (Burst)</Name><Default>false</Default><SpellID>30823</SpellID><Actions></Actions><Lua>if IsBoss()
 and CanAttack()
 and not CooldownRemains(30823)
 and rangeCheck(17364, &amp;quot;target&amp;quot;)
@@ -572,7 +571,6 @@ if not spells then
 		&amp;quot;Polymorph&amp;quot;
 		}
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Function --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not functionsloaded then
-
 		-- Glyph Check -- 
 	glyph = function(glyphID)
         local hasglyph = false;
@@ -656,7 +654,11 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		end
 	end
 		
-	message(&amp;quot;Project closed!\nUsing this tool may cause ban!\nVisit https://darhanger.github.io/rotations/&amp;quot;);
+	function testv()
+		return &amp;quot;\n\124cFF15E615Discord official chanel: https://discord.gg/ZKFkvrzaU4&amp;quot;
+	end
+	message(&amp;quot;Project closed!\nUsing this tool may cause ban!\nVisit https://discord.gg/ZKFkvrzaU4&amp;quot;);
+	PQR_WriteToChat(testv())
 	
 		-- Spell Cooldown remaining check --
 	CooldownRemains = nil
@@ -976,4 +978,84 @@ and ( flameshock or frostshock )
 and pMove()
 and not CooldownRemains(49231)
 and rangeCheck(49231, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:HOOK --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local PQR_DebugFrame = UIParent.PQR_DebugFrame
+
+if not _G._PQR_WriteToChat_Original then
+	_G._PQR_WriteToChat_Original = _G.PQR_WriteToChat
+end
+
+if not PQR_DebugFrame then
+	local frame = CreateFrame(&amp;quot;Frame&amp;quot;, nil, UIParent)
+	frame:SetSize(math.random(370, 420), 140)
+	frame:SetPoint(&amp;quot;BOTTOMLEFT&amp;quot;, ChatFrame1, &amp;quot;TOPLEFT&amp;quot;, 0, 8)
+
+	frame:SetBackdrop({
+		bgFile = &amp;quot;Interface\\Buttons\\WHITE8X8&amp;quot;,
+		edgeFile = &amp;quot;Interface\\Buttons\\WHITE8X8&amp;quot;,
+		edgeSize = 1,
+	})
+
+	frame:SetBackdropColor(0, 0, 0, 0.75)
+	frame:SetBackdropBorderColor(0.25, 0.25, 0.25, 1)
+
+	frame:SetMovable(true)
+	frame:EnableMouse(true)
+	frame:RegisterForDrag(&amp;quot;LeftButton&amp;quot;)
+	frame:SetScript(&amp;quot;OnDragStart&amp;quot;, frame.StartMoving)
+	frame:SetScript(&amp;quot;OnDragStop&amp;quot;, frame.StopMovingOrSizing)
+
+	local title = frame:CreateFontString(nil, &amp;quot;OVERLAY&amp;quot;, &amp;quot;GameFontNormalSmall&amp;quot;)
+	title:SetPoint(&amp;quot;TOPLEFT&amp;quot;, 6, -5)
+	title:SetText(&amp;quot;PQR Debug&amp;quot;)
+
+	local text = frame:CreateFontString(nil, &amp;quot;OVERLAY&amp;quot;, &amp;quot;GameFontHighlightSmall&amp;quot;)
+	text:SetPoint(&amp;quot;TOPLEFT&amp;quot;, 6, -22)
+	text:SetPoint(&amp;quot;BOTTOMRIGHT&amp;quot;, -6, 6)
+	text:SetJustifyH(&amp;quot;LEFT&amp;quot;)
+	text:SetJustifyV(&amp;quot;TOP&amp;quot;)
+	text:SetText(&amp;quot;&amp;quot;)
+
+	frame.lines = {}
+	frame.text = text
+	frame.maxLines = 8
+	frame.rotationModeEnabled = true
+
+	function frame:AddLine(msg)
+		local lines = self.lines
+
+		lines[#lines + 1] = &amp;quot;|r&amp;quot; .. tostring(msg) .. &amp;quot;|r&amp;quot;
+
+		while #lines &amp;gt; self.maxLines do
+			table.remove(lines, 1)
+		end
+
+		self.text:SetText(table.concat(lines, &amp;quot;\n&amp;quot;))
+	end
+
+	frame:AddLine(&amp;quot;|cff00ff00Rotation Mode Enabled|r&amp;quot;)
+
+	PQR_DebugFrame = frame
+	UIParent.PQR_DebugFrame = frame
+end
+
+_G.PQR_WriteToChat = function(msg)
+	msg = tostring(msg)
+
+	if msg:find(&amp;quot;Rotation Mode Disabled&amp;quot;, 1, true) then
+		PQR_DebugFrame.rotationModeEnabled = false
+		PQR_DebugFrame:AddLine(msg)
+
+	elseif msg:find(&amp;quot;Rotation Mode Enabled&amp;quot;, 1, true) then
+		if not PQR_DebugFrame.rotationModeEnabled then
+			PQR_DebugFrame.rotationModeEnabled = true
+			PQR_DebugFrame:AddLine(msg)
+		end
+
+	else
+		PQR_DebugFrame:AddLine(msg)
+	end
+
+	if _G._PQR_WriteToChat_Original then
+		return _G._PQR_WriteToChat_Original(msg)
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>
